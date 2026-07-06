@@ -5,7 +5,7 @@ export const personalInfo = {
   email: "hmistry864@gmail.com",
   phone: "+91-9157641005",
   location: "Gandhinagar, Gujarat, India",
-  github: "https://github.com/HarshMistry",
+  github: "https://github.com/Harsh-Mistry-12",
   linkedin: "https://www.linkedin.com/in/harshmistry1203",
   gitlab: "https://gitlab.com/HarshMistry_",
 };

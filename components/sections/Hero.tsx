@@ -128,8 +128,8 @@ export const Hero = () => {
               <div className="h-6 w-px bg-slate-200" />
               {[
                 { label: "Hackathons", value: "21+" },
-                { label: "Experience", value: "2+ yrs" },
-                { label: "Projects", value: "10+" },
+                { label: "Experience", value: "3+ yrs" },
+                { label: "Projects", value: "20+" },
               ].map((s) => (
                 <div key={s.label} className="text-center">
                   <div className="text-xl font-bold text-slate-900">{s.value}</div>
