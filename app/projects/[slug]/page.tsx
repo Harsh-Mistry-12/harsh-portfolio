@@ -3,21 +3,12 @@
 import { projects } from "@/lib/data";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, ExternalLink } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
-import { motion } from "framer-motion";
 import { use } from "react";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
-
-const accentColors = [
-  "from-indigo-500 to-sky-500",
-  "from-sky-500 to-emerald-500",
-  "from-violet-500 to-indigo-500",
-  "from-amber-500 to-orange-500",
-];
 
 export default function ProjectPage({ params }: Props) {
   const { slug } = use(params);
@@ -25,123 +16,258 @@ export default function ProjectPage({ params }: Props) {
   if (!project) notFound();
 
   const idx = projects.indexOf(project);
-  const gradient = accentColors[idx % accentColors.length];
 
   return (
-    <main className="min-h-screen bg-white text-slate-900">
-      {/* ── Hero Banner ── */}
-      <div className="relative overflow-hidden">
-        {/* Gradient accent stripe */}
-        <div className={`h-1 w-full bg-gradient-to-r ${gradient}`} />
-
-        {/* Soft mesh background */}
-        <div className="py-16 px-4 bg-white"
+    <main
+      style={{
+        minHeight: "100vh",
+        background: "#e8e5de",
+        backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)",
+        backgroundSize: "24px 24px",
+        fontFamily: "var(--font-mono)",
+      }}
+    >
+      {/* Nav bar */}
+      <div
+        style={{
+          borderBottom: "1px solid #0a0a0a",
+          padding: "14px 24px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          background: "#e8e5de",
+          position: "sticky",
+          top: 0,
+          zIndex: 50,
+        }}
+      >
+        <Link
+          href="/#projects"
           style={{
-            background: "radial-gradient(ellipse 80% 60% at 30% 10%, rgba(79,70,229,0.05) 0%, transparent 60%)",
+            fontFamily: "var(--font-mono)",
+            fontSize: "0.65rem",
+            letterSpacing: "0.1em",
+            color: "#6b6b6b",
+            textDecoration: "none",
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
           }}
         >
-          <div className="max-w-4xl mx-auto">
-            <Link href="/#projects"
-              className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-indigo-600 transition-colors mb-8 group"
-            >
-              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-              Back to Projects
-            </Link>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h1 className="text-3xl md:text-4xl xl:text-5xl font-black leading-tight mb-6 text-slate-900">
-                {project.title}
-              </h1>
-
-              {/* Tech tags */}
-              <div className="flex flex-wrap gap-2 mb-8">
-                {project.technologies.map((tech) => (
-                  <span key={tech} className="tag">{tech}</span>
-                ))}
-              </div>
-
-              {/* Action buttons */}
-              <div className="flex flex-wrap gap-3">
-                <a href={project.github} target="_blank" rel="noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-900 text-white text-sm font-semibold hover:bg-slate-700 transition-colors shadow-md"
-                >
-                  <FaGithub className="w-4 h-4" />
-                  View on GitHub
-                </a>
-                {project.demo !== "#" && (
-                  <a href={project.demo} target="_blank" rel="noreferrer"
-                    className="btn-ghost !text-sm"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    Live Demo
-                  </a>
-                )}
-              </div>
-            </motion.div>
-          </div>
-        </div>
+          ← BACK TO PROJECTS /
+        </Link>
+        <span
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: "0.65rem",
+            letterSpacing: "0.1em",
+            color: "#d4500a",
+          }}
+        >
+          PROJECT_{String(idx + 1).padStart(2, "0")}.MD
+        </span>
       </div>
 
-      {/* ── Body ── */}
-      <div className="max-w-4xl mx-auto px-4 py-16">
-        {/* Overview */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-14"
-        >
-          <h2 className="text-2xl font-black text-slate-900 mb-2">Overview</h2>
-          <div className="w-10 h-1 bg-gradient-to-r from-indigo-500 to-sky-400 rounded-full mb-6" />
-          <p className="text-lg text-slate-500 leading-relaxed">{project.longDescription}</p>
-        </motion.div>
+      {/* Content */}
+      <div style={{ maxWidth: "900px", margin: "0 auto", padding: "3rem 1.5rem" }}>
+        {/* Header */}
+        <div style={{ marginBottom: "2.5rem" }}>
+          <div
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.6rem",
+              letterSpacing: "0.12em",
+              color: "#d4500a",
+              marginBottom: "0.75rem",
+            }}
+          >
+            // PROJECT: {String(idx + 1).padStart(3, "0")}
+          </div>
+          <h1
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "clamp(1.5rem, 3vw, 2.2rem)",
+              fontWeight: 700,
+              letterSpacing: "-0.01em",
+              lineHeight: 1.2,
+              color: "#0a0a0a",
+              marginBottom: "1.5rem",
+            }}
+          >
+            {project.title}
+          </h1>
 
-        {/* Detail sections */}
-        <div className="space-y-6 mb-14">
-          {project.details.map((section, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.15 + i * 0.1 }}
-              className="card p-8 relative overflow-hidden"
+          {/* Tech tags */}
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "1.5rem" }}>
+            {project.technologies.map((tech) => (
+              <span
+                key={tech}
+                className="b-tag"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+
+          {/* Actions */}
+          <div style={{ display: "flex", gap: "10px" }}>
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-brutalist"
             >
-              <div className="absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl bg-gradient-to-b from-indigo-500 to-sky-400" />
-              <div className="pl-2">
-                <h3 className="text-lg font-bold text-indigo-600 mb-3">{section.heading}</h3>
-                <p className="text-slate-500 leading-relaxed">{section.body}</p>
+              <span className="btn-tab">
+                <FaGithub size={14} />
+              </span>
+              <span className="btn-body">VIEW ON GITHUB</span>
+            </a>
+            {project.demo !== "#" && (
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noreferrer"
+                className="btn-brutalist"
+              >
+                <span className="btn-tab">↗</span>
+                <span className="btn-body">LIVE DEMO</span>
+              </a>
+            )}
+          </div>
+        </div>
+
+        {/* Bordered content area */}
+        <div style={{ border: "1px solid #0a0a0a" }}>
+          {/* Overview */}
+          <div style={{ borderBottom: "1px solid #0a0a0a" }}>
+            <div
+              style={{
+                borderBottom: "1px solid #0a0a0a",
+                padding: "10px 16px",
+                background: "#dedad1",
+                fontFamily: "var(--font-mono)",
+                fontSize: "0.65rem",
+                letterSpacing: "0.1em",
+                color: "#6b6b6b",
+                display: "flex",
+                justifyContent: "space-between",
+              }}
+            >
+              <span>OVERVIEW.MD</span>
+            </div>
+            <div style={{ padding: "2rem" }}>
+              <p
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.78rem",
+                  color: "#6b6b6b",
+                  lineHeight: 1.9,
+                  letterSpacing: "0.02em",
+                }}
+              >
+                {project.longDescription}
+              </p>
+            </div>
+          </div>
+
+          {/* Detail sections */}
+          {project.details.map((section, i) => (
+            <div
+              key={i}
+              style={{
+                borderBottom: i < project.details.length - 1 ? "1px solid #0a0a0a" : "none",
+              }}
+            >
+              <div
+                style={{
+                  borderBottom: "1px solid #0a0a0a",
+                  padding: "10px 16px",
+                  background: "#dedad1",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.65rem",
+                  letterSpacing: "0.1em",
+                  color: "#6b6b6b",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                <span style={{ color: "#d4500a" }}>
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span>{section.heading.toUpperCase()}</span>
               </div>
-            </motion.div>
+              <div style={{ padding: "2rem" }}>
+                <p
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.75rem",
+                    color: "#6b6b6b",
+                    lineHeight: 1.9,
+                    letterSpacing: "0.02em",
+                  }}
+                >
+                  {section.body}
+                </p>
+              </div>
+            </div>
           ))}
         </div>
 
         {/* Impact callout */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="rounded-2xl border border-indigo-100 bg-indigo-50 p-8 mb-14"
+        <div
+          style={{
+            marginTop: "1.5rem",
+            border: "1px solid #d4500a",
+            padding: "2rem",
+          }}
         >
-          <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
-            💡 Key Impact
-          </h3>
-          <p className="text-slate-600 leading-relaxed">{project.impact}</p>
-        </motion.div>
-
-        {/* Navigation */}
-        <div className="pt-8 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
-          <Link href="/#projects"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-indigo-600 transition-colors group"
+          <div
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.6rem",
+              letterSpacing: "0.14em",
+              color: "#d4500a",
+              marginBottom: "1rem",
+            }}
           >
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            All Projects
+            ■ KEY_IMPACT
+          </div>
+          <p
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.78rem",
+              color: "#0a0a0a",
+              lineHeight: 1.9,
+              letterSpacing: "0.02em",
+            }}
+          >
+            {project.impact}
+          </p>
+        </div>
+
+        {/* Bottom nav */}
+        <div
+          style={{
+            marginTop: "2rem",
+            borderTop: "1px solid #0a0a0a",
+            paddingTop: "1.5rem",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: "1rem",
+          }}
+        >
+          <Link href="/#projects" className="btn-brutalist">
+            <span className="btn-tab">←</span>
+            <span className="btn-body" style={{ background: "transparent", color: "#0a0a0a" }}>
+              ALL PROJECTS
+            </span>
           </Link>
-          <Link href="/#contact" className="btn-primary">
-            Let&apos;s Work Together
+          <Link href="/#contact" className="btn-brutalist">
+            <span className="btn-tab">→</span>
+            <span className="btn-body">LET&apos;S WORK TOGETHER</span>
           </Link>
         </div>
       </div>

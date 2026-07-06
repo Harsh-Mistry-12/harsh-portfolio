@@ -1,61 +1,244 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { aboutMe } from "@/lib/data";
-import { Sparkles, Cpu, Target, Trophy } from "lucide-react";
-
-const cards = [
-  { icon: Sparkles, color: "indigo", label: "Background",  key: "background"  as const },
-  { icon: Cpu,      color: "sky",    label: "The Journey",  key: "journey"     as const },
-  { icon: Target,   color: "amber",  label: "Core Strengths", key: "strengths" as const },
-  { icon: Trophy,   color: "emerald",label: "Aspirations",  key: "aspirations" as const },
-];
-
-const colorMap: Record<string, { bg: string; text: string; ring: string }> = {
-  indigo:  { bg: "bg-indigo-50",  text: "text-indigo-600",  ring: "hover:border-indigo-200" },
-  sky:     { bg: "bg-sky-50",     text: "text-sky-600",     ring: "hover:border-sky-200"    },
-  amber:   { bg: "bg-amber-50",   text: "text-amber-600",   ring: "hover:border-amber-200"  },
-  emerald: { bg: "bg-emerald-50", text: "text-emerald-600", ring: "hover:border-emerald-200" },
-};
+import { aboutMe, personalInfo } from "@/lib/data";
+import { useEffect, useState } from "react";
 
 export const About = () => {
-  return (
-    <section id="about" className="py-24 section-soft">
-      <div className="max-w-6xl mx-auto px-4">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <p className="text-xs font-bold uppercase tracking-widest text-indigo-500 mb-3">Who I Am</p>
-          <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-3">About Me</h2>
-          <span className="section-rule" />
-        </motion.div>
+  const [uptime, setUptime] = useState("000d 00h 00m 00s");
 
-        {/* Grid of cards */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {cards.map(({ icon: Icon, color, label, key }, i) => {
-            const c = colorMap[color];
-            return (
-              <motion.div
-                key={key}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.09 }}
-                className={`card p-8 group ${c.ring} transition-all duration-300`}
+  useEffect(() => {
+    // Start date — April 2025 when professional career began
+    const start = new Date("2023-08-01T00:00:00Z");
+    const tick = () => {
+      const diff = Math.floor((Date.now() - start.getTime()) / 1000);
+      const d = Math.floor(diff / 86400);
+      const h = Math.floor((diff % 86400) / 3600);
+      const m = Math.floor((diff % 3600) / 60);
+      const s = diff % 60;
+      setUptime(
+        `${String(d).padStart(3, "0")}d ${String(h).padStart(2, "0")}h ${String(m).padStart(2, "0")}m ${String(s).padStart(2, "0")}s`
+      );
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  const stats = [
+    { key: "HACKATHONS_ENTERED", value: "21" },
+    { key: "TEAMS_LED",          value: "8"  },
+    { key: "PROJECTS_SHIPPED",   value: "20+" },
+    { key: "YEARS_EXPERIENCE",   value: "3+"  },
+  ];
+
+  return (
+    <section id="about" className="py-20">
+      <div style={{ maxWidth: "1280px" }} className="mx-auto px-6">
+        {/* Section divider */}
+        <div className="section-divider">
+          <span className="label">// SECTION: ABOUT_DEV</span>
+          <span className="line" />
+          <span className="num">001</span>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-0" style={{ border: "1px solid #0a0a0a" }}>
+          {/* Left: Manifest */}
+          <div style={{ borderRight: "1px solid #0a0a0a" }}>
+            {/* Title bar */}
+            <div
+              style={{
+                borderBottom: "1px solid #0a0a0a",
+                padding: "10px 16px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                fontFamily: "var(--font-mono)",
+                fontSize: "0.65rem",
+                letterSpacing: "0.1em",
+                color: "#6b6b6b",
+                background: "#dedad1",
+              }}
+            >
+              <span>MANIFEST.MD</span>
+              <span>V3.1.0</span>
+            </div>
+
+            <div className="p-8">
+              <h2
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "clamp(1.4rem, 2.5vw, 2rem)",
+                  fontWeight: 700,
+                  letterSpacing: "-0.01em",
+                  lineHeight: 1.2,
+                  marginBottom: "0.5rem",
+                }}
               >
-                <div className={`inline-flex items-center justify-center w-11 h-11 rounded-xl ${c.bg} mb-5`}>
-                  <Icon className={`w-5 h-5 ${c.text}`} />
+                BUILT FOR
+              </h2>
+              <h2
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "clamp(1.4rem, 2.5vw, 2rem)",
+                  fontWeight: 700,
+                  letterSpacing: "-0.01em",
+                  lineHeight: 1.2,
+                  color: "#d4500a",
+                  marginBottom: "2rem",
+                }}
+              >
+                RAW DATA.
+              </h2>
+
+              <p
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.75rem",
+                  color: "#6b6b6b",
+                  lineHeight: 1.9,
+                  marginBottom: "1.2rem",
+                }}
+              >
+                {aboutMe.background}
+              </p>
+              <p
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.75rem",
+                  color: "#6b6b6b",
+                  lineHeight: 1.9,
+                  marginBottom: "1.2rem",
+                }}
+              >
+                {aboutMe.journey}
+              </p>
+              <p
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.75rem",
+                  color: "#6b6b6b",
+                  lineHeight: 1.9,
+                }}
+              >
+                {aboutMe.aspirations}
+              </p>
+
+              {/* Uptime */}
+              <div
+                style={{
+                  borderTop: "1px solid #0a0a0a",
+                  marginTop: "2rem",
+                  paddingTop: "1.2rem",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.65rem",
+                  letterSpacing: "0.08em",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                <span
+                  style={{
+                    width: "8px",
+                    height: "8px",
+                    borderRadius: "50%",
+                    background: "#d4500a",
+                    flexShrink: 0,
+                    display: "inline-block",
+                  }}
+                />
+                <span style={{ color: "#6b6b6b" }}>CAREER UPTIME:</span>
+                <span style={{ color: "#d4500a" }}>{uptime}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Stats grid */}
+          <div>
+            {/* Title bar */}
+            <div
+              style={{
+                borderBottom: "1px solid #0a0a0a",
+                padding: "10px 16px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                fontFamily: "var(--font-mono)",
+                fontSize: "0.65rem",
+                letterSpacing: "0.1em",
+                color: "#6b6b6b",
+                background: "#dedad1",
+              }}
+            >
+              <span>METRICS.LIVE</span>
+              <span style={{ color: "#d4500a" }}>■</span>
+            </div>
+
+            <div className="grid grid-cols-2" style={{ height: "calc(100% - 40px)" }}>
+              {stats.map((s, i) => (
+                <div
+                  key={s.key}
+                  style={{
+                    padding: "2rem",
+                    borderRight: i % 2 === 0 ? "1px solid #0a0a0a" : "none",
+                    borderBottom: i < 2 ? "1px solid #0a0a0a" : "none",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "clamp(2rem, 4vw, 3rem)",
+                      fontWeight: 700,
+                      letterSpacing: "-0.02em",
+                      color: "#0a0a0a",
+                      lineHeight: 1,
+                    }}
+                  >
+                    {s.value}
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.6rem",
+                      letterSpacing: "0.1em",
+                      color: "#6b6b6b",
+                      marginTop: "8px",
+                    }}
+                  >
+                    {s.key}
+                  </div>
                 </div>
-                <h3 className={`text-lg font-bold mb-3 ${c.text}`}>{label}</h3>
-                <p className="text-slate-500 leading-relaxed text-[0.92rem]">{aboutMe[key]}</p>
-              </motion.div>
-            );
-          })}
+              ))}
+            </div>
+
+            {/* Contact quick-links */}
+            <div
+              style={{
+                borderTop: "1px solid #0a0a0a",
+                padding: "1.5rem",
+              }}
+            >
+              {[
+                { k: "EMAIL", v: personalInfo.email },
+                { k: "LOCATION", v: personalInfo.location },
+              ].map(({ k, v }) => (
+                <div
+                  key={k}
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.65rem",
+                    letterSpacing: "0.08em",
+                    marginBottom: "6px",
+                    display: "flex",
+                    gap: "12px",
+                  }}
+                >
+                  <span style={{ color: "#6b6b6b", minWidth: "80px" }}>{k}:</span>
+                  <span style={{ color: "#0a0a0a" }}>{v}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

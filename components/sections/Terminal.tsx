@@ -1,9 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
 import { personalInfo, skills, aboutMe } from "@/lib/data";
-import { Terminal as TerminalIcon } from "lucide-react";
 
 type CommandHistory = {
   command: string;
@@ -14,11 +12,13 @@ export const Terminal = () => {
   const [input, setInput] = useState("");
   const [history, setHistory] = useState<CommandHistory[]>([
     {
-      command: "welcome",
+      command: "sys.init",
       output: (
-        <span className="text-primary">
-          Welcome to the interactive terminal. Type <span className="text-accent font-bold">'help'</span> to see available commands.
-        </span>
+        <div style={{ color: "#d4500a", fontFamily: "var(--font-mono)" }}>
+          <p>&gt; HARSH.MISTRY PORTFOLIO SYSTEM v1.0.0</p>
+          <p>&gt; Type <span style={{ color: "#e0e0e0" }}>&apos;help&apos;</span> to see available commands.</p>
+          <p>&gt; All systems nominal. Ready.</p>
+        </div>
       ),
     },
   ]);
@@ -35,27 +35,108 @@ export const Terminal = () => {
     switch (trimmedCmd) {
       case "help":
         output = (
-          <div className="space-y-1">
-            <p><span className="text-accent">help</span>    - Show available commands</p>
-            <p><span className="text-accent">about</span>   - Read my bio</p>
-            <p><span className="text-accent">skills</span>  - List my top skills</p>
-            <p><span className="text-accent">contact</span> - Get my contact info</p>
-            <p><span className="text-accent">clear</span>   - Clear terminal</p>
+          <div
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.72rem",
+              lineHeight: 2,
+              color: "#a0a0a0",
+            }}
+          >
+            <p>
+              <span style={{ color: "#d4500a" }}>help</span>
+              {"    "}— Show available commands
+            </p>
+            <p>
+              <span style={{ color: "#d4500a" }}>about</span>
+              {"   "}— Read my bio
+            </p>
+            <p>
+              <span style={{ color: "#d4500a" }}>skills</span>
+              {"  "}— List my top skills
+            </p>
+            <p>
+              <span style={{ color: "#d4500a" }}>contact</span>
+              {" "}— Get my contact info
+            </p>
+            <p>
+              <span style={{ color: "#d4500a" }}>clear</span>
+              {"   "}— Clear terminal
+            </p>
           </div>
         );
         break;
       case "about":
-        output = <p className="text-muted-foreground">{aboutMe.background}</p>;
+        output = (
+          <p
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.72rem",
+              color: "#a0a0a0",
+              lineHeight: 1.8,
+            }}
+          >
+            {aboutMe.background}
+          </p>
+        );
         break;
       case "skills":
-        output = <p className="text-muted-foreground">{skills.Languages.join(", ")} | {skills.Frameworks.join(", ")} | {skills['Machine Learning'].join(", ")}</p>;
+        output = (
+          <p
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.72rem",
+              color: "#a0a0a0",
+              lineHeight: 1.8,
+            }}
+          >
+            LANGUAGES: {skills.Languages.join(", ")}{"\n"}
+            FRAMEWORKS: {skills.Frameworks.join(", ")}{"\n"}
+            ML: {skills["Machine Learning"].join(", ")}
+          </p>
+        );
         break;
       case "contact":
         output = (
-          <div className="space-y-1">
-            <p>Email: <a href={`mailto:${personalInfo.email}`} className="text-primary hover:underline">{personalInfo.email}</a></p>
-            <p>LinkedIn: <a href={personalInfo.linkedin} target="_blank" rel="noreferrer" className="text-primary hover:underline">Profile</a></p>
-            <p>GitHub: <a href={personalInfo.github} target="_blank" rel="noreferrer" className="text-primary hover:underline">Profile</a></p>
+          <div
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.72rem",
+              color: "#a0a0a0",
+              lineHeight: 2,
+            }}
+          >
+            <p>
+              EMAIL:{"    "}
+              <a
+                href={`mailto:${personalInfo.email}`}
+                style={{ color: "#d4500a" }}
+              >
+                {personalInfo.email}
+              </a>
+            </p>
+            <p>
+              LINKEDIN:{" "}
+              <a
+                href={personalInfo.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: "#d4500a" }}
+              >
+                {personalInfo.linkedin}
+              </a>
+            </p>
+            <p>
+              GITHUB:{"   "}
+              <a
+                href={personalInfo.github}
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: "#d4500a" }}
+              >
+                {personalInfo.github}
+              </a>
+            </p>
           </div>
         );
         break;
@@ -67,7 +148,17 @@ export const Terminal = () => {
         output = "";
         break;
       default:
-        output = <span className="text-red-400">Command not found: {trimmedCmd}. Type 'help' for a list of commands.</span>;
+        output = (
+          <span
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.72rem",
+              color: "#ff6b6b",
+            }}
+          >
+            ERROR: Command not found: &apos;{trimmedCmd}&apos;. Type &apos;help&apos; for a list of commands.
+          </span>
+        );
     }
 
     setHistory((prev) => [...prev, { command: cmd, output }]);
@@ -81,67 +172,102 @@ export const Terminal = () => {
   };
 
   return (
-    <section className="py-16 section-soft">
-      <div className="max-w-3xl mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-10"
-        >
-          <p className="text-xs font-bold uppercase tracking-widest text-indigo-500 mb-3">Interactive</p>
-          <h2 className="text-3xl font-black text-slate-900 mb-3">Terminal</h2>
-          <span className="section-rule" />
-          <p className="mt-4 text-sm text-slate-500">Type <code className="text-indigo-600 font-mono bg-indigo-50 px-1.5 py-0.5 rounded">help</code> to see available commands.</p>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="rounded-2xl overflow-hidden border border-slate-200 shadow-lg"
-        >
-        <div className="bg-[#e2e8f0] flex items-center px-4 py-3 border-b border-[#cbd5e1]">
-          <div className="flex space-x-2">
-            <div className="w-3 h-3 rounded-full bg-red-400"></div>
-            <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-            <div className="w-3 h-3 rounded-full bg-green-400"></div>
-          </div>
-          <div className="mx-auto flex items-center text-xs text-slate-500 font-mono">
-            <TerminalIcon className="w-3 h-3 mr-2" />
-            guest@harsh-portfolio:~
-          </div>
+    <section className="py-20">
+      <div style={{ maxWidth: "1280px" }} className="mx-auto px-6">
+        {/* Section divider */}
+        <div className="section-divider">
+          <span className="label">// SECTION: TERMINAL_SYS</span>
+          <span className="line" />
+          <span className="num">007</span>
         </div>
-        
-        <div className="bg-white p-6 font-mono text-sm h-[300px] overflow-y-auto shadow-inner text-slate-700">
-          {history.map((entry, index) => (
-            <div key={index} className="mb-4">
-              <div className="flex items-center text-slate-500 mb-1">
-                <span className="text-accent mr-2">➜</span>
-                <span className="text-primary mr-2">~</span>
-                <span className="text-slate-800 font-medium">{entry.command}</span>
+
+        {/* Terminal */}
+        <div className="b-terminal">
+          {/* Title bar */}
+          <div className="b-terminal-bar">
+            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+              <div className="b-terminal-dots">
+                <span
+                  className="b-terminal-dot"
+                  style={{ background: "#d4500a" }}
+                />
+                <span
+                  className="b-terminal-dot"
+                  style={{ background: "#6b6b6b" }}
+                />
+                <span
+                  className="b-terminal-dot"
+                  style={{ border: "1px solid #6b6b6b" }}
+                />
               </div>
-              <div className="ml-4 text-slate-600">{entry.output}</div>
+              <span>TERMINAL.SYS</span>
             </div>
-          ))}
-          
-          <div className="flex items-center text-slate-500 mt-2">
-            <span className="text-accent mr-2">➜</span>
-            <span className="text-primary mr-2">~</span>
-            <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={handleKeyDown}
-              className="bg-transparent outline-none flex-1 text-slate-800 font-medium caret-accent"
-              autoFocus
-              spellCheck="false"
-            />
+            <span>guest@harsh-mistry:~</span>
           </div>
-          <div ref={bottomRef} />
+
+          {/* Output */}
+          <div
+            style={{
+              padding: "1.5rem",
+              minHeight: "300px",
+              maxHeight: "400px",
+              overflowY: "auto",
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.75rem",
+              lineHeight: 1.7,
+            }}
+          >
+            {history.map((entry, index) => (
+              <div key={index} style={{ marginBottom: "1rem" }}>
+                {entry.command && (
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+                      marginBottom: "4px",
+                    }}
+                  >
+                    <span style={{ color: "#d4500a" }}>$</span>
+                    <span style={{ color: "#e0e0e0" }}>{entry.command}</span>
+                  </div>
+                )}
+                <div style={{ paddingLeft: "1rem" }}>{entry.output}</div>
+              </div>
+            ))}
+
+            {/* Input row */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
+              <span style={{ color: "#d4500a", flexShrink: 0 }}>$</span>
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                style={{
+                  background: "transparent",
+                  border: "none",
+                  outline: "none",
+                  color: "#e0e0e0",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.75rem",
+                  flex: 1,
+                  caretColor: "#d4500a",
+                }}
+                autoFocus
+                spellCheck={false}
+                placeholder="type a command..."
+              />
+            </div>
+            <div ref={bottomRef} />
+          </div>
         </div>
-        </motion.div>
       </div>
     </section>
   );

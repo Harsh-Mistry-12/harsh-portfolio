@@ -2,47 +2,32 @@
 
 /* ── Design Tokens ─────────────────────────────────────────────────────────── */
 :root {
-  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-space-mono), "Courier New", monospace;
 
-  /* Core palette — Indigo + Slate */
-  --background:        #ffffff;
-  --background-soft:   #f8fafc;   /* slate-50 */
-  --foreground:        #0f172a;   /* slate-900 */
-  --foreground-muted:  #475569;   /* slate-600 */
+  /* Brutalist Palette */
+  --background:        #e8e5de;
+  --background-soft:   #dedad1;
+  --foreground:        #0a0a0a;
+  --foreground-muted:  #6b6b6b;
 
-  --primary:           #4f46e5;   /* indigo-600 */
-  --primary-light:     #e0e7ff;   /* indigo-100 */
-  --primary-foreground:#ffffff;
+  --accent:            #d4500a;   /* burnt orange */
+  --accent-light:      #f0c4a8;
 
-  --secondary:         #0ea5e9;   /* sky-500 */
-  --secondary-light:   #e0f2fe;
+  --border:            #0a0a0a;
+  --border-muted:      #b0ada6;
 
-  --accent:            #f59e0b;   /* amber-500 */
-  --accent-light:      #fef3c7;
-
-  --success:           #10b981;   /* emerald-500 */
-  --success-light:     #d1fae5;
-
-  --card:              #ffffff;
-  --card-border:       #e2e8f0;   /* slate-200 */
-
-  --border:            #e2e8f0;
-  --muted:             #f1f5f9;   /* slate-100 */
-  --muted-foreground:  #94a3b8;   /* slate-400 */
+  --card:              #e8e5de;
+  --card-dark:         #1a1a1a;
+  --card-terminal:     #0a0a0a;
 }
 
 @theme inline {
   --color-background:        var(--background);
   --color-foreground:        var(--foreground);
-  --color-primary:           var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary:         var(--secondary);
   --color-accent:            var(--accent);
   --color-card:              var(--card);
   --color-border:            var(--border);
-  --color-muted:             var(--muted);
-  --color-muted-foreground:  var(--muted-foreground);
-  --font-sans:               var(--font-sans);
+  --font-mono:               var(--font-mono);
 }
 
 /* ── Base ───────────────────────────────────────────────────────────────────── */
@@ -51,182 +36,195 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font-mono);
   background-color: var(--background);
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
+  /* Dot grid pattern */
+  background-image: radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
-/* ── Premium Card ───────────────────────────────────────────────────────────── */
-.card {
-  background: var(--card);
-  border: 1px solid var(--card-border);
-  border-radius: 16px;
-  box-shadow: 0 1px 3px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.04);
-  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
-}
-.card:hover {
-  box-shadow: 0 4px 12px rgba(79,70,229,.08), 0 12px 40px rgba(0,0,0,.08);
-  border-color: rgba(79,70,229,.18);
-  transform: translateY(-2px);
-}
-
-/* Legacy alias used in some components */
-.glassmorphism {
-  background: var(--card);
-  border: 1px solid var(--card-border);
-  border-radius: 16px;
-  box-shadow: 0 1px 3px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.04);
-  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
-}
-.glassmorphism:hover {
-  box-shadow: 0 4px 12px rgba(79,70,229,.08), 0 12px 40px rgba(0,0,0,.08);
-  border-color: rgba(79,70,229,.18);
-  transform: translateY(-2px);
-}
-
-/* ── Section stripe ─────────────────────────────────────────────────────────── */
-.section-soft { background-color: var(--background-soft); }
-
-/* ── Gradient text ──────────────────────────────────────────────────────────── */
-.gradient-text {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 60%, var(--accent) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* ── Section heading rule ───────────────────────────────────────────────────── */
-.section-rule {
-  display: block;
-  width: 48px;
-  height: 4px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  margin: 12px auto 0;
-}
-
-/* ── Slow spin for photo ring ───────────────────────────────────────────────── */
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-.animate-spin-slow { animation: spin-slow 10s linear infinite; }
-
-/* ── Gradient text shimmer ──────────────────────────────────────────────────── */
-@keyframes gradient-x {
-  0%,100% { background-position: 0% 50%; }
-  50%     { background-position: 100% 50%; }
-}
-.animate-gradient-x { background-size: 200% 200%; animation: gradient-x 5s ease infinite; }
-
-/* ── Tag pill ───────────────────────────────────────────────────────────────── */
-.tag {
-  display: inline-flex;
+/* ── Section Separator ─────────────────────────────────────────────────────── */
+.section-divider {
+  display: flex;
   align-items: center;
+  gap: 0;
+  margin-bottom: 3rem;
   font-size: 0.7rem;
-  font-weight: 600;
-  font-family: ui-monospace, monospace;
-  letter-spacing: .03em;
-  padding: 2px 10px;
-  border-radius: 999px;
-  background: var(--primary-light);
-  color: var(--primary);
-  border: 1px solid rgba(79,70,229,.2);
-  transition: background 0.2s, color 0.2s;
+  letter-spacing: 0.1em;
+  color: var(--foreground-muted);
+  font-family: var(--font-mono);
+}
+.section-divider .label {
+  white-space: nowrap;
+  padding-right: 1.5rem;
+}
+.section-divider .line {
+  flex: 1;
+  height: 1px;
+  background: var(--foreground-muted);
+}
+.section-divider .num {
+  padding-left: 1.5rem;
+  color: var(--accent);
+  white-space: nowrap;
 }
 
-/* ── Input fields ───────────────────────────────────────────────────────────── */
-.input {
-  width: 100%;
-  background: var(--background-soft);
+/* ── Brutalist Card ─────────────────────────────────────────────────────────── */
+.b-card {
   border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 12px 16px;
-  font-size: .9rem;
-  color: var(--foreground);
-  outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  background: var(--card);
+  transition: background 0.15s ease;
 }
-.input:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(79,70,229,.12);
+.b-card:hover {
+  background: var(--background-soft);
 }
-.input::placeholder { color: var(--muted-foreground); }
 
-/* ── Button primary ─────────────────────────────────────────────────────────── */
-.btn-primary {
+/* ── Terminal Card ─────────────────────────────────────────────────────────── */
+.b-terminal {
+  border: 1px solid var(--border);
+  background: var(--card-terminal);
+  color: #e0e0e0;
+}
+.b-terminal-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: #888;
+}
+.b-terminal-dots {
+  display: flex;
+  gap: 5px;
+}
+.b-terminal-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+/* ── Brutalist Button ───────────────────────────────────────────────────────── */
+.btn-brutalist {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background: var(--primary);
-  color: #fff;
-  font-weight: 600;
-  font-size: .9rem;
-  padding: 12px 28px;
-  border-radius: 999px;
-  border: none;
+  gap: 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid var(--border);
   cursor: pointer;
-  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-  box-shadow: 0 2px 12px rgba(79,70,229,.3);
+  transition: opacity 0.15s ease;
+  overflow: hidden;
 }
-.btn-primary:hover {
-  background: #4338ca;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 20px rgba(79,70,229,.4);
-}
-.btn-primary:active { transform: scale(.97); }
-
-/* ── Button ghost ───────────────────────────────────────────────────────────── */
-.btn-ghost {
-  display: inline-flex;
+.btn-brutalist:hover { opacity: 0.85; }
+.btn-brutalist .btn-tab {
+  background: var(--accent);
+  color: #fff;
+  padding: 12px 14px;
+  display: flex;
   align-items: center;
-  gap: 8px;
+  flex-shrink: 0;
+}
+.btn-brutalist .btn-body {
+  background: var(--foreground);
+  color: #fff;
+  padding: 12px 24px;
+  flex: 1;
+  text-align: center;
+}
+.btn-brutalist.btn-outline .btn-body {
   background: transparent;
   color: var(--foreground);
-  font-weight: 600;
-  font-size: .9rem;
-  padding: 11px 27px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  cursor: pointer;
-  transition: background 0.2s, border-color 0.2s, transform 0.15s;
-}
-.btn-ghost:hover {
-  background: var(--muted);
-  border-color: var(--primary);
-  color: var(--primary);
-  transform: translateY(-1px);
 }
 
-/* ── Timeline line ──────────────────────────────────────────────────────────── */
-.timeline-line {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  transform: translateX(-50%);
-  background: linear-gradient(to bottom, transparent, var(--border) 10%, var(--border) 90%, transparent);
+/* ── Brutalist Input ────────────────────────────────────────────────────────── */
+.b-input {
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 12px 14px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--foreground);
+  outline: none;
+  transition: border-color 0.15s ease;
+  border-radius: 0;
 }
-.timeline-dot {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--primary);
-  border: 3px solid #fff;
-  box-shadow: 0 0 0 2px var(--primary);
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
+.b-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
 }
+.b-input::placeholder { color: var(--foreground-muted); font-family: var(--font-mono); }
+
+/* ── Skill Tag ──────────────────────────────────────────────────────────────── */
+.b-tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--foreground);
+  transition: background 0.15s, color 0.15s;
+}
+.b-tag:hover {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+/* ── Accent text ─────────────────────────────────────────────────────────────── */
+.accent { color: var(--accent); }
 
 /* ── Scrollbar styling ──────────────────────────────────────────────────────── */
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: var(--muted); }
-::-webkit-scrollbar-thumb { background: var(--muted-foreground); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--background); }
+::-webkit-scrollbar-thumb { background: var(--border-muted); }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
 /* ── Selection ──────────────────────────────────────────────────────────────── */
-::selection { background: var(--primary-light); color: var(--primary); }
+::selection { background: var(--accent); color: #fff; }
+
+/* ── Typing cursor animation ────────────────────────────────────────────────── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: var(--accent);
+  vertical-align: text-bottom;
+  animation: blink 1s step-start infinite;
+}
+
+/* ── Progress bar (scroll) ──────────────────────────────────────────────────── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--accent);
+  z-index: 9999;
+  transition: width 0.1s linear;
+}
+
+/* ── Live ticker animation ──────────────────────────────────────────────────── */
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.ticker-track {
+  display: flex;
+  animation: ticker 30s linear infinite;
+  white-space: nowrap;
+}
+.ticker-track:hover { animation-play-state: paused; }

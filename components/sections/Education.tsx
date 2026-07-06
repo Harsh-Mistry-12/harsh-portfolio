@@ -1,125 +1,225 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { education, achievements, funFacts } from "@/lib/data";
-import { GraduationCap, Award, Zap } from "lucide-react";
 
 export const Education = () => {
   return (
-    <section id="education" className="py-24 section-soft">
-      <div className="max-w-6xl mx-auto px-4">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <p className="text-xs font-bold uppercase tracking-widest text-indigo-500 mb-3">Background</p>
-          <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-3">Education & Achievements</h2>
-          <span className="section-rule" />
-        </motion.div>
+    <section id="education" className="py-20">
+      <div style={{ maxWidth: "1280px" }} className="mx-auto px-6">
+        {/* Section divider */}
+        <div className="section-divider">
+          <span className="label">// SECTION: EDUCATION_LOG</span>
+          <span className="line" />
+          <span className="num">005</span>
+        </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-6">
           {/* Education */}
           <div>
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="flex items-center gap-3 mb-8"
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "0.65rem",
+                letterSpacing: "0.12em",
+                color: "#6b6b6b",
+                marginBottom: "1.2rem",
+              }}
             >
-              <div className="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center">
-                <GraduationCap className="w-5 h-5 text-indigo-600" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900">Education</h3>
-            </motion.div>
-
-            <div className="space-y-5">
+              ACADEMIC_RECORDS /
+            </div>
+            <div style={{ border: "1px solid #0a0a0a" }}>
               {education.map((edu, i) => (
-                <motion.div
+                <div
                   key={i}
-                  initial={{ opacity: 0, x: -24 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="card p-6 relative overflow-hidden"
+                  style={{
+                    borderBottom:
+                      i < education.length - 1 ? "1px solid #0a0a0a" : "none",
+                    padding: "1.5rem",
+                  }}
                 >
-                  {/* Left accent bar */}
-                  <div className="absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl bg-gradient-to-b from-indigo-500 to-sky-400" />
-                  <div className="flex justify-between items-start gap-2 mb-2">
-                    <h4 className="font-bold text-slate-900 leading-tight">{edu.degree}</h4>
-                    <span className="text-xs font-mono text-indigo-600 bg-indigo-50 border border-indigo-100 px-2 py-1 rounded-full whitespace-nowrap shrink-0">
-                      {edu.year}
+                  {/* Number + degree */}
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      gap: "14px",
+                      marginBottom: "0.75rem",
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "0.6rem",
+                        color: "#d4500a",
+                        letterSpacing: "0.08em",
+                        flexShrink: 0,
+                        marginTop: "3px",
+                      }}
+                    >
+                      {String(i + 1).padStart(2, "0")}
                     </span>
+                    <div>
+                      <h3
+                        style={{
+                          fontFamily: "var(--font-mono)",
+                          fontSize: "0.85rem",
+                          fontWeight: 700,
+                          letterSpacing: "0.02em",
+                          color: "#0a0a0a",
+                          marginBottom: "4px",
+                        }}
+                      >
+                        {edu.degree}
+                      </h3>
+                      <p
+                        style={{
+                          fontFamily: "var(--font-mono)",
+                          fontSize: "0.7rem",
+                          color: "#6b6b6b",
+                          marginBottom: "4px",
+                          letterSpacing: "0.04em",
+                        }}
+                      >
+                        {edu.institution}
+                      </p>
+                      <div
+                        style={{
+                          display: "flex",
+                          gap: "12px",
+                          alignItems: "center",
+                          flexWrap: "wrap",
+                        }}
+                      >
+                        <span
+                          style={{
+                            fontFamily: "var(--font-mono)",
+                            fontSize: "0.65rem",
+                            color: "#d4500a",
+                            letterSpacing: "0.08em",
+                          }}
+                        >
+                          {edu.marks}
+                        </span>
+                        <span
+                          className="b-tag"
+                          style={{ fontSize: "0.6rem", padding: "3px 8px" }}
+                        >
+                          {edu.year}
+                        </span>
+                      </div>
+                      {edu.highlights && (
+                        <p
+                          style={{
+                            fontFamily: "var(--font-mono)",
+                            fontSize: "0.65rem",
+                            color: "#6b6b6b",
+                            lineHeight: 1.7,
+                            marginTop: "8px",
+                            letterSpacing: "0.02em",
+                          }}
+                        >
+                          {edu.highlights}
+                        </p>
+                      )}
+                    </div>
                   </div>
-                  <p className="text-sm text-slate-500 mb-1">{edu.institution}</p>
-                  <p className="text-xs font-bold text-emerald-600 mb-2">{edu.marks}</p>
-                  {edu.highlights && (
-                    <p className="text-xs text-slate-400 leading-relaxed">{edu.highlights}</p>
-                  )}
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
 
-          {/* Achievements + Fun Facts */}
+          {/* Achievements + fun facts */}
           <div>
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="flex items-center gap-3 mb-8"
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "0.65rem",
+                letterSpacing: "0.12em",
+                color: "#6b6b6b",
+                marginBottom: "1.2rem",
+              }}
             >
-              <div className="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center">
-                <Award className="w-5 h-5 text-amber-500" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900">Achievements</h3>
-            </motion.div>
-
-            <div className="space-y-3 mb-10">
+              ACHIEVEMENTS.LOG /
+            </div>
+            <div style={{ border: "1px solid #0a0a0a", marginBottom: "1.5rem" }}>
               {achievements.map((a, i) => (
-                <motion.div
+                <div
                   key={i}
-                  initial={{ opacity: 0, x: 24 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.2 + i * 0.08 }}
-                  className="card flex items-start gap-4 p-4"
+                  style={{
+                    borderBottom:
+                      i < achievements.length - 1 ? "1px solid #0a0a0a" : "none",
+                    padding: "1rem 1.5rem",
+                    display: "flex",
+                    gap: "14px",
+                    alignItems: "flex-start",
+                  }}
                 >
-                  <div className="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center shrink-0">
-                    <Zap className="w-4 h-4 text-amber-500" />
-                  </div>
-                  <p className="text-sm text-slate-600 leading-relaxed">{a}</p>
-                </motion.div>
+                  <span
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.65rem",
+                      color: "#d4500a",
+                      flexShrink: 0,
+                      marginTop: "2px",
+                    }}
+                  >
+                    ✓
+                  </span>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.7rem",
+                      color: "#0a0a0a",
+                      lineHeight: 1.7,
+                      letterSpacing: "0.02em",
+                    }}
+                  >
+                    {a}
+                  </p>
+                </div>
               ))}
             </div>
 
-            {/* Fun Facts */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-              className="mb-5"
+            {/* Fun facts */}
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "0.65rem",
+                letterSpacing: "0.12em",
+                color: "#6b6b6b",
+                marginBottom: "1.2rem",
+              }}
             >
-              <h3 className="text-lg font-bold text-slate-900">Fun Facts ✨</h3>
-            </motion.div>
-
-            <div className="grid grid-cols-2 gap-3">
+              FUN_FACTS.TXT /
+            </div>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                border: "1px solid #0a0a0a",
+              }}
+            >
               {funFacts.map((fact, i) => (
-                <motion.div
+                <div
                   key={i}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.4 + i * 0.07 }}
-                  className="card p-4 flex items-center justify-center text-center"
+                  style={{
+                    padding: "1.2rem",
+                    borderRight: i % 2 === 0 ? "1px solid #0a0a0a" : "none",
+                    borderBottom: i < 2 ? "1px solid #0a0a0a" : "none",
+                  }}
                 >
-                  <p className="text-xs text-slate-500 leading-relaxed">{fact}</p>
-                </motion.div>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.65rem",
+                      color: "#6b6b6b",
+                      lineHeight: 1.7,
+                      letterSpacing: "0.02em",
+                    }}
+                  >
+                    {fact}
+                  </p>
+                </div>
               ))}
             </div>
           </div>

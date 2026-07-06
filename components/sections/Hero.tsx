@@ -1,225 +1,380 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { personalInfo } from "@/lib/data";
-import { ChevronDown, MapPin, Mail } from "lucide-react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
+const leftNodes  = ["TRAIN", "PACKAGE", "VERSION"];
+const rightNodes = ["ROUTE",  "DEPLOY",  "OBSERVE"];
+
 export const Hero = () => {
   const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
 
+  useEffect(() => { setMounted(true); }, []);
   if (!mounted) return null;
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-white">
-      {/* Soft gradient mesh background */}
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center overflow-hidden"
+      style={{ paddingTop: "56px" }}
+    >
       <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 60% at 20% 10%, rgba(79,70,229,0.07) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 80% 80%, rgba(14,165,233,0.06) 0%, transparent 60%)",
-        }}
-      />
-      {/* Grid dot pattern */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.025]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, #4f46e5 1px, transparent 1px)",
-          backgroundSize: "32px 32px",
-        }}
-      />
+        style={{ maxWidth: "1280px" }}
+        className="mx-auto px-6 w-full py-16"
+      >
+        {/* ── Two-column layout ── */}
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 py-24 w-full">
-        <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-16">
+          {/* ══ LEFT COLUMN ══ */}
+          <div className="flex-1 min-w-0">
 
-          {/* ── Text ── */}
-          <div className="flex-1 text-center lg:text-left">
-            <motion.div
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            {/* Big name */}
+            <h1
+              className="font-bold leading-none tracking-tight select-none"
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "clamp(3.2rem, 8vw, 7.5rem)",
+                color: "#0a0a0a",
+                letterSpacing: "-0.02em",
+                lineHeight: 1.0,
+                marginBottom: "0.1em",
+              }}
             >
-              <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-indigo-600 uppercase mb-6 px-4 py-2 bg-indigo-50 rounded-full border border-indigo-100">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                Available for Work
-              </span>
+              HARSH.
+            </h1>
+            <h1
+              className="font-bold leading-none tracking-tight select-none"
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "clamp(3.2rem, 8vw, 7.5rem)",
+                color: "#0a0a0a",
+                letterSpacing: "-0.02em",
+                lineHeight: 1.0,
+                marginBottom: "1.6rem",
+              }}
+            >
+              MISTRY.
+            </h1>
 
-              <h1 className="text-5xl md:text-6xl xl:text-7xl font-black tracking-tight leading-[1.06] mb-4 text-slate-900">
-                Hi, I&apos;m{" "}
-                <span
-                  className="animate-gradient-x"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, #4f46e5, #0ea5e9, #f59e0b)",
-                    backgroundSize: "200% 200%",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                  }}
-                >
-                  Harsh Mistry
-                </span>
-              </h1>
-
-              <p className="text-xl md:text-2xl font-semibold text-slate-500 mb-5">
-                {personalInfo.title}
-              </p>
-              <p className="text-base text-slate-500 max-w-lg leading-relaxed mb-8 mx-auto lg:mx-0">
-                {personalInfo.tagline}
-              </p>
-
-              {/* Meta row */}
-              <div className="flex flex-wrap gap-4 text-sm text-slate-500 justify-center lg:justify-start mb-10">
-                <span className="flex items-center gap-1.5">
-                  <MapPin className="w-4 h-4 text-indigo-500" />
-                  {personalInfo.location}
-                </span>
-                <a href={`mailto:${personalInfo.email}`} className="flex items-center gap-1.5 hover:text-indigo-600 transition-colors">
-                  <Mail className="w-4 h-4 text-indigo-500" />
-                  {personalInfo.email}
-                </a>
+            {/* Node diagram */}
+            <div
+              className="flex items-center gap-3 md:gap-6 mb-6"
+              style={{ maxWidth: "520px" }}
+            >
+              {/* Left nodes */}
+              <div className="flex flex-col gap-2">
+                {leftNodes.map((n) => (
+                  <div
+                    key={n}
+                    className="b-tag"
+                    style={{ fontSize: "0.55rem", padding: "4px 10px", letterSpacing: "0.1em" }}
+                  >
+                    {n}
+                  </div>
+                ))}
               </div>
-            </motion.div>
+
+              {/* SVG lines */}
+              <svg width="60" height="90" viewBox="0 0 60 90" style={{ flexShrink: 0 }}>
+                {[15, 45, 75].map((y, i) => (
+                  <g key={i}>
+                    <line x1="0" y1={y} x2="30" y2="45" stroke="#b0ada6" strokeWidth="0.8" />
+                    <circle cx="6" cy={y} r="2.5" fill="#d4500a" opacity="0.85" />
+                  </g>
+                ))}
+              </svg>
+
+              {/* Centre asterisk */}
+              <div
+                style={{
+                  width: "52px", height: "52px",
+                  border: "1px solid #0a0a0a",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  background: "#dedad1", flexShrink: 0,
+                }}
+              >
+                <span style={{ fontSize: "1.5rem", fontFamily: "var(--font-mono)" }}>✳</span>
+              </div>
+
+              {/* SVG lines right */}
+              <svg width="60" height="90" viewBox="0 0 60 90" style={{ flexShrink: 0 }}>
+                {[15, 45, 75].map((y, i) => (
+                  <g key={i}>
+                    <line x1="30" y1="45" x2="60" y2={y} stroke="#b0ada6" strokeWidth="0.8" />
+                    <circle cx="54" cy={y} r="2.5" fill="#d4500a" opacity="0.85" />
+                  </g>
+                ))}
+              </svg>
+
+              {/* Right nodes */}
+              <div className="flex flex-col gap-2">
+                {rightNodes.map((n) => (
+                  <div
+                    key={n}
+                    className="b-tag"
+                    style={{ fontSize: "0.55rem", padding: "4px 10px", letterSpacing: "0.1em" }}
+                  >
+                    {n}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Designation */}
+            <h2
+              className="font-bold leading-none tracking-tight select-none"
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "clamp(1.1rem, 3vw, 2.2rem)",
+                color: "#0a0a0a",
+                letterSpacing: "-0.01em",
+                lineHeight: 1.15,
+              }}
+            >
+              SOFTWARE ENGINEER &amp;
+            </h2>
+            <h2
+              className="font-bold leading-none tracking-tight select-none"
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "clamp(1.1rem, 3vw, 2.2rem)",
+                color: "#d4500a",
+                letterSpacing: "-0.01em",
+                lineHeight: 1.15,
+                marginBottom: "1.5rem",
+              }}
+            >
+              DATA ARCHITECT.
+            </h2>
+
+            {/* Tagline */}
+            <p
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "0.72rem",
+                color: "#6b6b6b",
+                letterSpacing: "0.03em",
+                lineHeight: "1.9",
+                marginBottom: "2rem",
+                maxWidth: "480px",
+              }}
+            >
+              {personalInfo.tagline}
+            </p>
 
             {/* CTA buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-wrap gap-4 justify-center lg:justify-start mb-12"
-            >
+            <div className="flex flex-wrap gap-3 mb-10">
               <button
                 id="hero-view-projects-btn"
-                onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
-                className="btn-primary"
+                onClick={() =>
+                  document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })
+                }
+                className="btn-brutalist"
               >
-                View My Work
+                <span className="btn-tab">→</span>
+                <span className="btn-body">VIEW MY WORK</span>
               </button>
               <button
                 id="hero-contact-btn"
-                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                className="btn-ghost"
+                onClick={() =>
+                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+                }
+                className="btn-brutalist"
+                style={{ border: "1px solid #0a0a0a" }}
               >
-                Get In Touch
+                <span
+                  className="btn-tab"
+                  style={{ background: "transparent", color: "#0a0a0a" }}
+                >
+                  ↓
+                </span>
+                <span
+                  className="btn-body"
+                  style={{ background: "transparent", color: "#0a0a0a" }}
+                >
+                  GET IN TOUCH
+                </span>
               </button>
-            </motion.div>
+            </div>
 
-            {/* Social + stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
-              className="flex flex-wrap items-center gap-8 justify-center lg:justify-start"
+            {/* Stats row */}
+            <div
+              className="flex flex-wrap gap-8"
+              style={{ borderTop: "1px solid rgba(0,0,0,0.15)", paddingTop: "1.2rem" }}
             >
-              <div className="flex gap-3">
-                <a href={personalInfo.github} target="_blank" rel="noreferrer"
-                  className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-500 hover:text-indigo-600 hover:border-indigo-300 transition-all hover:shadow-md">
-                  <FaGithub className="w-4.5 h-4.5" />
-                </a>
-                <a href={personalInfo.linkedin} target="_blank" rel="noreferrer"
-                  className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-500 hover:text-sky-600 hover:border-sky-300 transition-all hover:shadow-md">
-                  <FaLinkedin className="w-4.5 h-4.5" />
-                </a>
-              </div>
-              <div className="h-6 w-px bg-slate-200" />
               {[
-                { label: "Hackathons", value: "21+" },
-                { label: "Experience", value: "3+ yrs" },
-                { label: "Projects", value: "20+" },
+                { label: "HACKATHONS", value: "21+" },
+                { label: "EXPERIENCE",  value: "3+ YRS" },
+                { label: "PROJECTS",    value: "20+" },
               ].map((s) => (
-                <div key={s.label} className="text-center">
-                  <div className="text-xl font-bold text-slate-900">{s.value}</div>
-                  <div className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">{s.label}</div>
+                <div key={s.label}>
+                  <div
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "clamp(1.2rem, 2vw, 1.8rem)",
+                      fontWeight: 700,
+                      letterSpacing: "-0.02em",
+                      color: "#0a0a0a",
+                      lineHeight: 1,
+                    }}
+                  >
+                    {s.value}
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.55rem",
+                      letterSpacing: "0.12em",
+                      color: "#6b6b6b",
+                      marginTop: "4px",
+                    }}
+                  >
+                    {s.label}
+                  </div>
                 </div>
               ))}
-            </motion.div>
+
+              <div
+                style={{
+                  width: "1px",
+                  background: "rgba(0,0,0,0.15)",
+                  alignSelf: "stretch",
+                  margin: "0 4px",
+                }}
+              />
+
+              {/* Location */}
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <span
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.62rem",
+                    color: "#6b6b6b",
+                    letterSpacing: "0.06em",
+                  }}
+                >
+                  📍 {personalInfo.location}
+                </span>
+              </div>
+            </div>
           </div>
 
-          {/* ── Photo (full-length portrait) ── */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.92, x: 30 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ duration: 0.9, delay: 0.1, type: "spring", stiffness: 70, damping: 18 }}
+          {/* ══ RIGHT COLUMN — Photo ══ */}
+          <div
             className="relative flex-shrink-0"
+            style={{
+              width: "clamp(200px, 22vw, 300px)",
+            }}
           >
-            {/* Soft gradient blob behind photo */}
+            {/* "Open to Opportunities" badge — top */}
             <div
-              className="absolute -inset-4 rounded-[2rem] -z-10 opacity-40 blur-2xl"
               style={{
-                background: "linear-gradient(135deg, #4f46e5 0%, #0ea5e9 50%, #f59e0b 100%)",
+                position: "absolute",
+                top: "-18px",
+                left: "50%",
+                transform: "translateX(-50%)",
+                background: "#0a0a0a",
+                color: "#e8e5de",
+                fontFamily: "var(--font-mono)",
+                fontSize: "0.55rem",
+                letterSpacing: "0.12em",
+                padding: "6px 14px",
+                whiteSpace: "nowrap",
+                zIndex: 10,
+                display: "flex",
+                alignItems: "center",
+                gap: "6px",
               }}
-            />
+            >
+              <span
+                style={{
+                  width: "6px", height: "6px",
+                  borderRadius: "50%",
+                  background: "#d4500a",
+                  display: "inline-block",
+                  flexShrink: 0,
+                  animation: "blink 1.4s step-start infinite",
+                }}
+              />
+              OPEN TO OPPORTUNITIES
+            </div>
 
-            {/* Photo card */}
+            {/* Photo frame */}
             <div
-              className="relative rounded-[1.5rem] overflow-hidden"
               style={{
-                width: "clamp(220px, 24vw, 310px)",
-                height: "clamp(310px, 36vw, 440px)",
-                boxShadow: "0 24px 64px rgba(79,70,229,.16), 0 8px 24px rgba(0,0,0,.10)",
-                border: "3px solid rgba(255,255,255,0.9)",
+                border: "2px solid #0a0a0a",
+                width: "100%",
+                aspectRatio: "3 / 4",
+                overflow: "hidden",
+                position: "relative",
               }}
             >
               <Image
                 src="/photo.jpg"
-                alt={personalInfo.name}
+                alt="Harsh Mistry"
                 fill
-                sizes="(max-width: 768px) 220px, 310px"
-                className="object-cover object-center"
+                sizes="(max-width: 1024px) 200px, 300px"
+                className="object-cover object-top"
                 priority
               />
-              {/* Subtle inner gradient overlay at bottom for depth */}
+
+              {/* Bottom label overlay */}
               <div
-                className="absolute inset-x-0 bottom-0 h-1/4 pointer-events-none"
                 style={{
-                  background: "linear-gradient(to top, rgba(79,70,229,0.12), transparent)",
+                  position: "absolute",
+                  bottom: 0, left: 0, right: 0,
+                  background: "rgba(10,10,10,0.80)",
+                  padding: "8px 12px",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.55rem",
+                  letterSpacing: "0.12em",
+                  color: "#d4500a",
                 }}
-              />
+              >
+                HARSH.MISTRY // DEV
+              </div>
             </div>
 
-            {/* Floating badge */}
-            <motion.div
-              animate={{ y: [0, -7, 0] }}
-              transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-4 left-1/2 -translate-x-1/2 z-30 bg-white border border-slate-200 rounded-2xl px-4 py-2.5 shadow-lg whitespace-nowrap"
-            >
-              <p className="text-xs font-bold text-slate-800">🚀 Open to Opportunities</p>
-            </motion.div>
-
-            {/* Decorative dot grid — top right */}
+            {/* Corner decoration — bottom right */}
             <div
-              className="absolute -top-5 -right-5 w-20 h-20 -z-10 opacity-50"
               style={{
-                backgroundImage: "radial-gradient(circle, #4f46e5 1.5px, transparent 1.5px)",
-                backgroundSize: "8px 8px",
+                position: "absolute",
+                bottom: "-10px", right: "-10px",
+                width: "40px", height: "40px",
+                border: "2px solid #d4500a",
+                pointerEvents: "none",
               }}
             />
-            {/* Decorative dot grid — bottom left */}
+            {/* Corner decoration — top left */}
             <div
-              className="absolute -bottom-5 -left-5 w-16 h-16 -z-10 opacity-30"
               style={{
-                backgroundImage: "radial-gradient(circle, #0ea5e9 1.5px, transparent 1.5px)",
-                backgroundSize: "8px 8px",
+                position: "absolute",
+                top: "-10px", left: "-10px",
+                width: "40px", height: "40px",
+                border: "2px solid #0a0a0a",
+                pointerEvents: "none",
+                zIndex: 5,
               }}
             />
-          </motion.div>
+          </div>
 
         </div>
       </div>
 
       {/* Scroll cue */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce"
+      <div
+        className="absolute bottom-6 left-1/2 -translate-x-1/2"
+        style={{
+          fontFamily: "var(--font-mono)",
+          fontSize: "0.55rem",
+          letterSpacing: "0.14em",
+          color: "#6b6b6b",
+          animation: "blink 2s step-start infinite",
+        }}
       >
-        <ChevronDown className="w-6 h-6 text-slate-400" />
-      </motion.div>
+        [ SCROLL DOWN ]
+      </div>
     </section>
   );
 };

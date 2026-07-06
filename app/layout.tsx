@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Space_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const spaceMono = Space_Mono({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-space-mono",
   display: "swap",
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Harsh Mistry | Software Engineer & Data Scientist",
+  title: "HARSH.MISTRY // Software Engineer & Data Scientist",
   description:
     "Portfolio of Harsh Mistry — Backend Developer, Data Engineer, and Machine Learning enthusiast based in Gandhinagar, India.",
   keywords: [
@@ -31,8 +31,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} antialiased`}>
-      <body className="min-h-screen flex flex-col bg-white text-slate-900">
+    <html lang="en" className={`${spaceMono.variable}`}>
+      <body className="min-h-screen flex flex-col bg-[#e8e5de] text-[#0a0a0a]">
         {children}
       </body>
     </html>
