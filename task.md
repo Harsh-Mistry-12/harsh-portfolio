@@ -1,0 +1,14 @@
+- `[ ]` Initialize Next.js project with Tailwind CSS and TypeScript
+- `[ ]` Install required dependencies (framer-motion, lucide-react, cmdk, etc.)
+- `[ ]` Configure Tailwind CSS theme and global styles
+- `[ ]` Create `lib/data.ts` (data layer from OCR)
+- `[ ]` Build custom UI components (Cursor, ScrollProgress, CommandPalette)
+- `[ ]` Build Hero section
+- `[ ]` Build About section
+- `[ ]` Build Skills section
+- `[ ]` Build Projects section
+- `[ ]` Build Experience section
+- `[ ]` Build Education & Achievements section
+- `[ ]` Build Terminal & Contact section
+- `[ ]` Assemble `app/page.tsx` and `app/layout.tsx`
+- `[ ]` Verify animations, responsiveness, and performance
