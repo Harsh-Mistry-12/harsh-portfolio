@@ -6,9 +6,11 @@ export const StickmanScrollbar = () => {
   const [scrollPct, setScrollPct] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
   const [balloonReleased, setBalloonReleased] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   useEffect(() => {
+    setMounted(true);
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       const docHeight =
@@ -46,6 +48,8 @@ export const StickmanScrollbar = () => {
 
   const TRACK_PAD = 60; // px from viewport top/bottom
   const stickmanHeight = 83;
+
+  if (!mounted) return null;
 
   // Calculate stickman's absolute vertical position in the viewport
   const stickmanTop = TRACK_PAD + scrollPct * (window.innerHeight - TRACK_PAD * 2 - stickmanHeight);
