@@ -21,19 +21,22 @@ export const Contact = () => {
     e.preventDefault();
     setStatus("sending");
 
-    const encode = (data: Record<string, string>) => {
-      return Object.keys(data)
-        .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-        .join("&");
-    };
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "your-web3forms-key-here";
 
-    fetch("/__forms.html", {
+    fetch("https://api.web3forms.com/submit", {
       method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "contact", ...formData }),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        access_key: accessKey,
+        ...formData,
+      }),
     })
-      .then((res) => {
-        if (res.ok) {
+      .then(async (res) => {
+        const data = await res.json();
+        if (res.ok && data.success) {
           setStatus("success");
           setFormData({ name: "", email: "", subject: "", message: "" });
         } else {
