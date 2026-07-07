@@ -340,9 +340,9 @@ export const Hero = () => {
               >
                 <span style={{ color: "#ffffff", fontWeight: 700 }}>
                   HARSH.MISTRY
-                </span>
-                <span style={{ color: "#d4500a", fontWeight: 700 }}>
-                  // DEV
+                  <span style={{ color: "#d4500a", fontWeight: 700 }}>
+                    {" "} // DEV
+                  </span>
                 </span>
               </div>
             </div>
