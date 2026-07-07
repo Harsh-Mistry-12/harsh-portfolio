@@ -106,7 +106,7 @@ export const Navbar = () => {
               id="navbar-hire-btn"
             >
               <span className="btn-tab">→</span>
-              <span className="btn-body">HIRE ME!</span>
+              <span className="btn-body">HIRE ME</span>
             </button>
           </div>
 
@@ -166,7 +166,7 @@ export const Navbar = () => {
               className="btn-brutalist mt-4"
             >
               <span className="btn-tab">→</span>
-              <span className="btn-body">HIRE ME!</span>
+              <span className="btn-body">HIRE ME</span>
             </button>
           </div>
         </div>
