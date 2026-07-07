@@ -1,9 +1,47 @@
 "use client";
 
+import { useState } from "react";
 import { personalInfo } from "@/lib/data";
 import { FaGithub, FaLinkedin, FaGitlab } from "react-icons/fa";
 
 export const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("sending");
+
+    const encode = (data: Record<string, string>) => {
+      return Object.keys(data)
+        .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+        .join("&");
+    };
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({ "form-name": "contact", ...formData }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          setStatus("success");
+          setFormData({ name: "", email: "", subject: "", message: "" });
+        } else {
+          setStatus("error");
+        }
+      })
+      .catch(() => setStatus("error"));
+  };
   return (
     <section id="contact" className="py-20">
       <div style={{ maxWidth: "1280px" }} className="mx-auto px-6">
@@ -197,6 +235,7 @@ export const Contact = () => {
                 name="contact"
                 method="POST"
                 data-netlify="true"
+                onSubmit={handleSubmit}
                 className="space-y-4"
               >
                 <input type="hidden" name="form-name" value="contact" />
@@ -221,6 +260,9 @@ export const Contact = () => {
                       type="text"
                       className="b-input"
                       placeholder="John Doe"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
                     />
                   </div>
                   <div>
@@ -243,6 +285,9 @@ export const Contact = () => {
                       type="email"
                       className="b-input"
                       placeholder="john@example.com"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
                     />
                   </div>
                 </div>
@@ -267,6 +312,9 @@ export const Contact = () => {
                     type="text"
                     className="b-input"
                     placeholder="Project idea, job offer, collaboration…"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    required
                   />
                 </div>
 
@@ -291,6 +339,9 @@ export const Contact = () => {
                     className="b-input"
                     style={{ resize: "none" }}
                     placeholder="Hey Harsh, I'd love to…"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
                   />
                 </div>
 
@@ -299,10 +350,47 @@ export const Contact = () => {
                   id="contact-submit-btn"
                   className="btn-brutalist"
                   style={{ width: "100%" }}
+                  disabled={status === "sending"}
                 >
                   <span className="btn-tab">→</span>
-                  <span className="btn-body">SEND MESSAGE</span>
+                  <span className="btn-body">
+                    {status === "sending" ? "SENDING..." : "SEND MESSAGE"}
+                  </span>
                 </button>
+
+                {status === "success" && (
+                  <div
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.65rem",
+                      color: "#1e824c",
+                      border: "2px solid #1e824c",
+                      padding: "8px 12px",
+                      background: "#eefcf5",
+                      textAlign: "center",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    ✓ MESSAGE SENT SUCCESSFULLY!
+                  </div>
+                )}
+
+                {status === "error" && (
+                  <div
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.65rem",
+                      color: "#d4500a",
+                      border: "2px solid #d4500a",
+                      padding: "8px 12px",
+                      background: "#fdf3ee",
+                      textAlign: "center",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    ✗ ERROR SENDING MESSAGE. PLEASE TRY AGAIN.
+                  </div>
+                )}
               </form>
             </div>
           </div>
