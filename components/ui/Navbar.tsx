@@ -4,19 +4,19 @@ import { useState, useEffect } from "react";
 import { personalInfo } from "@/lib/data";
 
 const navLinks = [
-  { label: "ABOUT",       id: "about"       },
-  { label: "SKILLS",      id: "skills"      },
-  { label: "PROJECTS",    id: "projects"    },
-  { label: "EXPERIENCE",  id: "experience"  },
-  { label: "EDUCATION",   id: "education"   },
-  { label: "COMMUNITY",   id: "volunteering"},
-  { label: "CONTACT",     id: "contact"     },
+  { label: "ABOUT", id: "about" },
+  { label: "SKILLS", id: "skills" },
+  { label: "PROJECTS", id: "projects" },
+  { label: "EXPERIENCE", id: "experience" },
+  { label: "EDUCATION", id: "education" },
+  { label: "COMMUNITY", id: "volunteering" },
+  { label: "CONTACT", id: "contact" },
 ];
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [active, setActive]     = useState("");
+  const [active, setActive] = useState("");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -106,7 +106,7 @@ export const Navbar = () => {
               id="navbar-hire-btn"
             >
               <span className="btn-tab">→</span>
-              <span className="btn-body">HIRE ME</span>
+              <span className="btn-body">HIRE ME!</span>
             </button>
           </div>
 
@@ -166,7 +166,7 @@ export const Navbar = () => {
               className="btn-brutalist mt-4"
             >
               <span className="btn-tab">→</span>
-              <span className="btn-body">HIRE ME</span>
+              <span className="btn-body">HIRE ME!</span>
             </button>
           </div>
         </div>
