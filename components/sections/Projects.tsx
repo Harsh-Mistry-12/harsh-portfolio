@@ -29,16 +29,38 @@ export const Projects = () => {
           >
             End-to-end systems I&apos;ve built — click any card to read the full case study.
           </p>
-          <span
+          <Link
+            href="/projects"
+            target="_blank"
+            rel="noreferrer"
+            id="view-all-projects-btn"
             style={{
               fontFamily: "var(--font-mono)",
               fontSize: "0.65rem",
-              color: "#d4500a",
               letterSpacing: "0.1em",
+              color: "#0a0a0a",
+              textDecoration: "none",
+              border: "1px solid #0a0a0a",
+              padding: "6px 14px",
+              boxShadow: "2px 2px 0px #0a0a0a",
+              transition: "color 0.15s, background 0.15s",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "6px",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.background = "#d4500a";
+              (e.currentTarget as HTMLElement).style.color = "#fff";
+              (e.currentTarget as HTMLElement).style.borderColor = "#d4500a";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.background = "transparent";
+              (e.currentTarget as HTMLElement).style.color = "#0a0a0a";
+              (e.currentTarget as HTMLElement).style.borderColor = "#0a0a0a";
             }}
           >
-            ■ {projects.length} PROJECTS LOADED
-          </span>
+            ■ VIEW ALL PROJECTS ↗
+          </Link>
         </div>
 
         {/* Projects grid */}

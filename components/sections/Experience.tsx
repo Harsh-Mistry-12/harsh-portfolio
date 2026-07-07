@@ -13,8 +13,8 @@ export const Experience = () => {
           <span className="num">004</span>
         </div>
 
-        {/* Bordered table */}
-        <div style={{ border: "1px solid #0a0a0a" }}>
+        {/* Desktop: bordered table — hidden on mobile */}
+        <div className="hidden md:block" style={{ border: "1px solid #0a0a0a" }}>
           {/* Table header */}
           <div
             style={{
@@ -33,8 +33,7 @@ export const Experience = () => {
                   fontSize: "0.6rem",
                   letterSpacing: "0.12em",
                   color: "#6b6b6b",
-                  borderRight:
-                    i < 3 ? "1px solid #0a0a0a" : "none",
+                  borderRight: i < 3 ? "1px solid #0a0a0a" : "none",
                 }}
               >
                 {col}
@@ -111,18 +110,132 @@ export const Experience = () => {
               </div>
 
               {/* Responsibilities */}
-              <div
-                style={{
-                  padding: "1rem 1.5rem",
-                  background: "#e0ddd6",
-                }}
-              >
+              <div style={{ padding: "1rem 1.5rem", background: "#e0ddd6" }}>
                 {exp.responsibilities.map((r, i) => (
                   <div
                     key={i}
                     style={{
                       display: "flex",
                       gap: "12px",
+                      alignItems: "flex-start",
+                      marginBottom: i < exp.responsibilities.length - 1 ? "6px" : 0,
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "0.65rem",
+                        color: "#d4500a",
+                        flexShrink: 0,
+                        marginTop: "2px",
+                      }}
+                    >
+                      &gt;
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "0.68rem",
+                        color: "#6b6b6b",
+                        lineHeight: 1.7,
+                        letterSpacing: "0.02em",
+                      }}
+                    >
+                      {r}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Mobile: stacked cards — visible only on small screens */}
+        <div className="md:hidden flex flex-col" style={{ border: "1px solid #0a0a0a" }}>
+          {experience.map((exp, index) => (
+            <div
+              key={index}
+              style={{
+                borderBottom:
+                  index < experience.length - 1 ? "1px solid #0a0a0a" : "none",
+              }}
+            >
+              {/* Card header */}
+              <div
+                style={{
+                  background: "#dedad1",
+                  borderBottom: "1px solid #0a0a0a",
+                  padding: "10px 14px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.55rem",
+                    letterSpacing: "0.12em",
+                    color: "#6b6b6b",
+                  }}
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.55rem",
+                    letterSpacing: "0.1em",
+                    color: "#d4500a",
+                  }}
+                >
+                  {exp.period}
+                </span>
+              </div>
+
+              {/* Card body */}
+              <div style={{ padding: "1.2rem 1rem" }}>
+                <p
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.82rem",
+                    fontWeight: 700,
+                    color: "#0a0a0a",
+                    marginBottom: "4px",
+                    letterSpacing: "0.02em",
+                  }}
+                >
+                  {exp.company}
+                </p>
+                <p
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.7rem",
+                    color: "#d4500a",
+                    letterSpacing: "0.04em",
+                    marginBottom: "4px",
+                  }}
+                >
+                  {exp.role}
+                </p>
+                <p
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.6rem",
+                    color: "#6b6b6b",
+                    letterSpacing: "0.04em",
+                    marginBottom: "1rem",
+                  }}
+                >
+                  {exp.location}
+                </p>
+
+                {exp.responsibilities.map((r, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      display: "flex",
+                      gap: "10px",
                       alignItems: "flex-start",
                       marginBottom: i < exp.responsibilities.length - 1 ? "6px" : 0,
                     }}

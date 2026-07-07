@@ -33,7 +33,48 @@
 /* ── Base ───────────────────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+}
+
+/* ── Hide native scrollbar (stickman replaces it) ───────────────────────── */
+::-webkit-scrollbar { display: none; }
+* { scrollbar-width: none; }
+
+/* ── Stickman walking keyframes ─────────────────────────────────────────── */
+@keyframes stick-left-leg {
+  0%   { transform: rotate(-24deg); }
+  50%  { transform: rotate(24deg);  }
+  100% { transform: rotate(-24deg); }
+}
+@keyframes stick-right-leg {
+  0%   { transform: rotate(24deg);  }
+  50%  { transform: rotate(-24deg); }
+  100% { transform: rotate(24deg);  }
+}
+@keyframes stick-left-arm {
+  0%   { transform: rotate(20deg);  }
+  50%  { transform: rotate(-20deg); }
+  100% { transform: rotate(20deg);  }
+}
+@keyframes stick-right-arm {
+  0%   { transform: rotate(-20deg); }
+  50%  { transform: rotate(20deg);  }
+  100% { transform: rotate(-20deg); }
+}
+@keyframes stickman-wiggle {
+  0%   { transform: rotate(-10deg); }
+  100% { transform: rotate(10deg); }
+}
+
+/* ── Mobile ─────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  section.py-20 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+}
 
 body {
   font-family: var(--font-mono);

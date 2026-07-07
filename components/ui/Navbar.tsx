@@ -35,13 +35,18 @@ export const Navbar = () => {
       <header
         className="fixed top-0 inset-x-0 z-50 transition-all duration-200"
         style={{
-          background: scrolled ? "#e8e5de" : "transparent",
-          borderBottom: scrolled ? "1px solid #0a0a0a" : "none",
+          background: "#e8e5de",
+          borderBottom: "1px solid #0a0a0a",
+          border: "1px solid #0a0a0a",
+          margin: "6px",
+          borderRadius: "2px",
+          padding: "0 2px",
+          boxShadow: scrolled ? "3px 3px 0px #0a0a0a" : "2px 2px 0px rgba(10,10,10,0.2)",
         }}
       >
         <nav
           style={{ maxWidth: "1280px" }}
-          className="mx-auto px-6 h-14 flex items-center justify-between"
+          className="mx-auto px-4 md:px-6 h-14 flex items-center justify-between"
         >
           {/* Logo */}
           <button
@@ -146,7 +151,6 @@ export const Navbar = () => {
                   letterSpacing: "0.1em",
                   color: "#0a0a0a",
                   textAlign: "left",
-                  borderBottom: "1px solid rgba(0,0,0,0.1)",
                   padding: "14px 0",
                   background: "none",
                   border: "none",

@@ -51,7 +51,7 @@ export const projects = [
         body: "Created ETL pipelines using Pandas & Numpy to clean, transform, and store tick data. Scheduled cron jobs to refresh data every market day and maintain historical datasets in MySQL for backtesting."
       }
     ],
-    images: ["/projects/tradeiq/cover.jpg"],
+    images: ["/projects/tradeiq/cover.png"],
     github: "https://github.com/HarshMistry",
     demo: "#",
   },
@@ -76,7 +76,7 @@ export const projects = [
         body: "Extended the system with Appium for mobile broker app automation, enabling auth token retrieval and order placement through Android emulators — useful for platforms lacking web APIs."
       }
     ],
-    images: ["/projects/stock-automation/cover.jpg"],
+    images: ["/projects/stock-automation/cover.png"],
     github: "https://github.com/HarshMistry",
     demo: "#",
   },
@@ -101,7 +101,7 @@ export const projects = [
         body: "Packaged and published SyncHive v0.2.0 on PyPI with full documentation, CLI support, and example configs. Available for anyone to install with a single `pip install synchive` command."
       }
     ],
-    images: ["/projects/synchive/cover.jpg"],
+    images: ["/projects/synchive/cover.png"],
     github: "https://github.com/HarshMistry",
     demo: "#",
   },
@@ -126,7 +126,7 @@ export const projects = [
         body: "Designed for multi-user deployments with role-based access control. Screenshot data is stored securely in MySQL with configurable retention policies. PIL is used to compress and anonymize screenshots before storage."
       }
     ],
-    images: ["/projects/employee-tracker/cover.jpg"],
+    images: ["/projects/employee-tracker/cover.png"],
     github: "https://github.com/HarshMistry",
     demo: "#",
   },
@@ -137,7 +137,7 @@ export const experience = [
     company: "Logieagle Private Limited",
     role: "Python Developer",
     period: "September 2025 - Present",
-    location: "Gandhinagar",
+    location: "Gandhinagar, Gujarat",
     responsibilities: [
       "Backend development, data engineering, and automation workflows."
     ]
@@ -146,16 +146,16 @@ export const experience = [
     company: "autoDX Technologies Private Limited",
     role: "Jr. Python Developer",
     period: "April 2025 - September 2025",
-    location: "Ahmedabad",
+    location: "Ahmedabad, Gujarat",
     responsibilities: [
       "Developed Python-based automation and backend solutions."
     ]
   },
   {
     company: "RAYVAT Outsourcing",
-    role: "Junior Python Developer",
+    role: "Jr. Python Developer",
     period: "August 2023 - March 2025",
-    location: "Gandhinagar",
+    location: "Gandhinagar, Gujarat",
     responsibilities: [
       "Built ML models for predicting stock trends using time series forecasting & NLP.",
       "Developed real-time FastAPI microservices for stock market analytics.",
@@ -166,8 +166,8 @@ export const experience = [
   },
   {
     company: "Oasis Infobyte",
-    role: "Junior Data Scientist [Internship]",
-    period: "Internship Period",
+    role: "Jr. Data Scientist [Internship]",
+    period: "1 Month",
     location: "Remote",
     responsibilities: [
       "Built classification models for email spam detection & unemployment rate analysis.",
@@ -180,21 +180,21 @@ export const experience = [
 export const education = [
   {
     degree: "B.Tech in Information Technology",
-    institution: "VSITR (KSV) Kadi University",
-    marks: "7.00 CGPA",
+    institution: "Vidush Somany Institue of Technology & Research, Gandhinagar",
+    marks: "7.75 CGPA",
     year: "Oct 2021 - July 2025",
-    highlights: "First Class Distinction. Participated in 21 hackathons, taking on the role of team leader in 8 of them.",
+    highlights: "First Class with Distinction. Participated in 21 hackathons, taking on the role of team leader in 8 of them.",
   },
   {
     degree: "12th (Science A)",
-    institution: "MB Patel GSEB",
+    institution: "MB Patel Secondary & Higher Seconday School, Gandhinagar",
     marks: "66.7%",
     year: "2021",
     highlights: "",
   },
   {
     degree: "10th",
-    institution: "MB Patel GSEB",
+    institution: "MB Patel Secondary & Higher Seconday School, Gandhinagar",
     marks: "92.3 PR",
     year: "2019",
     highlights: "",
@@ -220,42 +220,51 @@ export const funFacts = [
 export const volunteering = [
   {
     organization: "Google Developers Group (GDG) Gandhinagar",
-    role: "Community Volunteer",
-    period: "2023 – Present",
+    role: "Contributor",
+    period: "2025 – Present",
     description:
       "Actively participated in GDG events, workshops, and DevFests. Helped coordinate sessions, guided attendees, and contributed to community outreach initiatives in Gujarat.",
-    icon: "🌐",
+    icon: "FaGlobe",
   },
   {
-    organization: "Cloud Native Computing Foundation (CNCF)",
-    role: "Open Source Contributor",
-    period: "2023 – Present",
+    organization: "Cloud Native Computing Foundation Ahmedabad (CNCF)",
+    role: "Contributor",
+    period: "2026 – Present",
     description:
       "Contributed to CNCF open-source projects, filed issues, reviewed documentation, and participated in community discussions to support cloud-native adoption.",
-    icon: "☁️",
+    icon: "FaCloud",
   },
   {
     organization: "KCD Gujarat (Kubernetes Community Days)",
-    role: "Event Volunteer",
-    period: "2024",
+    role: "Contributor",
+    period: "2026 - Present",
     description:
       "Volunteered at KCD Gujarat, assisting speakers, managing logistics, and helping attendees navigate the conference. Contributed to one of the largest Kubernetes community events in the region.",
-    icon: "⚙️",
+    icon: "FaCog",
   },
   {
     organization: "Open Source Weekend",
-    role: "Participant & Contributor",
-    period: "2023",
+    role: "Contributor",
+    period: "2025 - Present",
     description:
       "Participated in the Open Source Weekend hackathon-style event focused on making meaningful open-source contributions within 48 hours alongside developers across India.",
-    icon: "💻",
+    icon: "FaCode",
   },
   {
     organization: "Pixelverse.community",
-    role: "Open Source Contributor",
-    period: "2023 – 2024",
+    role: "Core Team & Contributor",
+    period: "2026 – Present",
     description:
       "Contributed to community-driven projects at Pixelverse, collaborating with designers and developers to build open tools and creative tech solutions.",
-    icon: "🎨",
+    icon: "FaPalette",
+  },
+  {
+    organization: "99Barkville Foundation",
+    role: "Volunteer",
+    period: "2026 - Present",
+    description:
+      "Contribute to community-driven animal welfare rescues, adoptions, and awareness campaigns for strays.",
+    icon: "FaCloud",
+    link: "https://99barkville.org/",
   },
 ];

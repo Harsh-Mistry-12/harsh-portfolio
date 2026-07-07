@@ -16,7 +16,7 @@ export const Contact = () => {
 
         <div className="grid lg:grid-cols-5 gap-0" style={{ border: "1px solid #0a0a0a" }}>
           {/* Left: info panel */}
-          <div style={{ borderRight: "1px solid #0a0a0a" }} className="lg:col-span-2">
+          <div style={{ borderBottom: "1px solid #0a0a0a" }} className="lg:border-b-0 lg:border-r lg:border-r-[#0a0a0a] lg:col-span-2">
             {/* Title bar */}
             <div
               style={{
@@ -189,7 +189,7 @@ export const Contact = () => {
               }}
             >
               <span>SEND_MESSAGE.FORM</span>
-              <span>MAILTO:HARSH</span>
+              <span>MAILTO:HARSH MISTRY</span>
             </div>
 
             <div style={{ padding: "2rem" }}>

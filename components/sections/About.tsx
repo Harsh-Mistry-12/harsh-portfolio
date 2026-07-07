@@ -26,9 +26,9 @@ export const About = () => {
 
   const stats = [
     { key: "HACKATHONS_ENTERED", value: "21" },
-    { key: "TEAMS_LED",          value: "8"  },
-    { key: "PROJECTS_SHIPPED",   value: "20+" },
-    { key: "YEARS_EXPERIENCE",   value: "3+"  },
+    { key: "TEAMS_LED", value: "8" },
+    { key: "PROJECTS_SHIPPED", value: "20+" },
+    { key: "YEARS_EXPERIENCE", value: "3+" },
   ];
 
   return (
@@ -43,7 +43,7 @@ export const About = () => {
 
         <div className="grid lg:grid-cols-2 gap-0" style={{ border: "1px solid #0a0a0a" }}>
           {/* Left: Manifest */}
-          <div style={{ borderRight: "1px solid #0a0a0a" }}>
+          <div style={{ borderBottom: "1px solid #0a0a0a" }} className="lg:border-b-0 lg:border-r lg:border-r-[#0a0a0a]">
             {/* Title bar */}
             <div
               style={{
@@ -207,34 +207,6 @@ export const About = () => {
                   >
                     {s.key}
                   </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Contact quick-links */}
-            <div
-              style={{
-                borderTop: "1px solid #0a0a0a",
-                padding: "1.5rem",
-              }}
-            >
-              {[
-                { k: "EMAIL", v: personalInfo.email },
-                { k: "LOCATION", v: personalInfo.location },
-              ].map(({ k, v }) => (
-                <div
-                  key={k}
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "0.65rem",
-                    letterSpacing: "0.08em",
-                    marginBottom: "6px",
-                    display: "flex",
-                    gap: "12px",
-                  }}
-                >
-                  <span style={{ color: "#6b6b6b", minWidth: "80px" }}>{k}:</span>
-                  <span style={{ color: "#0a0a0a" }}>{v}</span>
                 </div>
               ))}
             </div>

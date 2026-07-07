@@ -22,10 +22,12 @@ export const Terminal = () => {
       ),
     },
   ]);
-  const bottomRef = useRef<HTMLDivElement>(null);
+  const outputRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (outputRef.current) {
+      outputRef.current.scrollTop = outputRef.current.scrollHeight;
+    }
   }, [history]);
 
   const handleCommand = (cmd: string) => {
@@ -205,8 +207,8 @@ export const Terminal = () => {
             <span>guest@harsh-mistry:~</span>
           </div>
 
-          {/* Output */}
           <div
+            ref={outputRef}
             style={{
               padding: "1.5rem",
               minHeight: "300px",
@@ -265,7 +267,6 @@ export const Terminal = () => {
                 placeholder="type a command..."
               />
             </div>
-            <div ref={bottomRef} />
           </div>
         </div>
       </div>

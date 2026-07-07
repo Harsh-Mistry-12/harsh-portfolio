@@ -3,9 +3,10 @@
 import { personalInfo } from "@/lib/data";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { FaMapMarkerAlt } from "react-icons/fa";
 
-const leftNodes  = ["TRAIN", "PACKAGE", "VERSION"];
-const rightNodes = ["ROUTE",  "DEPLOY",  "OBSERVE"];
+const leftNodes = ["TRAIN", "PACKAGE", "VERSION"];
+const rightNodes = ["ROUTE", "DEPLOY", "OBSERVE"];
 
 export const Hero = () => {
   const [mounted, setMounted] = useState(false);
@@ -17,14 +18,13 @@ export const Hero = () => {
     <section
       id="hero"
       className="relative min-h-screen flex items-center overflow-hidden"
-      style={{ paddingTop: "56px" }}
     >
       <div
         style={{ maxWidth: "1280px" }}
-        className="mx-auto px-6 w-full py-16"
+        className="mx-auto px-6 w-full py-8"
       >
         {/* ── Two-column layout ── */}
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16">
 
           {/* ══ LEFT COLUMN ══ */}
           <div className="flex-1 min-w-0">
@@ -59,7 +59,7 @@ export const Hero = () => {
 
             {/* Node diagram */}
             <div
-              className="flex items-center gap-3 md:gap-6 mb-6"
+              className="flex items-center gap-2 md:gap-6 mb-6 overflow-x-auto"
               style={{ maxWidth: "520px" }}
             >
               {/* Left nodes */}
@@ -94,7 +94,10 @@ export const Hero = () => {
                   background: "#dedad1", flexShrink: 0,
                 }}
               >
-                <span style={{ fontSize: "1.5rem", fontFamily: "var(--font-mono)" }}>✳</span>
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden>
+                  <line x1="11" y1="2" x2="11" y2="20" stroke="#d4500a" strokeWidth="2" strokeLinecap="round" />
+                  <line x1="2" y1="11" x2="20" y2="11" stroke="#d4500a" strokeWidth="2" strokeLinecap="round" />
+                </svg>
               </div>
 
               {/* SVG lines right */}
@@ -205,8 +208,8 @@ export const Hero = () => {
             >
               {[
                 { label: "HACKATHONS", value: "21+" },
-                { label: "EXPERIENCE",  value: "3+ YRS" },
-                { label: "PROJECTS",    value: "20+" },
+                { label: "EXPERIENCE", value: "3+ YRS" },
+                { label: "PROJECTS", value: "20+" },
               ].map((s) => (
                 <div key={s.label}>
                   <div
@@ -254,7 +257,8 @@ export const Hero = () => {
                     letterSpacing: "0.06em",
                   }}
                 >
-                  📍 {personalInfo.location}
+                  <FaMapMarkerAlt size={10} style={{ marginRight: "4px", color: "#d4500a", flexShrink: 0 }} />
+                  {personalInfo.location}
                 </span>
               </div>
             </div>
@@ -262,9 +266,9 @@ export const Hero = () => {
 
           {/* ══ RIGHT COLUMN — Photo ══ */}
           <div
-            className="relative flex-shrink-0"
+            className="relative flex-shrink-0 mx-auto lg:mx-0"
             style={{
-              width: "clamp(200px, 22vw, 300px)",
+              width: "clamp(160px, 50vw, 300px)",
             }}
           >
             {/* "Open to Opportunities" badge — top */}

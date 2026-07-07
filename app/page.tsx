@@ -10,12 +10,14 @@ import { Contact } from "@/components/sections/Contact";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { Navbar } from "@/components/ui/Navbar";
 import { Footer } from "@/components/ui/Footer";
+import { StickmanScrollbar } from "@/components/ui/StickmanScrollbar";
 
 export default function Home() {
   return (
-    <main>
+    <main style={{ paddingTop: "56px" }}>
       <ScrollProgress />
       <Navbar />
+      <StickmanScrollbar />
 
       <Hero />
       <About />
