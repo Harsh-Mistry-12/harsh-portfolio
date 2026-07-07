@@ -328,15 +328,22 @@ export const Hero = () => {
                 style={{
                   position: "absolute",
                   bottom: 0, left: 0, right: 0,
-                  background: "rgba(10,10,10,0.80)",
-                  padding: "8px 12px",
+                  background: "rgba(10,10,10,0.90)",
+                  padding: "10px 14px",
                   fontFamily: "var(--font-mono)",
-                  fontSize: "0.55rem",
-                  letterSpacing: "0.12em",
-                  color: "#d4500a",
+                  fontSize: "0.58rem",
+                  letterSpacing: "0.14em",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
                 }}
               >
-                HARSH.MISTRY // DEV
+                <span style={{ color: "#ffffff", fontWeight: 700 }}>
+                  HARSH.MISTRY
+                  <span style={{ color: "#d4500a", fontWeight: 700 }}>
+                    {" "} // DEV
+                  </span>
+                </span>
               </div>
             </div>
 
