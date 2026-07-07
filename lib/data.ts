@@ -31,53 +31,57 @@ export const skills = {
 
 export const projects = [
   {
-    slug: "tradeiq",
-    title: "TradeIQ: AI-Powered Paper Trading & Market Intelligence",
-    technologies: ["ReactJs", "FastAPI", "MySQL", "MongoDB", "Pandas", "Numpy", "scikit-learn", "Selenium"],
-    description: "End-to-end web app for market analysis and paper trading with seasonal pattern detection.",
-    impact: "Automated broker authentication to fetch real-time data and built ML models for trend prediction and query analysis.",
-    longDescription: "TradeIQ is a comprehensive AI-powered paper trading platform that simulates real market conditions. It integrates live data feeds, ML-based trend prediction, and a full trading dashboard — all without risking real capital.",
+    slug: "voxreach",
+    title: "AI-Powered Calling Agent & Hyperlocal Analytics Platform",
+    technologies: ["RAG+LLM", "Cartesia", "TiDB", "FastAPI", "AWS", "Node.js", "MySQL", "Twilio", "Next.js", "Groq", "Gemini", "Telephony", "Sarvam", "Open Source Models", "Next.js"],
+    description: "End-to-end platform for human-like AI voice agents that cold-call and receive calls from customers — resolving queries, booking reservations, and providing support — while generating area-wise analytics and reports to drive business growth.",
+    impact: "Automated 85% of voice-based customer interactions and delivered hyperlocal analytics that guided regional business decisions.",
+    longDescription: "VoxReach is a full-stack AI calling agent platform that lets businesses run human-like voice conversations at scale — placing outbound cold calls, handling inbound support queries, and making reservations — while surfacing hyperlocal analytics on call volume, resolution rates, and regional trends to guide business decisions.",
     details: [
       {
-        heading: "What I Built",
-        body: "Designed a ReactJS frontend with a real-time dashboard showing market data, portfolio P&L, and trade history. The FastAPI backend handled authentication, order management, and data pipelines pulling from NSE/BSE via Selenium-automated broker sessions."
+        heading: "Voice & Telephony Layer",
+        body: "Built the calling infrastructure on Twilio for telephony, with Cartesia and Sarvam handling low-latency text-to-speech and speech-to-text so the agent could hold natural, human-like conversations, including support for Indian languages. Designed the call flow to handle interruptions, silences, and turn-taking to keep interactions feeling conversational rather than scripted."
       },
       {
-        heading: "ML & Intelligence Layer",
-        body: "Built scikit-learn models for seasonal pattern detection and trend forecasting using time-series data stored in MongoDB. Integrated an NLP query interface so users can ask natural language questions about stock performance."
+        heading: "RAG + LLM Reasoning Layer",
+        body: "Implemented a retrieval-augmented generation pipeline so the agent could pull accurate, business-specific answers (pricing, policies, availability) in real time instead of relying on static prompts. Routed inference across Groq, Gemini, and open-source models based on latency and cost trade-offs, keeping response times low enough for live phone conversations."
       },
       {
-        heading: "Data Engineering",
-        body: "Created ETL pipelines using Pandas & Numpy to clean, transform, and store tick data. Scheduled cron jobs to refresh data every market day and maintain historical datasets in MySQL for backtesting."
+        heading: "Data & Analytics Backend",
+        body: "Built the backend on FastAPI with MySQL and TiDB for storing call transcripts, outcomes, and structured metadata at scale. Built a Node.js service layer for orchestration and a Next.js dashboard for area-wise call analytics — visualizing volume, resolution rates, and regional trends — with the full stack deployed on AWS for reliability and scale."
+      },
+      {
+        heading: "What impact it made?",
+        body: "Automated end-to-end voice interactions that previously required human agents, cutting response time for customer queries and reservations from minutes to seconds. Hyperlocal, area-wise call analytics gave the business visibility into demand patterns across regions, directly informing outreach and resourcing decisions. The RAG-based knowledge layer kept agent responses accurate and current without manual script updates, and the multi-LLM routing (Groq/Gemini/open-source models) kept inference costs low while preserving response quality across call volumes."
       }
     ],
     images: ["/projects/tradeiq/cover.png"],
-    github: "https://github.com/HarshMistry",
+    github: "https://github.com/Harsh-Mistry-12",
     demo: "#",
   },
   {
-    slug: "stock-automation",
-    title: "Automated Content Scraping & High-Speed Stock Order",
-    technologies: ["Playwright", "Selenium", "Appium", "MongoDB", "MySQL", "PyAutoGUI", "Multi-threading"],
-    description: "End-to-end automation system for large-scale web scraping and high-frequency stock trading.",
-    impact: "Achieved a 99.5% accuracy rate in executing 100+ stock market orders within under 2 minutes using Selenium-driven parallel processing.",
-    longDescription: "A production-grade automation system that handles two missions: bulk content scraping across finance websites, and ultra-fast stock order execution — all without human intervention.",
+    slug: "b2b-scrapping-and-analytics-tool",
+    title: "B2B Scraping & Analytics Tool",
+    technologies: ["Discord", "Requests", "Resend", "Pandas", "MySQL", "FastAPI", "Node.js", "Next.js", "AWS", "LLMs", "Groq", "Gemini", "Web3Forms", "Multi-threading", "Concurrent"],
+    description: "Automated web scraping pipeline that extracts, cleans, and enriches B2B data at scale — with LLM-based classification and real-time analytics dashboards.",
+    impact: "Cut manual data collection time from hours to minutes and enabled reliable, structured B2B datasets for downstream business decisions.",
+    longDescription: "A full-stack B2B data pipeline that scrapes structured and unstructured data from multiple sources concurrently, enriches it using LLMs for classification and validation, and surfaces the results through an analytics dashboard — with automated alerts and reports delivered via Discord and email.",
     details: [
       {
-        heading: "High-Frequency Order Engine",
-        body: "Built a Selenium + PyAutoGUI hybrid engine capable of placing 100+ orders in under 2 minutes. Used multi-threading to parallelize across broker windows, achieving a 99.5% accuracy rate in order placement."
+        heading: "Scraping & Data Pipeline",
+        body: "Built a multi-threaded, concurrent scraping engine using Python's Requests library to pull data from multiple sources in parallel, significantly reducing collection time. Used Pandas for cleaning, deduplication, and transformation before persisting structured records to MySQL."
       },
       {
-        heading: "Web Scraping Infrastructure",
-        body: "Developed Playwright-based scrapers for financial data portals (Screener, Moneycontrol, Tijori). Used rotating proxies and smart throttling to avoid detection. Data landed in MongoDB for real-time access and MySQL for analytics."
+        heading: "LLM-Powered Enrichment",
+        body: "Integrated Groq and Gemini to classify, tag, and validate scraped records — filtering noise, standardizing inconsistent fields, and flagging anomalies that would otherwise require manual review. This kept the dataset clean without a dedicated data-entry step."
       },
       {
-        heading: "Mobile Automation",
-        body: "Extended the system with Appium for mobile broker app automation, enabling auth token retrieval and order placement through Android emulators — useful for platforms lacking web APIs."
+        heading: "Automation, Alerts & Dashboard",
+        body: "Built a FastAPI backend with a Node.js service layer for orchestration and scheduling, and a Next.js dashboard for visualizing scraped data and trends. Wired up Discord notifications for pipeline status/errors, Resend for email reports, and Web3Forms for lightweight external form intake — all deployed on AWS."
       }
     ],
     images: ["/projects/stock-automation/cover.png"],
-    github: "https://github.com/HarshMistry",
+    github: "https://github.com/Harsh-Mistry-12",
     demo: "#",
   },
   {
@@ -102,32 +106,32 @@ export const projects = [
       }
     ],
     images: ["/projects/synchive/cover.png"],
-    github: "https://github.com/HarshMistry",
+    github: "https://github.com/Harsh-Mistry-12",
     demo: "#",
   },
   {
-    slug: "employee-tracker",
-    title: "Employee Performance Tracker",
-    technologies: ["PyQt5", "MySQL", "Django", "pc-tracker", "threading", "PIL"],
-    description: "Desktop and web application for real-time employee performance monitoring and productivity tracking.",
-    impact: "Implemented automated screenshot capture, active/inactive time tracking, and application usage logging. Supports multi-user connections.",
-    longDescription: "A dual-interface (desktop + web) system for managers to monitor employee productivity in real time — tracking active time, app usage, and capturing periodic screenshots.",
+    slug: "tradeiq",
+    title: "TradeIQ: AI-Powered Paper Trading & Market Intelligence",
+    technologies: ["ReactJs", "FastAPI", "MySQL", "MongoDB", "Pandas", "Numpy", "scikit-learn", "Selenium"],
+    description: "End-to-end web app for market analysis and paper trading with seasonal pattern detection.",
+    impact: "Automated broker authentication to fetch real-time data and built ML models for trend prediction and query analysis.",
+    longDescription: "TradeIQ is a comprehensive AI-powered paper trading platform that simulates real market conditions. It integrates live data feeds, ML-based trend prediction, and a full trading dashboard — all without risking real capital.",
     details: [
       {
-        heading: "Desktop Agent (PyQt5)",
-        body: "Built a lightweight PyQt5 tray application that runs in the background on employee machines. Uses threading to capture screenshots every N minutes, log active application windows, and track idle vs active time — all sent to a central Django server."
+        heading: "What I Built",
+        body: "Designed a ReactJS frontend with a real-time dashboard showing market data, portfolio P&L, and trade history. The FastAPI backend handled authentication, order management, and data pipelines pulling from NSE/BSE via Selenium-automated broker sessions."
       },
       {
-        heading: "Django Web Dashboard",
-        body: "Managers access a Django-powered web dashboard to view per-employee timelines, screenshots, productivity scores, and application usage breakdowns — all in real time via WebSocket updates."
+        heading: "ML & Intelligence Layer",
+        body: "Built scikit-learn models for seasonal pattern detection and trend forecasting using time-series data stored in MongoDB. Integrated an NLP query interface so users can ask natural language questions about stock performance."
       },
       {
-        heading: "Multi-user & Privacy",
-        body: "Designed for multi-user deployments with role-based access control. Screenshot data is stored securely in MySQL with configurable retention policies. PIL is used to compress and anonymize screenshots before storage."
+        heading: "Data Engineering",
+        body: "Created ETL pipelines using Pandas & Numpy to clean, transform, and store tick data. Scheduled cron jobs to refresh data every market day and maintain historical datasets in MySQL for backtesting."
       }
     ],
-    images: ["/projects/employee-tracker/cover.png"],
-    github: "https://github.com/HarshMistry",
+    images: ["/projects/tradeiq/cover.png"],
+    github: "https://github.com/Harsh-Mistry-12",
     demo: "#",
   },
 ];
