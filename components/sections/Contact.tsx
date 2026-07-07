@@ -194,9 +194,12 @@ export const Contact = () => {
 
             <div style={{ padding: "2rem" }}>
               <form
+                name="contact"
+                method="POST"
+                data-netlify="true"
                 className="space-y-4"
-                onSubmit={(e) => e.preventDefault()}
               >
+                <input type="hidden" name="form-name" value="contact" />
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label
@@ -214,6 +217,7 @@ export const Contact = () => {
                     </label>
                     <input
                       id="contact-name"
+                      name="name"
                       type="text"
                       className="b-input"
                       placeholder="John Doe"
@@ -235,6 +239,7 @@ export const Contact = () => {
                     </label>
                     <input
                       id="contact-email"
+                      name="email"
                       type="email"
                       className="b-input"
                       placeholder="john@example.com"
@@ -258,6 +263,7 @@ export const Contact = () => {
                   </label>
                   <input
                     id="contact-subject"
+                    name="subject"
                     type="text"
                     className="b-input"
                     placeholder="Project idea, job offer, collaboration…"
@@ -280,6 +286,7 @@ export const Contact = () => {
                   </label>
                   <textarea
                     id="contact-message"
+                    name="message"
                     rows={5}
                     className="b-input"
                     style={{ resize: "none" }}
