@@ -1,0 +1,38 @@
+name: Sync Fork with Upstream
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'   # weekly, every Monday at midnight UTC
+  workflow_dispatch:        # lets you trigger it manually anytime
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add upstream remote
+        run: git remote add upstream https://github.com/harshm-logieagle/portfolio.git
+
+      - name: Fetch upstream
+        run: git fetch upstream
+
+      - name: Create sync branch and merge upstream changes
+        run: |
+          git checkout -b sync-upstream-${{ github.run_id }}
+          git merge upstream/master --allow-unrelated-histories -m "Sync with upstream harshm-logieagle/portfolio" || true
+          git push origin sync-upstream-${{ github.run_id }}
+
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: sync-upstream-${{ github.run_id }}
+          title: "Sync with upstream: harshm-logieagle/portfolio"
+          body: "Automated sync from the upstream template repo. Review and resolve any conflicts before merging."
+          base: master
