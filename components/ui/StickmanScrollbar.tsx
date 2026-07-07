@@ -6,8 +6,24 @@ export const StickmanScrollbar = () => {
   const [scrollPct, setScrollPct] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
   const [balloonReleased, setBalloonReleased] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
   const [mounted, setMounted] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const alertTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+
+  useEffect(() => {
+    if (balloonReleased) {
+      setShowAlert(true);
+      clearTimeout(alertTimerRef.current);
+      alertTimerRef.current = setTimeout(() => {
+        setShowAlert(false);
+      }, 5000);
+    } else {
+      setShowAlert(false);
+      clearTimeout(alertTimerRef.current);
+    }
+    return () => clearTimeout(alertTimerRef.current);
+  }, [balloonReleased]);
 
   useEffect(() => {
     setMounted(true);
@@ -87,7 +103,7 @@ export const StickmanScrollbar = () => {
         }}
       >
         {/* Visual Cue Alert Box */}
-        {balloonReleased && (
+        {showAlert && (
           <div
             className="b-tag"
             style={{
