@@ -1,7 +1,7 @@
 "use client";
 
 import { personalInfo } from "@/lib/data";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Image from "next/image";
 import { FaMapMarkerAlt } from "react-icons/fa";
 
@@ -9,10 +9,9 @@ const leftNodes = ["TRAIN", "PACKAGE", "VERSION"];
 const rightNodes = ["ROUTE", "DEPLOY", "OBSERVE"];
 
 export const Hero = () => {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => { setMounted(true); }, []);
-  if (!mounted) return null;
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <section
