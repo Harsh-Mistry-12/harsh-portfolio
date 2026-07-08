@@ -262,7 +262,6 @@ export const Terminal = () => {
                   flex: 1,
                   caretColor: "#d4500a",
                 }}
-                autoFocus
                 spellCheck={false}
                 placeholder="type a command..."
               />
