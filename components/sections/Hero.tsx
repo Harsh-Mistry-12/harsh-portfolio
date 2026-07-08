@@ -177,6 +177,16 @@ export const Hero = () => {
                 <span className="btn-tab">→</span>
                 <span className="btn-body">VIEW MY WORK</span>
               </button>
+              <a
+                id="hero-resume-btn"
+                href="/Harsh Mistry Resume.pdf"
+                download="Harsh Mistry Resume.pdf"
+                className="btn-brutalist"
+                style={{ display: "inline-flex", textDecoration: "none" }}
+              >
+                <span className="btn-tab">↓</span>
+                <span className="btn-body">DOWNLOAD RESUME</span>
+              </a>
               <button
                 id="hero-contact-btn"
                 onClick={() =>
