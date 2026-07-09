@@ -65,14 +65,14 @@ export const Projects = () => {
 
         {/* Projects grid */}
         <div className="grid md:grid-cols-2 gap-0" style={{ border: "1px solid #0a0a0a" }}>
-          {projects.map((project, index) => (
+          {projects.slice(0, 4).map((project, index, array) => (
             <div
               key={project.slug}
               style={{
                 borderRight:
                   index % 2 === 0 ? "1px solid #0a0a0a" : "none",
                 borderBottom:
-                  index < projects.length - 2 || (projects.length % 2 !== 0 && index < projects.length - 1)
+                  index < array.length - 2 || (array.length % 2 !== 0 && index < array.length - 1)
                     ? "1px solid #0a0a0a"
                     : "none",
                 display: "flex",
