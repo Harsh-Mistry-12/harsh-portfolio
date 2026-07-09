@@ -3,6 +3,7 @@
 import { projects } from "@/lib/data";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { FaGithub } from "react-icons/fa";
 import { use } from "react";
 
@@ -42,7 +43,7 @@ export default function ProjectPage({ params }: Props) {
         }}
       >
         <Link
-          href="/#projects"
+          href="/projects"
           style={{
             fontFamily: "var(--font-mono)",
             fontSize: "0.65rem",
@@ -135,6 +136,60 @@ export default function ProjectPage({ params }: Props) {
             )}
           </div>
         </div>
+
+        {/* Project Images Gallery */}
+        {project.images && project.images.filter(img => !img.includes("cover")).length > 0 && (
+          <div style={{ marginBottom: "2.5rem", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+            {project.images.filter(img => !img.includes("cover")).map((img, i) => (
+              <div
+                key={i}
+                style={{
+                  border: "1px solid #0a0a0a",
+                  boxShadow: "3px 3px 0px #0a0a0a",
+                  background: "#e8e5de",
+                  display: "flex",
+                  flexDirection: "column",
+                  overflow: "hidden",
+                }}
+              >
+                {/* Image title bar */}
+                <div
+                  style={{
+                    borderBottom: "1px solid #0a0a0a",
+                    padding: "8px 14px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    background: "#dedad1",
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.6rem",
+                    letterSpacing: "0.1em",
+                  }}
+                >
+                  <span style={{ color: "#6b6b6b" }}>
+                    SCREENSHOT_{String(i + 1).padStart(2, "0")}.PNG
+                  </span>
+                </div>
+                <div
+                  style={{
+                    position: "relative",
+                    width: "100%",
+                    aspectRatio: "16 / 9",
+                    overflow: "hidden",
+                  }}
+                >
+                  <Image
+                    src={img}
+                    alt={`${project.title} screenshot ${i + 1}`}
+                    fill
+                    sizes="(max-width: 900px) 100vw, 900px"
+                    style={{ objectFit: "contain", background: "#f5f3ef" }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* Bordered content area */}
         <div style={{ border: "1px solid #0a0a0a" }}>
@@ -259,7 +314,7 @@ export default function ProjectPage({ params }: Props) {
             gap: "1rem",
           }}
         >
-          <Link href="/#projects" className="btn-brutalist">
+          <Link href="/projects" className="btn-brutalist">
             <span className="btn-tab">←</span>
             <span className="btn-body" style={{ background: "transparent", color: "#0a0a0a" }}>
               ALL PROJECTS

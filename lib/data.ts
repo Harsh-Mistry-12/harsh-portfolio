@@ -134,6 +134,34 @@ export const projects = [
     github: "https://github.com/Harsh-Mistry-12",
     demo: "#",
   },
+  {
+    slug: "student-council-elections",
+    title: "Student Council Elections",
+    technologies: ["Python", "Flask", "MySQL", "HTML5", "CSS3", "JavaScript"],
+    description: "A secure, web-based school council voting system built for Geneva Liberal School to elect prefects and captains.",
+    impact: "Successfully managed 19 different student council positions, supporting live leaderboards, real-time results, and device-based vote limits.",
+    longDescription: "A specialized voting system designed for Geneva Liberal School to conduct their student council elections. It features an interactive voter dashboard with a live leaderboard, dynamic ranking badges, and a comprehensive admin control panel to manage candidates, toggle voting, and export results.",
+    details: [
+      {
+        heading: "Voting Core & Leaderboard",
+        body: "Developed a dynamic candidate listing across 19 positions (Leadership, House Captains, and Vice House Captains). Implemented a live leaderboard using AJAX polling that auto-refreshes standings, displays ranking badges (gold, silver, bronze), and renders percentage progress bars for candidate votes."
+      },
+      {
+        heading: "Admin Controls & Analytics",
+        body: "Built a robust administrative dashboard allowing coordinators to add/remove candidates, upload profile images, toggle the election status (open/close), monitor real-time vote metrics, and export final standings to CSV with built-in reset safeguards."
+      },
+      {
+        heading: "Security & Anti-Fraud",
+        body: "Secured the voting process using device-fingerprinting (IP address and browser User-Agent hashes) to prevent double voting. Designed a secure relational database schema in MySQL to persist voter logs and candidate tallies cleanly."
+      }
+    ],
+    images: [
+      "/projects/student-council-elections/cover-generated.png",
+      "/projects/student-council-elections/GLS-Election.jpeg"
+    ],
+    github: "https://github.com/Harsh-Mistry-12",
+    demo: "#",
+  },
 ];
 
 export const experience = [
