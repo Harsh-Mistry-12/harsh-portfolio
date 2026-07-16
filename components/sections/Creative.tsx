@@ -6,15 +6,15 @@ import { useState } from "react";
 import { creativeWorks } from "@/lib/data";
 
 const CATEGORY_ACCENT: Record<string, string> = {
-  photography:  "#d4500a",
+  photography:   "#d4500a",
   "social-media": "#2563eb",
-  graphics:     "#7c3aed",
+  graphics:      "#7c3aed",
 };
 
 const CATEGORY_LABEL: Record<string, string> = {
-  photography:  "PHOTOGRAPHY",
+  photography:   "PHOTOGRAPHY",
   "social-media": "SOCIAL MEDIA",
-  graphics:     "GRAPHICS",
+  graphics:      "GRAPHICS",
 };
 
 const stats = [
@@ -24,7 +24,7 @@ const stats = [
   { label: "Communities",      value: "5"                                                                        },
 ];
 
-function MiniCard({ work }: { work: (typeof creativeWorks)[0] }) {
+function MiniCard({ work, index }: { work: (typeof creativeWorks)[0]; index: number }) {
   const [hovered, setHovered] = useState(false);
   const accent = CATEGORY_ACCENT[work.category] ?? "#d4500a";
   const label  = CATEGORY_LABEL[work.category]  ?? work.category.toUpperCase();
@@ -39,15 +39,45 @@ function MiniCard({ work }: { work: (typeof creativeWorks)[0] }) {
         style={{
           border: "1px solid #0a0a0a",
           background: "#e8e5de",
+          display: "flex",
+          flexDirection: "column",
           overflow: "hidden",
           transition: "box-shadow 0.2s ease, transform 0.2s ease",
           boxShadow: hovered ? "6px 6px 0px #0a0a0a" : "3px 3px 0px #0a0a0a",
           transform: hovered ? "translate(-2px,-2px)" : "translate(0,0)",
           cursor: "pointer",
+          height: "100%",
         }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
+        {/* Terminal title bar */}
+        <div
+          style={{
+            borderBottom: "1px solid #0a0a0a",
+            padding: "8px 14px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            background: "#dedad1",
+            fontFamily: "var(--font-mono)",
+            fontSize: "0.6rem",
+            letterSpacing: "0.1em",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <div style={{ display: "flex", gap: "4px" }}>
+              <span style={{ width: 8, height: 8, borderRadius: "50%", background: accent, display: "inline-block" }} />
+              <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#6b6b6b", display: "inline-block" }} />
+              <span style={{ width: 8, height: 8, borderRadius: "50%", border: "1px solid #6b6b6b", display: "inline-block" }} />
+            </div>
+            <span style={{ color: "#6b6b6b" }}>
+              CREATIVE_{String(index + 1).padStart(2, "0")}.MD
+            </span>
+          </div>
+          <span style={{ color: accent, fontWeight: 700 }}>{label}</span>
+        </div>
+
         {/* Cover image */}
         <div
           style={{
@@ -56,13 +86,14 @@ function MiniCard({ work }: { work: (typeof creativeWorks)[0] }) {
             aspectRatio: "4 / 3",
             overflow: "hidden",
             borderBottom: "1px solid #0a0a0a",
+            flexShrink: 0,
           }}
         >
           <Image
             src={work.coverImage}
             alt={work.title}
             fill
-            sizes="(max-width: 640px) 100vw, 280px"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 280px"
             style={{
               objectFit: "cover",
               transform: hovered ? "scale(1.05)" : "scale(1)",
@@ -70,24 +101,7 @@ function MiniCard({ work }: { work: (typeof creativeWorks)[0] }) {
               filter: hovered ? "brightness(0.8)" : "brightness(1)",
             }}
           />
-          {/* Category badge */}
-          <div
-            style={{
-              position: "absolute",
-              top: "8px",
-              left: "8px",
-              background: accent,
-              color: "#fff",
-              fontFamily: "var(--font-mono)",
-              fontSize: "0.5rem",
-              letterSpacing: "0.1em",
-              padding: "3px 8px",
-              fontWeight: 700,
-            }}
-          >
-            {label}
-          </div>
-          {/* Image count */}
+          {/* Image count badge */}
           {work.images.length > 1 && (
             <div
               style={{
@@ -108,14 +122,22 @@ function MiniCard({ work }: { work: (typeof creativeWorks)[0] }) {
         </div>
 
         {/* Body */}
-        <div style={{ padding: "0.9rem" }}>
+        <div
+          style={{
+            padding: "1.4rem",
+            display: "flex",
+            flexDirection: "column",
+            flex: 1,
+            gap: "0.8rem",
+          }}
+        >
           <p
             style={{
               fontFamily: "var(--font-mono)",
               fontSize: "0.58rem",
               color: accent,
               letterSpacing: "0.06em",
-              marginBottom: "4px",
+              margin: 0,
             }}
           >
             {work.community}
@@ -123,7 +145,7 @@ function MiniCard({ work }: { work: (typeof creativeWorks)[0] }) {
           <h3
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "0.78rem",
+              fontSize: "clamp(0.85rem, 2.5vw, 1rem)",
               fontWeight: 700,
               letterSpacing: "0.02em",
               lineHeight: 1.35,
@@ -145,7 +167,7 @@ export const Creative = () => {
     creativeWorks.find((w) => w.category === "photography"),
     creativeWorks.find((w) => w.category === "social-media"),
     creativeWorks.find((w) => w.category === "graphics"),
-  ].filter(Boolean) as (typeof creativeWorks);
+  ].filter(Boolean) as typeof creativeWorks;
 
   return (
     <section id="creative" className="py-20">
@@ -158,7 +180,7 @@ export const Creative = () => {
         </div>
 
         {/* Header row */}
-        <div className="flex items-start justify-between mb-6 flex-wrap gap-4">
+        <div className="flex items-start justify-between mb-8 flex-wrap gap-4">
           <p
             style={{
               fontFamily: "var(--font-mono)",
@@ -170,7 +192,7 @@ export const Creative = () => {
             }}
           >
             Beyond code — photography, social media content, and community graphics
-            created for the organizations I'm part of.
+            created for the organizations I&apos;m part of.
           </p>
           <Link
             href="/creative"
@@ -255,35 +277,15 @@ export const Creative = () => {
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 260px), 1fr))",
-            gap: "clamp(14px, 2.5vw, 24px)",
+            gap: "clamp(16px, 3vw, 28px)",
             marginBottom: "1.5rem",
           }}
         >
-          {preview.map((work) => (
-            <MiniCard key={work.slug} work={work} />
+          {preview.map((work, index) => (
+            <MiniCard key={work.slug} work={work} index={index} />
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            paddingTop: "0.5rem",
-          }}
-        >
-          <Link
-            href="/creative"
-            id="creative-cta-open-studio"
-            target="_blank"
-            rel="noreferrer"
-            className="btn-brutalist"
-            style={{ textDecoration: "none", minWidth: "240px" }}
-          >
-            <span className="btn-tab">◈</span>
-            <span className="btn-body">OPEN CREATIVE STUDIO</span>
-          </Link>
-        </div>
       </div>
     </section>
   );
