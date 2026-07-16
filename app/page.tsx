@@ -7,6 +7,7 @@ import { Education } from "@/components/sections/Education";
 import { Volunteering } from "@/components/sections/Volunteering";
 import { Terminal } from "@/components/sections/Terminal";
 import { Blog } from "@/components/sections/Blog";
+import { Creative } from "@/components/sections/Creative";
 import { Contact } from "@/components/sections/Contact";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { Navbar } from "@/components/ui/Navbar";
@@ -28,6 +29,7 @@ export default function Home() {
       <Education />
       <Volunteering />
       <Blog />
+      <Creative />
       <Terminal />
       <Contact />
 

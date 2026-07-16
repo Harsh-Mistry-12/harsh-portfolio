@@ -464,3 +464,210 @@ export const blogs = [
 ];
 
 export type Blog = (typeof blogs)[0];
+
+// ── CREATIVE WORKS ────────────────────────────────────────────────────────────
+// Categories: "photography" | "social-media" | "graphics"
+export const creativeWorks = [
+  // ── PHOTOGRAPHY ──────────────────────────────────────────────────────────
+  {
+    slug: "gdg-devfest-2025-moments",
+    category: "photography" as const,
+    title: "GDG DevFest 2025 — Captured Moments",
+    description:
+      "Behind-the-lens coverage of Google Developers Group DevFest Gandhinagar 2025. Candid speaker portraits, crowd energy, and workshop sessions.",
+    community: "Google Developers Group (GDG) Gandhinagar",
+    platform: null,
+    date: "2025-11-22",
+    tags: ["Event Photography", "GDG", "DevFest", "Community"],
+    images: [
+      "/projects/student-council-elections/GLS-Election.jpeg",
+      "/projects/tradeiq/cover.png",
+    ],
+    coverImage: "/projects/student-council-elections/GLS-Election.jpeg",
+    stats: { shots: "200+", selected: 28, event: "DevFest 2025" },
+    link: null,
+  },
+  {
+    slug: "kcd-gujarat-2026-photography",
+    category: "photography" as const,
+    title: "KCD Gujarat 2026 — Conference Highlights",
+    description:
+      "Visual documentation of Kubernetes Community Days Gujarat 2026 — stage setups, speaker sessions, networking corners, and community booths.",
+    community: "KCD Gujarat (Kubernetes Community Days)",
+    platform: null,
+    date: "2026-03-15",
+    tags: ["Event Photography", "KCD", "Kubernetes", "Conference"],
+    images: [
+      "/projects/tradeiq/cover.png",
+      "/projects/synchive/cover.png",
+    ],
+    coverImage: "/projects/tradeiq/cover.png",
+    stats: { shots: "350+", selected: 45, event: "KCD Gujarat 2026" },
+    link: null,
+  },
+  {
+    slug: "open-source-weekend-clicks",
+    category: "photography" as const,
+    title: "Open Source Weekend — 48-Hour Hackathon Clicks",
+    description:
+      "Raw, unfiltered photography from the 48-hour Open Source Weekend sprint. Late-night coding, whiteboard sessions, and final demo energy.",
+    community: "Open Source Weekend",
+    platform: null,
+    date: "2025-09-08",
+    tags: ["Hackathon Photography", "Open Source", "Community"],
+    images: [
+      "/projects/synchive/cover.png",
+    ],
+    coverImage: "/projects/synchive/cover.png",
+    stats: { shots: "120+", selected: 18, event: "OS Weekend 2025" },
+    link: null,
+  },
+
+  // ── SOCIAL MEDIA CONTENT ─────────────────────────────────────────────────
+  {
+    slug: "gdg-reels-recap-series",
+    category: "social-media" as const,
+    title: "GDG Event Recap Reel Series",
+    description:
+      "Short-form video recaps for GDG Gandhinagar's Instagram and LinkedIn — edit, voiceover, captions, and motion graphics handled end-to-end.",
+    community: "Google Developers Group (GDG) Gandhinagar",
+    platform: "Instagram / LinkedIn",
+    date: "2025-12-01",
+    tags: ["Video Editing", "Reels", "GDG", "Social Media"],
+    images: [
+      "/projects/tradeiq/cover.png",
+    ],
+    coverImage: "/projects/tradeiq/cover.png",
+    stats: { posts: 6, reach: "4,200+", platform: "Instagram" },
+    link: "https://www.linkedin.com/in/harshmistry1203",
+  },
+  {
+    slug: "cncf-community-updates",
+    category: "social-media" as const,
+    title: "CNCF Ahmedabad — Community Update Posts",
+    description:
+      "Designed and wrote LinkedIn posts announcing CNCF meetup schedules, speaker reveals, and post-event wrap-ups to grow local cloud-native awareness.",
+    community: "Cloud Native Computing Foundation Ahmedabad (CNCF)",
+    platform: "LinkedIn",
+    date: "2026-02-10",
+    tags: ["LinkedIn Content", "CNCF", "Cloud Native", "Copywriting"],
+    images: [
+      "/projects/synchive/cover.png",
+      "/projects/stock-automation/cover.png",
+    ],
+    coverImage: "/projects/synchive/cover.png",
+    stats: { posts: 12, reach: "2,800+", platform: "LinkedIn" },
+    link: "https://www.linkedin.com/in/harshmistry1203",
+  },
+  {
+    slug: "pixelverse-social-drops",
+    category: "social-media" as const,
+    title: "Pixelverse.community — Social Content Drops",
+    description:
+      "Created visual + written social posts to promote Pixelverse open-source tool launches, community milestones, and contributor shoutouts.",
+    community: "Pixelverse.community",
+    platform: "Twitter / LinkedIn / Instagram",
+    date: "2026-04-05",
+    tags: ["Content Creation", "Pixelverse", "Open Source", "Design"],
+    images: [
+      "/projects/stock-automation/cover.png",
+    ],
+    coverImage: "/projects/stock-automation/cover.png",
+    stats: { posts: 9, reach: "1,500+", platform: "Multi-platform" },
+    link: null,
+  },
+  {
+    slug: "99barkville-awareness-campaign",
+    category: "social-media" as const,
+    title: "99Barkville — Animal Welfare Awareness Campaign",
+    description:
+      "Scripted and produced social media content for 99Barkville's adoption drives and fundraising campaigns — carousels, stories, and awareness posts.",
+    community: "99Barkville Foundation",
+    platform: "Instagram / Facebook",
+    date: "2026-05-20",
+    tags: ["Social Media", "Animal Welfare", "Campaign", "Awareness"],
+    images: [
+      "/projects/synchive/cover.png",
+    ],
+    coverImage: "/projects/synchive/cover.png",
+    stats: { posts: 8, reach: "3,100+", platform: "Instagram" },
+    link: "https://99barkville.org/",
+  },
+
+  // ── COMMUNITY GRAPHICS ───────────────────────────────────────────────────
+  {
+    slug: "gdg-devfest-event-graphics",
+    category: "graphics" as const,
+    title: "GDG DevFest 2025 — Event Branding & Graphics",
+    description:
+      "Full suite of event graphics for GDG DevFest Gandhinagar 2025: speaker announcement cards, schedule posters, banners, and post-event thank-you visuals.",
+    community: "Google Developers Group (GDG) Gandhinagar",
+    platform: null,
+    date: "2025-10-15",
+    tags: ["Graphic Design", "GDG", "Branding", "Event Graphics", "Figma"],
+    images: [
+      "/projects/student-council-elections/cover-generated.png",
+      "/projects/tradeiq/cover.png",
+      "/projects/synchive/cover.png",
+    ],
+    coverImage: "/projects/student-council-elections/cover-generated.png",
+    stats: { assets: "40+", tools: "Figma / Canva", deliverables: "Posters, Cards, Banners" },
+    link: null,
+  },
+  {
+    slug: "kcd-gujarat-visual-identity",
+    category: "graphics" as const,
+    title: "KCD Gujarat 2026 — Visual Identity Assets",
+    description:
+      "Designed promotional material for KCD Gujarat 2026 including speaker spotlight cards, schedule graphics, and on-site signage templates.",
+    community: "KCD Gujarat (Kubernetes Community Days)",
+    platform: null,
+    date: "2026-01-20",
+    tags: ["Graphic Design", "KCD", "Kubernetes", "Visual Identity", "Figma"],
+    images: [
+      "/projects/tradeiq/cover.png",
+      "/projects/synchive/cover.png",
+    ],
+    coverImage: "/projects/tradeiq/cover.png",
+    stats: { assets: "25+", tools: "Figma", deliverables: "Cards, Posters, Signage" },
+    link: null,
+  },
+  {
+    slug: "pixelverse-open-source-graphics",
+    category: "graphics" as const,
+    title: "Pixelverse — Open-Source Tool Launch Graphics",
+    description:
+      "Created launch graphics and promotional design assets for multiple Pixelverse community open-source tool releases, maintaining consistent visual language.",
+    community: "Pixelverse.community",
+    platform: null,
+    date: "2026-03-30",
+    tags: ["Graphic Design", "Pixelverse", "Open Source", "Branding"],
+    images: [
+      "/projects/stock-automation/cover.png",
+    ],
+    coverImage: "/projects/stock-automation/cover.png",
+    stats: { assets: "15+", tools: "Figma / Canva", deliverables: "Launch Cards, Banners" },
+    link: null,
+  },
+  {
+    slug: "cncf-meetup-graphics-pack",
+    category: "graphics" as const,
+    title: "CNCF Ahmedabad — Meetup Graphics Pack",
+    description:
+      "Designed recurring meetup graphics pack for CNCF Ahmedabad: agenda slides, speaker intro cards, and social-share post-event visuals.",
+    community: "Cloud Native Computing Foundation Ahmedabad (CNCF)",
+    platform: null,
+    date: "2026-02-28",
+    tags: ["Graphic Design", "CNCF", "Cloud Native", "Slides", "Figma"],
+    images: [
+      "/projects/synchive/cover.png",
+      "/projects/stock-automation/cover.png",
+    ],
+    coverImage: "/projects/synchive/cover.png",
+    stats: { assets: "20+", tools: "Figma", deliverables: "Slides, Cards, Posts" },
+    link: null,
+  },
+];
+
+export type CreativeWork = (typeof creativeWorks)[0];
+export type CreativeCategory = CreativeWork["category"];
