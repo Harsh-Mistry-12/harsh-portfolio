@@ -6,6 +6,7 @@ import { Experience } from "@/components/sections/Experience";
 import { Education } from "@/components/sections/Education";
 import { Volunteering } from "@/components/sections/Volunteering";
 import { Terminal } from "@/components/sections/Terminal";
+import { Blog } from "@/components/sections/Blog";
 import { Contact } from "@/components/sections/Contact";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { Navbar } from "@/components/ui/Navbar";
@@ -26,6 +27,7 @@ export default function Home() {
       <Experience />
       <Education />
       <Volunteering />
+      <Blog />
       <Terminal />
       <Contact />
 

@@ -300,3 +300,167 @@ export const volunteering = [
     link: "https://99barkville.org/",
   },
 ];
+
+// ── BLOG POSTS ────────────────────────────────────────────────────────────────
+export const blogs = [
+  {
+    slug: "building-ai-voice-agents-at-scale",
+    title: "Building AI Voice Agents at Scale: Lessons from VoxReach",
+    shortDescription:
+      "How we built a human-like AI calling agent using RAG + LLMs, Twilio, and multi-model routing — and the hard lessons learned along the way.",
+    tags: ["AI", "LLM", "FastAPI", "Twilio", "RAG", "Python"],
+    readTime: "8 min read",
+    publishedAt: "2026-06-15",
+    updatedAt: "2026-07-01",
+    coverImage: "/projects/tradeiq/cover.png",
+    images: [
+      "/projects/tradeiq/cover.png",
+      "/projects/synchive/cover.png",
+    ],
+    content: [
+      {
+        type: "paragraph",
+        text: "When we set out to build VoxReach, the brief sounded deceptively simple: make a bot that can cold-call customers, answer questions, and book reservations — and sound human while doing it. Twelve weeks and a lot of wrong turns later, I want to share what we actually learned.",
+      },
+      {
+        type: "heading",
+        text: "The Latency Problem is Real",
+      },
+      {
+        type: "paragraph",
+        text: "Phone conversations have an unforgiving latency budget. Anything above ~800ms of silence triggers the 'hello? are you there?' reflex in callers. Our first architecture — a single LLM call per turn — clocked in at 1.4–2.1 seconds on average. We fixed this by parallelizing ASR, intent classification, and knowledge retrieval, and switching from OpenAI to Groq for the final generation step. This alone brought median latency down to 620ms.",
+      },
+      {
+        type: "heading",
+        text: "RAG vs Fine-Tuning: Why We Chose RAG",
+      },
+      {
+        type: "paragraph",
+        text: "Business-specific data (menu prices, operating hours, booking policies) changes frequently. Fine-tuning a model every time the client updates their menu is a non-starter. A retrieval-augmented generation pipeline gave us real-time accuracy without retraining. We stored business knowledge in TiDB vector tables and retrieved the top-3 relevant chunks per turn — keeping context under 1200 tokens and latency predictable.",
+      },
+      {
+        type: "heading",
+        text: "Multi-LLM Routing: Cost vs Quality Trade-offs",
+      },
+      {
+        type: "paragraph",
+        text: "Not every turn needs a frontier model. Simple confirmations ('Your booking is set for 7 PM — does that work?') were routed to smaller open-source models running on our own inference endpoints, reducing cost by ~60% per call. Complex reasoning turns (handling objections, multi-step availability checks) were escalated to Gemini or GPT-4o via a lightweight router trained on turn complexity scores.",
+      },
+      {
+        type: "heading",
+        text: "What We'd Do Differently",
+      },
+      {
+        type: "paragraph",
+        text: "Start with interruption handling before anything else. Users interrupt agents constantly — treating every utterance as a complete sentence before processing it kills the conversational feel. We retrofitted VAD (voice activity detection) late and it caused a painful refactor. Build it in from day one.",
+      },
+    ],
+  },
+  {
+    slug: "etl-pipelines-with-dask-and-fastapi",
+    title: "Production-Grade ETL Pipelines: Dask, FastAPI & Lessons from 200GB Datasets",
+    shortDescription:
+      "A deep dive into building resilient, scalable data pipelines that handle real-world messiness — schema drift, partial failures, and downstream data quality expectations.",
+    tags: ["Python", "Dask", "FastAPI", "ETL", "Data Engineering", "MySQL"],
+    readTime: "11 min read",
+    publishedAt: "2026-05-08",
+    updatedAt: "2026-05-08",
+    coverImage: "/projects/stock-automation/cover.png",
+    images: [
+      "/projects/stock-automation/cover.png",
+      "/projects/tradeiq/cover.png",
+    ],
+    content: [
+      {
+        type: "paragraph",
+        text: "At RAYVAT, we were extracting financial data from NSE/BSE, Screener, Tijori, and Moneycontrol daily — often more than 200GB of raw, semi-structured data. Here is how we built a pipeline that didn't fall over every other Tuesday.",
+      },
+      {
+        type: "heading",
+        text: "Why Dask Over Pandas Alone",
+      },
+      {
+        type: "paragraph",
+        text: "Pandas is fantastic until your DataFrame doesn't fit in RAM. We hit that ceiling on day three of production. Dask gave us a familiar API but lazily evaluated computations that could span multiple cores and spill to disk gracefully. For our workloads — mostly groupby aggregations and join-heavy transforms — Dask reduced peak memory usage by 73% while keeping wall-clock time within 15% of an equivalent in-memory Pandas run on smaller datasets.",
+      },
+      {
+        type: "heading",
+        text: "Schema Drift is Your Biggest Enemy",
+      },
+      {
+        type: "paragraph",
+        text: "Source websites change their HTML or JSON structures without notice. We built a lightweight schema fingerprinting layer that hashed expected column names and types each run. Any drift triggered a Slack alert before the bad data ever touched MySQL. This saved us from corrupting downstream ML features on three separate occasions.",
+      },
+      {
+        type: "heading",
+        text: "FastAPI as the Pipeline Orchestration Layer",
+      },
+      {
+        type: "paragraph",
+        text: "We exposed each pipeline stage as a FastAPI endpoint — ingest, transform, validate, load. This made partial reruns trivial: if the transform stage failed, we could rerun just that stage without re-scraping. It also gave us a clean HTTP interface for monitoring and a natural integration point for our internal dashboard.",
+      },
+      {
+        type: "heading",
+        text: "Key Takeaways",
+      },
+      {
+        type: "paragraph",
+        text: "Idempotency first. Every stage should be safe to rerun. Design for failure — not the happy path. Observability (structured logging + metrics) pays for itself in the first incident. And finally: test with production-shaped data, not toy CSVs. Real financial data is ugly, and your pipeline will tell you exactly how ugly.",
+      },
+    ],
+  },
+  {
+    slug: "open-source-contributions-cncf-gdg",
+    title: "From Consumer to Contributor: My Journey into Open Source with CNCF & GDG",
+    shortDescription:
+      "What I learned contributing to cloud-native projects, helping run community events, and why open source is the best career accelerant available to any developer.",
+    tags: ["Open Source", "CNCF", "Community", "Cloud Native", "Career"],
+    readTime: "6 min read",
+    publishedAt: "2026-04-20",
+    updatedAt: "2026-04-20",
+    coverImage: "/projects/synchive/cover.png",
+    images: [
+      "/projects/synchive/cover.png",
+    ],
+    content: [
+      {
+        type: "paragraph",
+        text: "I used open-source software for two years before I ever contributed back. The jump from user to contributor felt intimidating — impostor syndrome, fear of rejection, not knowing where to start. Here is the honest account of how I got past all of that.",
+      },
+      {
+        type: "heading",
+        text: "Starting Small: Documentation First",
+      },
+      {
+        type: "paragraph",
+        text: "My first real contribution was fixing a broken link in the CNCF Landscape docs. Trivial — but it taught me the full contribution workflow: fork, branch, commit, PR, review cycle. The maintainers were warm and thorough. That experience made the next contribution — a small CLI flag fix — feel much less scary.",
+      },
+      {
+        type: "heading",
+        text: "GDG Gandhinagar: Community as a Learning Engine",
+      },
+      {
+        type: "paragraph",
+        text: "Volunteering at GDG sessions put me in rooms with engineers solving real problems at scale. More than the talks, it was the hallway conversations — 'how did you handle X?', 'what do you use for Y?' — that levelled up my thinking. You can't replicate that from YouTube tutorials.",
+      },
+      {
+        type: "heading",
+        text: "KCD Gujarat: Running, Not Just Attending",
+      },
+      {
+        type: "paragraph",
+        text: "Helping run Kubernetes Community Days Gujarat was a different kind of challenge — logistics, speaker coordination, attendee experience. It taught me that engineering events are a product, and the same first-principles thinking that makes good software makes good conferences.",
+      },
+      {
+        type: "heading",
+        text: "Why You Should Start Now",
+      },
+      {
+        type: "paragraph",
+        text: "Open source contributions are public proof of skill, visible to every recruiter and engineering lead who looks at your GitHub. Community involvement builds a network of peers faster than any other method I know. Start with a typo fix. Ship the first PR. The second one will feel natural.",
+      },
+    ],
+  },
+];
+
+export type Blog = (typeof blogs)[0];
