@@ -524,23 +524,23 @@ export const creativeWorks: CreativeWork[] = [
   },
 
   // // ── SOCIAL MEDIA CONTENT ─────────────────────────────────────────────────
-  // {
-  //   slug: "gdg-reels-recap-series",
-  //   category: "social-media" as const,
-  //   title: "GDG Event Recap Reel Series",
-  //   description:
-  //     "Short-form video recaps for GDG Gandhinagar's Instagram and LinkedIn — edit, voiceover, captions, and motion graphics handled end-to-end.",
-  //   community: "Google Developers Group (GDG) Gandhinagar",
-  //   platform: "Instagram / LinkedIn",
-  //   date: "2025-12-01",
-  //   tags: ["Video Editing", "Reels", "GDG", "Social Media"],
-  //   images: [
-  //     "/projects/tradeiq/cover.png",
-  //   ],
-  //   coverImage: "/projects/tradeiq/cover.png",
-  //   stats: { posts: 6, reach: "4,200+", platform: "Instagram" },
-  //   link: "https://www.linkedin.com/in/harshmistry1203",
-  // },
+  {
+    slug: "osd-2026",
+    category: "social-media" as const,
+    title: "Open Source Day 2026 — Organised by Open Source Weekend Community",
+    description:
+      "Drove short-form video content strategy for Open Source Weekend (Instagram, LinkedIn) pitched reel concepts and actively shot/participated in production, increasing community engagement around events.",
+    community: "Open Source Weekend",
+    platform: "Instagram / LinkedIn / X",
+    date: "2026-04-04",
+    tags: ["Video Editing", "Reels", "Open Source Weekend", "Social Media"],
+    images: [
+      "/projects/osd2026/PXL_20260404_132445542.webp",
+    ],
+    coverImage: "/projects/osd2026/PXL_20260404_132445542.webp",
+    stats: { posts: 6, reach: "20,000+", platform: "Instagram" },
+    link: "https://drive.google.com/drive/folders/1tWOSuVmMx1wZ_VBTC5lZ1s4PH4nGOGW7?usp=sharing",
+  },
   // {
   //   slug: "cncf-community-updates",
   //   category: "social-media" as const,
