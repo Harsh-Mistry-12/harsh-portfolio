@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { blogs } from "@/lib/data";
+import { blogs as fallbackBlogs } from "@/lib/data";
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("en-IN", {
@@ -17,7 +17,7 @@ function BlogCard({
   blog,
   index,
 }: {
-  blog: (typeof blogs)[0];
+  blog: (typeof fallbackBlogs)[0];
   index: number;
 }) {
   const [imgHovered, setImgHovered] = useState(false);
@@ -79,6 +79,7 @@ function BlogCard({
           borderBottom: "1px solid #0a0a0a",
           cursor: "pointer",
           flexShrink: 0,
+          background: "#dedad1",
         }}
         onMouseEnter={() => setImgHovered(true)}
         onMouseLeave={() => setImgHovered(false)}
@@ -89,7 +90,7 @@ function BlogCard({
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
           style={{
-            objectFit: "cover",
+            objectFit: "contain",
             transform: imgHovered ? "scale(1.04)" : "scale(1)",
             transition: "transform 0.5s ease",
             filter: imgHovered ? "brightness(0.85)" : "brightness(1)",
@@ -128,9 +129,9 @@ function BlogCard({
             letterSpacing: "0.08em",
           }}
         >
-          <span>📅 {formatDate(blog.publishedAt)}</span>
+          <span>Published: {formatDate(blog.publishedAt)}</span>
           {blog.images.length > 1 && (
-            <span style={{ color: "#d4500a" }}>🖼 {blog.images.length} images</span>
+            <span style={{ color: "#d4500a" }}>Images: {blog.images.length}</span>
           )}
         </div>
 
@@ -197,6 +198,24 @@ function BlogCard({
 }
 
 export default function BlogListingPage() {
+  const [blogsList, setBlogsList] = useState<typeof fallbackBlogs>(fallbackBlogs);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/blogs")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setBlogsList(data);
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching dev.to blogs:", err);
+        setLoading(false);
+      });
+  }, []);
+
   return (
     <div
       style={{
@@ -275,7 +294,9 @@ export default function BlogListingPage() {
             }}
           >
             ■ BLOG /{" "}
-            <span style={{ color: "#d4500a" }}>{blogs.length} ARTICLES</span>
+            <span style={{ color: "#d4500a" }}>
+              {loading ? "..." : `${blogsList.length} ARTICLES`}
+            </span>
           </span>
 
           <Link
@@ -322,7 +343,9 @@ export default function BlogListingPage() {
         <div className="section-divider" style={{ marginBottom: "2rem" }}>
           <span className="label">// SECTION: ALL_ARTICLES</span>
           <span className="line" />
-          <span className="num">{String(blogs.length).padStart(3, "0")}</span>
+          <span className="num">
+            {loading ? "..." : String(blogsList.length).padStart(3, "0")}
+          </span>
         </div>
 
         <div style={{ marginBottom: "2.5rem" }}>
@@ -349,8 +372,7 @@ export default function BlogListingPage() {
               maxWidth: "560px",
             }}
           >
-            Technical deep-dives, production lessons, and open-source stories
-            from building real systems. Click any card to read the full article.
+            {loading ? "Loading articles archive from dev.to..." : "Technical deep-dives, production lessons, and open-source stories from building real systems. Click any card to read the full article."}
           </p>
         </div>
 
@@ -362,7 +384,7 @@ export default function BlogListingPage() {
             gap: "clamp(16px, 3vw, 28px)",
           }}
         >
-          {blogs.map((blog, index) => (
+          {blogsList.map((blog, index) => (
             <BlogCard key={blog.slug} blog={blog} index={index} />
           ))}
         </div>
@@ -381,7 +403,9 @@ export default function BlogListingPage() {
         }}
       >
         HM // DEV &nbsp;·&nbsp; BLOG ARCHIVE &nbsp;·&nbsp;{" "}
-        <span style={{ color: "#d4500a" }}>{blogs.length} ARTICLES</span>
+        <span style={{ color: "#d4500a" }}>
+          {loading ? "..." : `${blogsList.length} ARTICLES`}
+        </span>
       </footer>
     </div>
   );

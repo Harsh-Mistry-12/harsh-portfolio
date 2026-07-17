@@ -1,10 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
-import { blogs, personalInfo } from "@/lib/data";
+import { personalInfo } from "@/lib/data";
 import { use } from "react";
 
 /* ── helpers ───────────────────────────────────────────────────────────────── */
@@ -13,6 +12,75 @@ function formatDate(iso: string) {
     day: "2-digit",
     month: "long",
     year: "numeric",
+  });
+}
+
+function renderInlineMarkdown(text: string) {
+  if (!text) return "";
+  
+  // Regex to split on link markdown [text](url), bold **text**, inline code `code`, and italic *text*
+  const regex = /(\[.*?\]\(.*?\))|(\*\*.*?\*\*)|(`.*?`)|(\*.*?\*)/g;
+  const parts = text.split(regex);
+  
+  return parts.map((part, index) => {
+    if (!part) return null;
+    
+    // Link: [text](url)
+    if (part.startsWith("[") && part.includes("](")) {
+      const match = part.match(/\[(.*?)\]\((.*?)\)/);
+      if (match) {
+        const [, linkText, linkUrl] = match;
+        return (
+          <a
+            key={index}
+            href={linkUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              color: "#d4500a",
+              textDecoration: "underline",
+              fontWeight: 700,
+            }}
+          >
+            {linkText}
+          </a>
+        );
+      }
+    }
+    
+    // Bold: **text**
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return (
+        <strong key={index} style={{ fontWeight: 700, color: "#0a0a0a" }}>
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    
+    // Inline code: `code`
+    if (part.startsWith("`") && part.endsWith("`")) {
+      return (
+        <code
+          key={index}
+          style={{
+            fontFamily: "var(--font-mono)",
+            background: "#dedad1",
+            padding: "2px 6px",
+            fontSize: "0.9em",
+            border: "1px solid #0a0a0a",
+          }}
+        >
+          {part.slice(1, -1)}
+        </code>
+      );
+    }
+    
+    // Italic: *text*
+    if (part.startsWith("*") && part.endsWith("*")) {
+      return <em key={index}>{part.slice(1, -1)}</em>;
+    }
+    
+    return part;
   });
 }
 
@@ -34,6 +102,7 @@ function ImageGallery({ images, title }: { images: string[]; title: string }) {
           border: "1px solid #0a0a0a",
           boxShadow: "4px 4px 0px #0a0a0a",
           marginBottom: "12px",
+          background: "#dedad1",
         }}
       >
         <Image
@@ -41,7 +110,7 @@ function ImageGallery({ images, title }: { images: string[]; title: string }) {
           alt={`${title} — image ${activeIdx + 1}`}
           fill
           sizes="(max-width: 768px) 100vw, 860px"
-          style={{ objectFit: "cover", transition: "opacity 0.3s ease" }}
+          style={{ objectFit: "contain", transition: "opacity 0.3s ease" }}
           priority={activeIdx === 0}
         />
         {/* Image counter badge */}
@@ -63,7 +132,7 @@ function ImageGallery({ images, title }: { images: string[]; title: string }) {
         </div>
       </div>
 
-      {/* Thumbnails — shown only when there are multiple images */}
+      {/* Thumbnails ── shown only when there are multiple images */}
       {images.length > 1 && (
         <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
           {images.map((img, i) => (
@@ -111,12 +180,75 @@ export default function BlogDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = use(params);
-  const blog = blogs.find((b) => b.slug === slug);
-  if (!blog) notFound();
+  const [blogsList, setBlogsList] = useState<any[]>([]);
+  const [blog, setBlog] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
-  const blogIndex = blogs.findIndex((b) => b.slug === slug);
-  const prevBlog = blogIndex > 0 ? blogs[blogIndex - 1] : null;
-  const nextBlog = blogIndex < blogs.length - 1 ? blogs[blogIndex + 1] : null;
+  useEffect(() => {
+    fetch("/api/blogs")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setBlogsList(data);
+          const found = data.find((b) => b.slug === slug);
+          if (found) {
+            setBlog(found);
+          }
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error loading blog detail:", err);
+        setLoading(false);
+      });
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <div
+        style={{
+          minHeight: "100vh",
+          background: "#e8e5de",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontFamily: "var(--font-mono)",
+          fontSize: "0.8rem",
+          color: "#0a0a0a",
+        }}
+      >
+        // LOADING POST CONTENT FROM DEV.TO...
+      </div>
+    );
+  }
+
+  if (!blog) {
+    return (
+      <div
+        style={{
+          minHeight: "100vh",
+          background: "#e8e5de",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          fontFamily: "var(--font-mono)",
+          gap: "1rem",
+        }}
+      >
+        <span style={{ fontSize: "1.2rem", fontWeight: 700 }}>404 // NOT FOUND</span>
+        <span style={{ fontSize: "0.75rem", color: "#6b6b6b" }}>The requested article could not be loaded.</span>
+        <Link href="/blog" className="btn-brutalist" style={{ textDecoration: "none" }}>
+          <span className="btn-tab">←</span>
+          <span className="btn-body">BACK TO ARCHIVE</span>
+        </Link>
+      </div>
+    );
+  }
+
+  const blogIndex = blogsList.findIndex((b) => b.slug === slug);
+  const prevBlog = blogIndex > 0 ? blogsList[blogIndex - 1] : null;
+  const nextBlog = blogIndex < blogsList.length - 1 ? blogsList[blogIndex + 1] : null;
 
   return (
     <div
@@ -247,11 +379,15 @@ export default function BlogDetailPage({
             display: "flex",
             flexWrap: "wrap",
             alignItems: "center",
-            gap: "12px",
-            marginBottom: "1.5rem",
+            gap: "14px",
+            marginBottom: "2rem",
             fontFamily: "var(--font-mono)",
-            fontSize: "0.62rem",
+            fontSize: "0.65rem",
             letterSpacing: "0.08em",
+            background: "#dedad1",
+            border: "1px solid #0a0a0a",
+            padding: "10px 16px",
+            boxShadow: "3px 3px 0px #0a0a0a",
           }}
         >
           {/* Post number badge */}
@@ -259,9 +395,10 @@ export default function BlogDetailPage({
             style={{
               background: "#d4500a",
               color: "#fff",
-              padding: "3px 10px",
+              padding: "4px 10px",
               fontWeight: 700,
               letterSpacing: "0.12em",
+              border: "1px solid #0a0a0a",
             }}
           >
             POST #{String(blogIndex + 1).padStart(2, "0")}
@@ -269,36 +406,31 @@ export default function BlogDetailPage({
 
           {/* Published date */}
           <span style={{ color: "#6b6b6b" }}>
-            📅 Published: <strong style={{ color: "#0a0a0a" }}>{formatDate(blog.publishedAt)}</strong>
+            Published: <strong style={{ color: "#0a0a0a" }}>{formatDate(blog.publishedAt)}</strong>
           </span>
-
-          {/* Updated date (if different from publish) */}
-          {blog.updatedAt !== blog.publishedAt && (
-            <span style={{ color: "#6b6b6b" }}>
-              🔄 Updated: <strong style={{ color: "#0a0a0a" }}>{formatDate(blog.updatedAt)}</strong>
-            </span>
-          )}
 
           {/* Read time */}
           <span
             style={{
-              border: "1px solid #b0ada6",
-              padding: "3px 10px",
-              color: "#6b6b6b",
+              border: "1px solid #0a0a0a",
+              background: "#e8e5de",
+              padding: "4px 10px",
+              color: "#0a0a0a",
+              fontWeight: 700,
             }}
           >
-            ⏱ {blog.readTime}
+            {blog.readTime.toUpperCase()}
           </span>
 
           {/* Author */}
           <span style={{ color: "#6b6b6b" }}>
-            ✍️ <strong style={{ color: "#0a0a0a" }}>{personalInfo.name}</strong>
+            Author: <strong style={{ color: "#0a0a0a" }}>{personalInfo.name}</strong>
           </span>
 
           {/* Image count */}
           {blog.images.length > 0 && (
             <span style={{ color: "#6b6b6b" }}>
-              🖼 {blog.images.length} image{blog.images.length !== 1 ? "s" : ""}
+              Images: <strong style={{ color: "#0a0a0a" }}>{blog.images.length}</strong>
             </span>
           )}
         </div>
@@ -312,7 +444,7 @@ export default function BlogDetailPage({
             marginBottom: "1.8rem",
           }}
         >
-          {blog.tags.map((tag) => (
+          {blog.tags.map((tag: string) => (
             <span
               key={tag}
               className="b-tag"
@@ -354,14 +486,18 @@ export default function BlogDetailPage({
         </p>
 
         {/* ── Divider ── */}
-        <div className="section-divider" style={{ marginBottom: "2rem" }}>
-          <span className="label">// IMAGES</span>
-          <span className="line" />
-          <span className="num">{String(blog.images.length).padStart(2, "0")}</span>
-        </div>
+        {blog.images.length > 0 && (
+          <>
+            <div className="section-divider" style={{ marginBottom: "2rem" }}>
+              <span className="label">// ZONE: IMAGES</span>
+              <span className="line" />
+              <span className="num">{String(blog.images.length).padStart(2, "0")}</span>
+            </div>
 
-        {/* ── Image gallery ── */}
-        <ImageGallery images={blog.images} title={blog.title} />
+            {/* ── Image gallery ── */}
+            <ImageGallery images={blog.images} title={blog.title} />
+          </>
+        )}
 
         {/* ── Article divider ── */}
         <div className="section-divider" style={{ marginBottom: "2rem" }}>
@@ -372,7 +508,7 @@ export default function BlogDetailPage({
 
         {/* ── Article content ── */}
         <div style={{ marginBottom: "3.5rem" }}>
-          {blog.content.map((block, i) => {
+          {blog.content.map((block: any, i: number) => {
             if (block.type === "heading") {
               return (
                 <h2
@@ -390,8 +526,48 @@ export default function BlogDetailPage({
                   }}
                 >
                   <span style={{ color: "#d4500a" }}>// </span>
-                  {block.text}
+                  {renderInlineMarkdown(block.text)}
                 </h2>
+              );
+            }
+            if (block.type === "list") {
+              return (
+                <li
+                  key={i}
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.78rem",
+                    color: "#3a3a3a",
+                    lineHeight: 2,
+                    marginLeft: "1.5rem",
+                    listStyleType: "square",
+                    marginBottom: "0.5rem",
+                  }}
+                >
+                  {renderInlineMarkdown(block.text)}
+                </li>
+              );
+            }
+            if (block.type === "code") {
+              return (
+                <pre
+                  key={i}
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.7rem",
+                    color: "#0a0a0a",
+                    background: "#dedad1",
+                    border: "1px solid #0a0a0a",
+                    padding: "1rem",
+                    boxShadow: "3px 3px 0px #0a0a0a",
+                    overflowX: "auto",
+                    whiteSpace: "pre-wrap",
+                    wordBreak: "break-all",
+                    margin: "1.5rem 0",
+                  }}
+                >
+                  <code>{block.text}</code>
+                </pre>
               );
             }
             return (
@@ -405,7 +581,7 @@ export default function BlogDetailPage({
                   marginBottom: "1.2rem",
                 }}
               >
-                {block.text}
+                {renderInlineMarkdown(block.text)}
               </p>
             );
           })}

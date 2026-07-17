@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { blogs } from "@/lib/data";
+import { blogs as fallbackBlogs } from "@/lib/data";
 
 /* ── helpers ───────────────────────────────────────────────────────────────── */
 function formatDate(iso: string) {
@@ -19,7 +19,7 @@ function BlogCard({
   blog,
   index,
 }: {
-  blog: (typeof blogs)[0];
+  blog: (typeof fallbackBlogs)[0];
   index: number;
 }) {
   const [imgHovered, setImgHovered] = useState(false);
@@ -81,6 +81,7 @@ function BlogCard({
           borderBottom: "1px solid #0a0a0a",
           cursor: "pointer",
           flexShrink: 0,
+          background: "#dedad1",
         }}
         onMouseEnter={() => setImgHovered(true)}
         onMouseLeave={() => setImgHovered(false)}
@@ -91,7 +92,7 @@ function BlogCard({
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
           style={{
-            objectFit: "cover",
+            objectFit: "contain",
             transform: imgHovered ? "scale(1.04)" : "scale(1)",
             transition: "transform 0.5s ease",
             filter: imgHovered ? "brightness(0.85)" : "brightness(1)",
@@ -130,9 +131,9 @@ function BlogCard({
             letterSpacing: "0.08em",
           }}
         >
-          <span>📅 {formatDate(blog.publishedAt)}</span>
+          <span>Published: {formatDate(blog.publishedAt)}</span>
           {blog.images.length > 1 && (
-            <span style={{ color: "#d4500a" }}>🖼 {blog.images.length} images</span>
+            <span style={{ color: "#d4500a" }}>Images: {blog.images.length}</span>
           )}
         </div>
 
@@ -200,6 +201,24 @@ function BlogCard({
 
 /* ── Section ───────────────────────────────────────────────────────────────── */
 export const Blog = () => {
+  const [blogsList, setBlogsList] = useState<typeof fallbackBlogs>(fallbackBlogs);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/blogs")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setBlogsList(data);
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching dev.to blogs:", err);
+        setLoading(false);
+      });
+  }, []);
+
   return (
     <section id="blog" className="py-20">
       <div style={{ maxWidth: "1280px" }} className="mx-auto px-6">
@@ -207,7 +226,9 @@ export const Blog = () => {
         <div className="section-divider">
           <span className="label">// SECTION: BLOG_FEED</span>
           <span className="line" />
-          <span className="num">00{blogs.length}</span>
+          <span className="num">
+            {loading ? "..." : String(blogsList.length).padStart(3, "0")}
+          </span>
         </div>
 
         {/* Header row */}
@@ -222,8 +243,7 @@ export const Blog = () => {
               lineHeight: 1.8,
             }}
           >
-            Technical write-ups, lessons from production systems, and community
-            stories — click any card to read the full article.
+            {loading ? "Loading articles from dev.to..." : "Technical write-ups, lessons from production systems, and community stories — click any card to read the full article."}
           </p>
           <Link
             href="/blog"
@@ -265,7 +285,7 @@ export const Blog = () => {
             gap: "clamp(16px, 3vw, 28px)",
           }}
         >
-          {blogs.slice(0, 3).map((blog, index) => (
+          {blogsList.slice(0, 3).map((blog, index) => (
             <BlogCard key={blog.slug} blog={blog} index={index} />
           ))}
         </div>

@@ -17,13 +17,6 @@ const CATEGORY_LABEL: Record<string, string> = {
   graphics:      "GRAPHICS",
 };
 
-const stats = [
-  { label: "Photo Shoots",     value: String(creativeWorks.filter((w) => w.category === "photography").length)  },
-  { label: "Social Campaigns", value: String(creativeWorks.filter((w) => w.category === "social-media").length) },
-  { label: "Design Projects",  value: String(creativeWorks.filter((w) => w.category === "graphics").length)     },
-  { label: "Communities",      value: "5"                                                                        },
-];
-
 function MiniCard({ work, index }: { work: (typeof creativeWorks)[0]; index: number }) {
   const [hovered, setHovered] = useState(false);
   const accent = CATEGORY_ACCENT[work.category] ?? "#d4500a";
@@ -228,49 +221,6 @@ export const Creative = () => {
           </Link>
         </div>
 
-        {/* Stat strip */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))",
-            gap: 0,
-            border: "1px solid #0a0a0a",
-            marginBottom: "2rem",
-          }}
-        >
-          {stats.map((s, i) => (
-            <div
-              key={s.label}
-              style={{
-                padding: "0.9rem 1rem",
-                borderRight: i < stats.length - 1 ? "1px solid #0a0a0a" : "none",
-                background: "#e8e5de",
-              }}
-            >
-              <div
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "0.52rem",
-                  color: "#6b6b6b",
-                  letterSpacing: "0.08em",
-                  marginBottom: "3px",
-                }}
-              >
-                {s.label}
-              </div>
-              <div
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "1.2rem",
-                  fontWeight: 700,
-                  color: "#d4500a",
-                }}
-              >
-                {s.value}
-              </div>
-            </div>
-          ))}
-        </div>
 
         {/* Preview grid — 3 cards, one per category */}
         <div
