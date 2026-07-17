@@ -10,6 +10,8 @@ const navLinks = [
   { label: "EXPERIENCE", id: "experience" },
   { label: "EDUCATION", id: "education" },
   { label: "COMMUNITY", id: "volunteering" },
+  { label: "BLOG", id: "blog" },
+  { label: "CREATIVE", id: "creative" },
   { label: "CONTACT", id: "contact" },
 ];
 
