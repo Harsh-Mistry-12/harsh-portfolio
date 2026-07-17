@@ -8,16 +8,16 @@ import type { CreativeCategory } from "@/lib/data";
 
 /* ── constants ─────────────────────────────────────────────────────────────── */
 const CATEGORIES: { id: CreativeCategory | "all"; label: string; icon: string; desc: string }[] = [
-  { id: "all",          label: "ALL WORK",         icon: "◈", desc: "Everything" },
-  { id: "photography",  label: "PHOTOGRAPHY",       icon: "◉", desc: "Event & community photography" },
-  { id: "social-media", label: "SOCIAL MEDIA",      icon: "◎", desc: "Content created for platforms" },
-  { id: "graphics",     label: "COMMUNITY GRAPHICS", icon: "◆", desc: "Branding & design assets" },
+  { id: "all", label: "ALL WORK", icon: "◈", desc: "Everything" },
+  { id: "photography", label: "PHOTOGRAPHY", icon: "◉", desc: "Event & community photography" },
+  { id: "social-media", label: "SOCIAL MEDIA", icon: "◎", desc: "Content created for platforms" },
+  { id: "graphics", label: "COMMUNITY GRAPHICS", icon: "◆", desc: "Branding & design assets" },
 ];
 
 const CATEGORY_ACCENT: Record<string, string> = {
-  photography:  "#d4500a",
+  photography: "#d4500a",
   "social-media": "#2563eb",
-  graphics:     "#7c3aed",
+  graphics: "#7c3aed",
 };
 
 function formatDate(iso: string) {
@@ -513,9 +513,9 @@ function CreativeCard({
               letterSpacing: "0.06em",
             }}
           >
-            <span>📅 {formatDate(work.date)}</span>
+            <span>{formatDate(work.date)}</span>
             {work.platform && (
-              <span style={{ color: "#6b6b6b" }}>📲 {work.platform}</span>
+              <span style={{ color: "#6b6b6b" }}>{work.platform}</span>
             )}
           </div>
 
@@ -892,11 +892,11 @@ export default function CreativePage() {
           }}
         >
           {[
-            { label: "TOTAL WORKS",   value: String(creativeWorks.length),                    accent: "#d4500a" },
-            { label: "PHOTOGRAPHY",   value: String(counts.photography) + " shoots",           accent: "#d4500a" },
-            { label: "SOCIAL CONTENT",value: String(counts["social-media"]) + " campaigns",    accent: "#2563eb" },
-            { label: "GRAPHICS",      value: String(counts.graphics) + " projects",            accent: "#7c3aed" },
-            { label: "COMMUNITIES",   value: "5 orgs",                                         accent: "#059669" },
+            { label: "TOTAL WORKS", value: String(creativeWorks.length), accent: "#d4500a" },
+            { label: "PHOTOGRAPHY", value: String(counts.photography) + " shoots", accent: "#d4500a" },
+            { label: "SOCIAL CONTENT", value: String(counts["social-media"]) + " campaigns", accent: "#2563eb" },
+            { label: "GRAPHICS", value: String(counts.graphics) + " projects", accent: "#7c3aed" },
+            { label: "COMMUNITIES", value: "5 orgs", accent: "#059669" },
           ].map((s, i, arr) => (
             <div
               key={s.label}
