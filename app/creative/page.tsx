@@ -385,8 +385,22 @@ function CreativeCard({
             flexShrink: 0,
             background: "#dedad1",
           }}
-          onClick={() => openLightbox(0)}
-          onKeyDown={(e) => e.key === "Enter" && openLightbox(0)}
+          onClick={() => {
+            if (work.link && work.link.includes("drive.google.com")) {
+              window.open(work.link, "_blank", "noopener,noreferrer");
+            } else {
+              openLightbox(0);
+            }
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              if (work.link && work.link.includes("drive.google.com")) {
+                window.open(work.link, "_blank", "noopener,noreferrer");
+              } else {
+                openLightbox(0);
+              }
+            }
+          }}
           onMouseEnter={() => setImgHovered(true)}
           onMouseLeave={() => setImgHovered(false)}
         >
@@ -430,12 +444,12 @@ function CreativeCard({
                 border: `1px solid ${accent}`,
               }}
             >
-              ◉ VIEW GALLERY
+              ◉ {work.link && work.link.includes("drive.google.com") ? "VIEW DRIVE GALLERY" : "VIEW GALLERY"}
             </div>
           </div>
 
           {/* Image count badge */}
-          {work.images.length > 1 && (
+          {work.images.length > 1 && (!work.link || !work.link.includes("drive.google.com")) && (
             <div
               style={{
                 position: "absolute",
@@ -575,70 +589,115 @@ function CreativeCard({
 
           {/* Action buttons */}
           <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-            <button
-              id={`creative-gallery-${work.slug}`}
-              onClick={() => openLightbox(0)}
-              style={{
-                flex: 1,
-                fontFamily: "var(--font-mono)",
-                fontSize: "0.65rem",
-                fontWeight: 700,
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                border: `1px solid #0a0a0a`,
-                padding: "10px 0",
-                cursor: "pointer",
-                background: "#0a0a0a",
-                color: "#e8e5de",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "6px",
-                transition: "background 0.15s, color 0.15s",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget).style.background = accent;
-                (e.currentTarget).style.borderColor = accent;
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget).style.background = "#0a0a0a";
-                (e.currentTarget).style.borderColor = "#0a0a0a";
-              }}
-            >
-              ◉ OPEN GALLERY
-            </button>
-
-            {work.link && (
+            {work.link && work.link.includes("drive.google.com") ? (
               <a
                 href={work.link}
                 target="_blank"
                 rel="noreferrer"
-                id={`creative-link-${work.slug}`}
+                id={`creative-gallery-${work.slug}`}
                 style={{
+                  flex: 1,
                   fontFamily: "var(--font-mono)",
                   fontSize: "0.65rem",
-                  letterSpacing: "0.08em",
-                  textDecoration: "none",
-                  color: "#6b6b6b",
-                  border: "1px solid #b0ada6",
-                  padding: "10px 14px",
+                  fontWeight: 700,
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  border: `1px solid #0a0a0a`,
+                  padding: "10px 0",
+                  cursor: "pointer",
+                  background: "#0a0a0a",
+                  color: "#e8e5de",
                   display: "flex",
                   alignItems: "center",
-                  gap: "4px",
-                  transition: "color 0.15s, border-color 0.15s",
-                  flexShrink: 0,
+                  justifyContent: "center",
+                  gap: "6px",
+                  transition: "background 0.15s, color 0.15s",
+                  textDecoration: "none",
                 }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.color = "#0a0a0a";
-                  (e.currentTarget as HTMLElement).style.borderColor = "#0a0a0a";
+                  (e.currentTarget).style.background = accent;
+                  (e.currentTarget).style.borderColor = accent;
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.color = "#6b6b6b";
-                  (e.currentTarget as HTMLElement).style.borderColor = "#b0ada6";
+                  (e.currentTarget).style.background = "#0a0a0a";
+                  (e.currentTarget).style.borderColor = "#0a0a0a";
                 }}
               >
-                ↗
+                ◉ VIEW DRIVE GALLERY ↗
               </a>
+            ) : (
+              <>
+                <button
+                  id={`creative-gallery-${work.slug}`}
+                  onClick={() => openLightbox(0)}
+                  style={{
+                    flex: 1,
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.65rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                    border: `1px solid #0a0a0a`,
+                    padding: "10px 0",
+                    cursor: "pointer",
+                    background: "#0a0a0a",
+                    color: "#e8e5de",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "6px",
+                    transition: "background 0.15s, color 0.15s",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget).style.background = accent;
+                    (e.currentTarget).style.borderColor = accent;
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget).style.background = "#0a0a0a";
+                    (e.currentTarget).style.borderColor = "#0a0a0a";
+                  }}
+                >
+                  ◉ OPEN GALLERY
+                </button>
+
+                {work.link && (
+                  <a
+                    href={work.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    id={`creative-link-${work.slug}`}
+                    style={{
+                      flex: 1,
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.65rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.08em",
+                      textDecoration: "none",
+                      color: "#0a0a0a",
+                      border: "1px solid #0a0a0a",
+                      padding: "10px 0",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: "4px",
+                      transition: "color 0.15s, border-color 0.15s, background 0.15s",
+                      background: "#e8e5de",
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = accent;
+                      (e.currentTarget as HTMLElement).style.color = "#fff";
+                      (e.currentTarget as HTMLElement).style.borderColor = accent;
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.background = "#e8e5de";
+                      (e.currentTarget as HTMLElement).style.color = "#0a0a0a";
+                      (e.currentTarget as HTMLElement).style.borderColor = "#0a0a0a";
+                    }}
+                  >
+                    {work.link.includes("drive.google.com") ? "MORE ON DRIVE ↗" : "VISIT LINK ↗"}
+                  </a>
+                )}
+              </>
             )}
           </div>
         </div>
