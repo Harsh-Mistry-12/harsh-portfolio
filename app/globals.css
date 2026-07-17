@@ -5,33 +5,38 @@
   --font-mono: var(--font-space-mono), "Courier New", monospace;
 
   /* Brutalist Palette */
-  --background:        #e8e5de;
-  --background-soft:   #dedad1;
-  --foreground:        #0a0a0a;
-  --foreground-muted:  #6b6b6b;
+  --background: #e8e5de;
+  --background-soft: #dedad1;
+  --foreground: #0a0a0a;
+  --foreground-muted: #6b6b6b;
 
-  --accent:            #d4500a;   /* burnt orange */
-  --accent-light:      #f0c4a8;
+  --accent: #d4500a;
+  /* burnt orange */
+  --accent-light: #f0c4a8;
 
-  --border:            #0a0a0a;
-  --border-muted:      #b0ada6;
+  --border: #0a0a0a;
+  --border-muted: #b0ada6;
 
-  --card:              #e8e5de;
-  --card-dark:         #1a1a1a;
-  --card-terminal:     #0a0a0a;
+  --card: #e8e5de;
+  --card-dark: #1a1a1a;
+  --card-terminal: #0a0a0a;
 }
 
 @theme inline {
-  --color-background:        var(--background);
-  --color-foreground:        var(--foreground);
-  --color-accent:            var(--accent);
-  --color-card:              var(--card);
-  --color-border:            var(--border);
-  --font-mono:               var(--font-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  --font-mono: var(--font-mono);
 }
 
 /* ── Base ───────────────────────────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 html {
   scroll-behavior: smooth;
@@ -39,33 +44,79 @@ html {
 }
 
 /* ── Hide native scrollbar (stickman replaces it) ───────────────────────── */
-::-webkit-scrollbar { display: none; }
-* { scrollbar-width: none; }
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  scrollbar-width: none;
+}
 
 /* ── Stickman walking keyframes ─────────────────────────────────────────── */
 @keyframes stick-left-leg {
-  0%   { transform: rotate(-24deg); }
-  50%  { transform: rotate(24deg);  }
-  100% { transform: rotate(-24deg); }
+  0% {
+    transform: rotate(-24deg);
+  }
+
+  50% {
+    transform: rotate(24deg);
+  }
+
+  100% {
+    transform: rotate(-24deg);
+  }
 }
+
 @keyframes stick-right-leg {
-  0%   { transform: rotate(24deg);  }
-  50%  { transform: rotate(-24deg); }
-  100% { transform: rotate(24deg);  }
+  0% {
+    transform: rotate(24deg);
+  }
+
+  50% {
+    transform: rotate(-24deg);
+  }
+
+  100% {
+    transform: rotate(24deg);
+  }
 }
+
 @keyframes stick-left-arm {
-  0%   { transform: rotate(20deg);  }
-  50%  { transform: rotate(-20deg); }
-  100% { transform: rotate(20deg);  }
+  0% {
+    transform: rotate(20deg);
+  }
+
+  50% {
+    transform: rotate(-20deg);
+  }
+
+  100% {
+    transform: rotate(20deg);
+  }
 }
+
 @keyframes stick-right-arm {
-  0%   { transform: rotate(-20deg); }
-  50%  { transform: rotate(20deg);  }
-  100% { transform: rotate(-20deg); }
+  0% {
+    transform: rotate(-20deg);
+  }
+
+  50% {
+    transform: rotate(20deg);
+  }
+
+  100% {
+    transform: rotate(-20deg);
+  }
 }
+
 @keyframes stickman-wiggle {
-  0%   { transform: rotate(-10deg); }
-  100% { transform: rotate(10deg); }
+  0% {
+    transform: rotate(-10deg);
+  }
+
+  100% {
+    transform: rotate(10deg);
+  }
 }
 
 /* ── Mobile ─────────────────────────────────────────────────────────────────── */
@@ -82,7 +133,7 @@ body {
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
   /* Dot grid pattern */
-  background-image: radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.15) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
@@ -97,15 +148,18 @@ body {
   color: var(--foreground-muted);
   font-family: var(--font-mono);
 }
+
 .section-divider .label {
   white-space: nowrap;
   padding-right: 1.5rem;
 }
+
 .section-divider .line {
   flex: 1;
   height: 1px;
   background: var(--foreground-muted);
 }
+
 .section-divider .num {
   padding-left: 1.5rem;
   color: var(--accent);
@@ -118,6 +172,7 @@ body {
   background: var(--card);
   transition: background 0.15s ease;
 }
+
 .b-card:hover {
   background: var(--background-soft);
 }
@@ -128,20 +183,23 @@ body {
   background: var(--card-terminal);
   color: #e0e0e0;
 }
+
 .b-terminal-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 8px 14px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   font-size: 0.65rem;
   letter-spacing: 0.08em;
   color: #888;
 }
+
 .b-terminal-dots {
   display: flex;
   gap: 5px;
 }
+
 .b-terminal-dot {
   width: 9px;
   height: 9px;
@@ -163,7 +221,11 @@ body {
   transition: opacity 0.15s ease;
   overflow: hidden;
 }
-.btn-brutalist:hover { opacity: 0.85; }
+
+.btn-brutalist:hover {
+  opacity: 0.85;
+}
+
 .btn-brutalist .btn-tab {
   background: var(--accent);
   color: #fff;
@@ -172,6 +234,7 @@ body {
   align-items: center;
   flex-shrink: 0;
 }
+
 .btn-brutalist .btn-body {
   background: var(--foreground);
   color: #fff;
@@ -179,6 +242,7 @@ body {
   flex: 1;
   text-align: center;
 }
+
 .btn-brutalist.btn-outline .btn-body {
   background: transparent;
   color: var(--foreground);
@@ -197,11 +261,16 @@ body {
   transition: border-color 0.15s ease;
   border-radius: 0;
 }
+
 .b-input:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 1px var(--accent);
 }
-.b-input::placeholder { color: var(--foreground-muted); font-family: var(--font-mono); }
+
+.b-input::placeholder {
+  color: var(--foreground-muted);
+  font-family: var(--font-mono);
+}
 
 /* ── Skill Tag ──────────────────────────────────────────────────────────────── */
 .b-tag {
@@ -216,28 +285,54 @@ body {
   color: var(--foreground);
   transition: background 0.15s, color 0.15s;
 }
+
 .b-tag:hover {
   background: var(--foreground);
   color: var(--background);
 }
 
 /* ── Accent text ─────────────────────────────────────────────────────────────── */
-.accent { color: var(--accent); }
+.accent {
+  color: var(--accent);
+}
 
 /* ── Scrollbar styling ──────────────────────────────────────────────────────── */
-::-webkit-scrollbar { width: 4px; height: 4px; }
-::-webkit-scrollbar-track { background: var(--background); }
-::-webkit-scrollbar-thumb { background: var(--border-muted); }
-::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-muted);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
 
 /* ── Selection ──────────────────────────────────────────────────────────────── */
-::selection { background: var(--accent); color: #fff; }
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
 
 /* ── Typing cursor animation ────────────────────────────────────────────────── */
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
 }
+
 .cursor-blink {
   display: inline-block;
   width: 2px;
@@ -252,7 +347,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  height: 2px;
+  height: 3px;
   background: var(--accent);
   z-index: 9999;
   transition: width 0.1s linear;
@@ -260,12 +355,21 @@ body {
 
 /* ── Live ticker animation ──────────────────────────────────────────────────── */
 @keyframes ticker {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
+
 .ticker-track {
   display: flex;
   animation: ticker 30s linear infinite;
   white-space: nowrap;
 }
-.ticker-track:hover { animation-play-state: paused; }
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
