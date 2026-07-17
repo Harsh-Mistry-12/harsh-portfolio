@@ -595,25 +595,23 @@ export const creativeWorks: CreativeWork[] = [
   // },
 
   // // ── COMMUNITY GRAPHICS ───────────────────────────────────────────────────
-  // {
-  //   slug: "gdg-devfest-event-graphics",
-  //   category: "graphics" as const,
-  //   title: "GDG DevFest 2025 — Event Branding & Graphics",
-  //   description:
-  //     "Full suite of event graphics for GDG DevFest Gandhinagar 2025: speaker announcement cards, schedule posters, banners, and post-event thank-you visuals.",
-  //   community: "Google Developers Group (GDG) Gandhinagar",
-  //   platform: null,
-  //   date: "2025-10-15",
-  //   tags: ["Graphic Design", "GDG", "Branding", "Event Graphics", "Figma"],
-  //   images: [
-  //     "/projects/student-council-elections/cover-generated.png",
-  //     "/projects/tradeiq/cover.png",
-  //     "/projects/synchive/cover.png",
-  //   ],
-  //   coverImage: "/projects/student-council-elections/cover-generated.png",
-  //   stats: { assets: "40+", tools: "Figma / Canva", deliverables: "Posters, Cards, Banners" },
-  //   link: null,
-  // },
+  {
+    slug: "best-practices-summit-2026",
+    category: "graphics" as const,
+    title: "For Cyber Resilience - Best Practices Summit",
+    description:
+      "Developed and designed visual identity assets, countdown banners, and post-event highlight posters for Cyber Resilience - Best Practices Summit.",
+    community: "The Hackers Meetup",
+    platform: null,
+    date: "2026-05-10",
+    tags: ["Graphic Design", "The Hackers Meetup", "Branding", "Event Graphics", "Figma"],
+    images: [
+      "/projects/best-practices-summit/best-practices-1-2.png",
+    ],
+    coverImage: "/projects/best-practices-summit/best-practices-1-2.png",
+    stats: { assets: "10+", tools: "Figma", deliverables: "Posters, Cards, Banners" },
+    link: "https://drive.google.com/drive/folders/1ByGvAYBLyTKaLzP0W9N4n81zZVIoRJMm?usp=sharing",
+  },
   // {
   //   slug: "kcd-gujarat-visual-identity",
   //   category: "graphics" as const,
