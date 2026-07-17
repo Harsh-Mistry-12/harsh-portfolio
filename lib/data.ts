@@ -467,7 +467,7 @@ export type Blog = (typeof blogs)[0];
 
 // ── CREATIVE WORKS ────────────────────────────────────────────────────────────
 // Categories: "photography" | "social-media" | "graphics"
-export const creativeWorks = [
+export const creativeWorks: CreativeWork[] = [
   // // ── PHOTOGRAPHY ──────────────────────────────────────────────────────────
   // {
   //   slug: "gdg-devfest-2025-moments",
