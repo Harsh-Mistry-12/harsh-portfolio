@@ -108,13 +108,52 @@ function Lightbox({
         </div>
 
         {/* Image */}
-        <div style={{ position: "relative", width: "100%", aspectRatio: "16 / 9" }}>
+        <div style={{ position: "relative", width: "100%", aspectRatio: "16 / 9", background: "#0a0a0a" }}>
+          {/* Part indicator tag */}
+          {(() => {
+            const path = images[idx] || "";
+            let tag = "";
+            let tagColor = "#d4500a";
+            if (path.includes("/photography/")) {
+              tag = "PHOTOGRAPHY";
+              tagColor = "#d4500a";
+            } else if (path.includes("/graphics-design/")) {
+              tag = "GRAPHICS DESIGN";
+              tagColor = "#7c3aed";
+            }
+
+            if (!tag) return null;
+
+            return (
+              <div
+                style={{
+                  position: "absolute",
+                  top: "12px",
+                  left: "12px",
+                  zIndex: 10,
+                  background: tagColor,
+                  color: "#fff",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.55rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.1em",
+                  padding: "4px 10px",
+                  border: "1px solid #000",
+                  boxShadow: "2px 2px 0px #000",
+                }}
+              >
+                {tag}
+              </div>
+            );
+          })()}
+
           <Image
             src={images[idx]}
             alt={`${title} — ${idx + 1}`}
             fill
             sizes="900px"
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: "contain" }}
+            unoptimized
             priority
           />
         </div>
@@ -328,6 +367,7 @@ function CreativeCard({
             borderBottom: "1px solid #0a0a0a",
             cursor: "pointer",
             flexShrink: 0,
+            background: "#dedad1",
           }}
           onClick={() => openLightbox(0)}
           onKeyDown={(e) => e.key === "Enter" && openLightbox(0)}
@@ -340,11 +380,12 @@ function CreativeCard({
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px"
             style={{
-              objectFit: "cover",
+              objectFit: "contain",
               transform: imgHovered ? "scale(1.04)" : "scale(1)",
               transition: "transform 0.5s ease",
               filter: imgHovered ? "brightness(0.78)" : "brightness(1)",
             }}
+            unoptimized
           />
 
           {/* Overlay UI */}
