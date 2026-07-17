@@ -153,7 +153,6 @@ function Lightbox({
             fill
             sizes="900px"
             style={{ objectFit: "contain" }}
-            unoptimized
             priority
           />
         </div>
@@ -385,7 +384,6 @@ function CreativeCard({
               transition: "transform 0.5s ease",
               filter: imgHovered ? "brightness(0.78)" : "brightness(1)",
             }}
-            unoptimized
           />
 
           {/* Overlay UI */}
