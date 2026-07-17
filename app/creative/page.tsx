@@ -147,6 +147,22 @@ function Lightbox({
             );
           })()}
 
+          {/* Prefetch adjacent images for instant transition */}
+          <div style={{ display: "none" }}>
+            <Image
+              src={images[(idx + 1) % images.length]}
+              alt="prefetch next"
+              fill
+              sizes="900px"
+            />
+            <Image
+              src={images[(idx - 1 + images.length) % images.length]}
+              alt="prefetch prev"
+              fill
+              sizes="900px"
+            />
+          </div>
+
           <Image
             src={images[idx]}
             alt={`${title} — ${idx + 1}`}
@@ -261,6 +277,7 @@ function Lightbox({
                 alt={`Thumb ${i + 1}`}
                 fill
                 sizes="64px"
+                quality={30}
                 style={{
                   objectFit: "cover",
                   filter: i === idx ? "none" : "brightness(0.45)",
