@@ -516,22 +516,11 @@ export const creativeWorks: CreativeWork[] = [
     date: "2026-01-10",
     tags: ["Hackathon Photography", "Graphic Design", "GDG Gandhinagar", "Community"],
     images: [
-      "/projects/autonomous-hacks/photography/3175cbda-2790-46ce-b578-b15fc92faf4e~1.jpg",
-      "/projects/autonomous-hacks/photography/8d612df9-9043-42a3-b682-3405b6c03646~1.jpg",
-      "/projects/autonomous-hacks/photography/PXL_20260110_202008144.MP.jpg",
-      "/projects/autonomous-hacks/photography/c1ce32dc-3f0e-426f-b4ed-164e219432cd~1.jpg",
-      "/projects/autonomous-hacks/photography/e966ecda-15a7-4f4e-8cf2-76c50ecc6369~1.jpg",
-      "/projects/autonomous-hacks/photography/f60c8983-adb9-4755-9f94-f154dc6132e3~1.jpg",
-      "/projects/autonomous-hacks/graphics-design/Google Tools Stickers.png",
-      "/projects/autonomous-hacks/graphics-design/PXL_20260110_013556516.MP.jpg",
-      "/projects/autonomous-hacks/graphics-design/PXL_20260112_151456831.MP.jpg",
-      "/projects/autonomous-hacks/graphics-design/PXL_20260112_151502623.MP.jpg",
-      "/projects/autonomous-hacks/graphics-design/Step Background.png",
-      "/projects/autonomous-hacks/graphics-design/b4819b8a-7fb9-46ec-8a92-c241416753f6~1.jpg"
+      "/projects/autonomous-hacks/photography/f60c8983-adb9-4755-9f94-f154dc6132e3~1.jpg"
     ],
     coverImage: "/projects/autonomous-hacks/photography/f60c8983-adb9-4755-9f94-f154dc6132e3~1.jpg",
-    stats: { shots: "120+", selected: 12, event: "Autonomous Hacks'26" },
-    link: null,
+    stats: { shots: "120+", selected: 1, event: "Autonomous Hacks'26" },
+    link: "https://drive.google.com/drive/folders/1nFx05iVropVI8nhQ3yxjpmQU0hn6Byw7?usp=sharing",
   },
 
   // // ── SOCIAL MEDIA CONTENT ─────────────────────────────────────────────────
