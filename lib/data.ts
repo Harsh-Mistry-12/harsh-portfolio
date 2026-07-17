@@ -171,7 +171,12 @@ export const experience = [
     period: "September 2025 - Present",
     location: "Gandhinagar, Gujarat",
     responsibilities: [
-      "Backend development, data engineering, and automation workflows."
+      "Developed and maintained scalable web applications using Django and Node.js, delivering RESTful APIs and full-stack solutions aligned with client specifications.",
+      "Designed and implemented ETL pipelines to automate data extraction, transformation, and loading processes, improving data accuracy and reducing manual intervention.",
+      "Customized and extended Odoo ERP modules to meet diverse client requirements, integrating third-party services and configuring workflows for business process automation.",
+      "Architected and deployed AI pipelines leveraging LLMs and automation frameworks to streamline repetitive tasks, improving team operational efficiency.",
+      "Collaborated with national and international clients to gather requirements, deliver tailored software solutions, and ensure timely project completion within defined scopes.",
+      "Participated in end-to-end software development lifecycle (SDLC), including requirement analysis, system design, development, testing, and production deployment."
     ]
   },
   {
@@ -180,7 +185,10 @@ export const experience = [
     period: "April 2025 - September 2025",
     location: "Ahmedabad, Gujarat",
     responsibilities: [
-      "Developed Python-based automation and backend solutions."
+      "Developed and optimized backend services using Flask, building robust RESTful APIs to handle core application logic.",
+      "Bridged backend APIs and frontend templates by embedding Vue.js reactivity to streamline client-server state synchronization.",
+      "Designed high-efficiency database architectures structured for enterprise-scale workloads, focusing on normalization, query optimization, and latency reduction.",
+      "Collaborated with product, design, and QA teams to iteratively conceptualize, test, and ship high-priority features under tight deadlines."
     ]
   },
   {
