@@ -680,5 +680,18 @@ export const creativeWorks = [
   // },
 ];
 
-export type CreativeWork = (typeof creativeWorks)[0];
-export type CreativeCategory = CreativeWork["category"];
+export type CreativeCategory = "photography" | "social-media" | "graphics";
+export interface CreativeWork {
+  slug: string;
+  category: CreativeCategory;
+  title: string;
+  description: string;
+  community: string;
+  platform: string | null;
+  date: string;
+  tags: string[];
+  images: string[];
+  coverImage: string;
+  stats: Record<string, any>;
+  link: string | null;
+}
