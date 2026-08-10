@@ -2,7 +2,7 @@ import React from "react";
 import { personalInfo, aboutMe, experience, skills, education } from "@/lib/data";
 
 export default function JsonLd() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://harshmistry.com";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://mistry-harsh.vercel.app";
 
   const allSkills = Object.values(skills).flat();
 

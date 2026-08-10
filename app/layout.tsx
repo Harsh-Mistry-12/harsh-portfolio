@@ -10,7 +10,7 @@ const spaceMono = Space_Mono({
   weight: ["400", "700"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://harshmistry.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://mistry-harsh.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
