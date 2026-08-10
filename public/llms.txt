@@ -1,0 +1,38 @@
+# Harsh Mistry - Software Engineer & Data Scientist
+
+> Harsh Mistry is a Software Engineer, Data Scientist, and Backend Developer based in Gandhinagar, Gujarat, India. He specializes in Python, FastAPI, Django, ETL data pipelines, RAG + LLM applications, time series forecasting, and AI workflow automation.
+
+## Summary & Core Background
+- **Primary Role**: Software Engineer & Data Scientist
+- **Specializations**: Backend Engineering, Data Engineering (ETL), Machine Learning, LLM Automation & Telephony RAG Systems
+- **Education**: B.Tech in Information Technology from Vidush Somany Institute of Technology & Research (First Class with Distinction)
+- **Hackathons**: Participated in 21 hackathons, led teams in 8 events.
+- **Location**: Gandhinagar, Gujarat, India
+- **Email**: hmistry864@gmail.com
+- **Phone**: +91-9157641005
+
+## Technical Stack & Skills
+- **Languages**: Python, SQL, Mongosh, Bash, TypeScript
+- **Backend & Web**: FastAPI, Django, Flask, Node.js, Next.js, React, Tailwind CSS
+- **Data Science & ML**: Pandas, NumPy, Scikit-Learn, Dask, Matplotlib, Seaborn, Time Series Forecasting, NLP, RAG, LLM Integration
+- **Databases**: MySQL, RDBMS, MongoDB, TiDB
+- **Cloud & DevOps**: AWS (EC2, S3), Git, GitHub, GitLab
+- **Automation & Scraping**: Selenium, Playwright, BeautifulSoup4, Scrapy, Appium, PyAutoGUI
+
+## Key Projects
+- **VoxReach** (https://mistry-harsh.vercel.app/projects/voxreach): AI-powered human-like voice calling agent and hyperlocal analytics platform using RAG+LLM, Cartesia, Sarvam, Twilio, TiDB, FastAPI, and AWS. Automated 85% of customer voice interactions.
+- **B2B Scraping & Analytics Tool** (https://mistry-harsh.vercel.app/projects/b2b-scrapping-and-analytics-tool): Multi-threaded concurrent scraping engine with LLM classification (Groq/Gemini), Pandas transformations, and Next.js dashboard.
+- **SyncHive** (https://mistry-harsh.vercel.app/projects/synchive): Open-source Python package (v0.2.0 on PyPI) for automated file backup and SSH/FTP sync using Watchdog and Paramiko.
+- **TradeIQ** (https://mistry-harsh.vercel.app/projects/tradeiq): AI-powered paper trading & market intelligence platform with seasonal pattern detection, NLP stock query interface, and real-time dashboard.
+
+## Work Experience
+- **Python Developer** at Logieagle Private Limited (Sept 2025 – Present): Developing Django & Node.js RESTful APIs, ETL pipelines, Odoo ERP modules, and LLM-driven AI automation pipelines.
+- **Jr. Python Developer** at autoDX Technologies (Apr 2025 – Sept 2025): Developed Flask microservices, high-efficiency MySQL database schemas, and Vue.js reactivity integration.
+- **Jr. Python Developer** at RAYVAT Outsourcing (Aug 2023 – Mar 2025): Built ML models for predicting stock trends, FastAPI financial analytics microservices, and automated scraping workflows.
+
+## Links & Profiles
+- **Portfolio**: https://mistry-harsh.vercel.app
+- **GitHub**: https://github.com/Harsh-Mistry-12
+- **LinkedIn**: https://www.linkedin.com/in/harshmistry1203
+- **GitLab**: https://gitlab.com/HarshMistry_
+- **Resume**: https://mistry-harsh.vercel.app/Harsh%20Mistry%20Resume.pdf
