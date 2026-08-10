@@ -212,17 +212,6 @@ export const Contact = () => {
                   </li>
                 ))}
               </ul>
-                      (e.currentTarget as HTMLElement).style.color = "#e8e5de";
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = "transparent";
-                      (e.currentTarget as HTMLElement).style.color = "#0a0a0a";
-                    }}
-                  >
-                    <Icon size={16} />
-                  </a>
-                ))}
-              </div>
             </div>
           </div>
 
