@@ -16,14 +16,14 @@ const categoryPrefix: Record<string, string> = {
 
 export const Skills = () => {
   return (
-    <section id="skills" className="py-20">
+    <section id="skills" className="py-20" aria-label="Technical Skills">
       <div style={{ maxWidth: "1280px" }} className="mx-auto px-6">
         {/* Section divider */}
-        <div className="section-divider">
-          <span className="label">// SECTION: TECH_STACK</span>
+        <header className="section-divider">
+          <h2 className="label">// SECTION: TECH_STACK</h2>
           <span className="line" />
           <span className="num">002</span>
-        </div>
+        </header>
 
         {/* Main bordered table */}
         <div style={{ border: "1px solid #0a0a0a" }}>
@@ -48,7 +48,7 @@ export const Skills = () => {
 
           {/* Skill rows */}
           {Object.entries(skills).map(([category, items], index) => (
-            <div
+            <article
               key={category}
               style={{
                 borderBottom:
@@ -81,33 +81,36 @@ export const Skills = () => {
                   >
                     {categoryPrefix[category] ?? "00"}
                   </span>
-                  <span
+                  <h3
                     style={{
                       fontFamily: "var(--font-mono)",
                       fontSize: "0.7rem",
                       letterSpacing: "0.08em",
                       color: "#0a0a0a",
                       fontWeight: 700,
+                      margin: 0,
                     }}
                   >
                     {category.toUpperCase()}
-                  </span>
+                  </h3>
                 </div>
                 {/* Skills tags */}
-                <div
+                <ul
                   style={{
                     padding: "10px 14px",
                     display: "flex",
                     flexWrap: "wrap",
                     gap: "6px",
+                    listStyle: "none",
+                    margin: 0,
                   }}
                 >
                   {items.map((skill) => (
-                    <span key={skill} className="b-tag">
-                      {skill}
-                    </span>
+                    <li key={skill}>
+                      <span className="b-tag">{skill}</span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
 
               {/* Desktop: side-by-side grid */}
@@ -138,7 +141,7 @@ export const Skills = () => {
                   >
                     {categoryPrefix[category] ?? "00"}
                   </span>
-                  <span
+                  <h3
                     style={{
                       fontFamily: "var(--font-mono)",
                       fontSize: "0.7rem",
@@ -146,30 +149,33 @@ export const Skills = () => {
                       color: "#0a0a0a",
                       fontWeight: 700,
                       lineHeight: 1.3,
+                      margin: 0,
                     }}
                   >
                     {category.toUpperCase()}
-                  </span>
+                  </h3>
                 </div>
 
-                {/* Skills */}
-                <div
+                {/* Skills list */}
+                <ul
                   style={{
                     padding: "1.2rem 1.5rem",
                     display: "flex",
                     flexWrap: "wrap",
                     gap: "8px",
                     alignContent: "flex-start",
+                    listStyle: "none",
+                    margin: 0,
                   }}
                 >
                   {items.map((skill) => (
-                    <span key={skill} className="b-tag">
-                      {skill}
-                    </span>
+                    <li key={skill}>
+                      <span className="b-tag">{skill}</span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>
