@@ -1,0 +1,111 @@
+# Harsh Mistry - Full Developer Portfolio & Technical Specification
+
+> Detailed profile and complete knowledge base of Harsh Mistry — Software Engineer & Data Scientist.
+
+## Bio & Summary
+Harsh Mistry is a Software Engineer, Data Scientist, and Backend Specialist based in Gandhinagar, Gujarat, India. He builds scalable backend systems, intelligent data engineering pipelines (ETL), custom AI/LLM automation tools, and predictive machine learning models. 
+
+He holds a B.Tech degree in Information Technology from Vidush Somany Institute of Technology & Research (First Class with Distinction). He is a seasoned competitive hackathon participant, having competed in 21 hackathons and served as team leader in 8 of them.
+
+---
+
+## Technical Skills Matrix
+
+### Programming Languages
+- Python (Expert)
+- SQL (Proficient - MySQL, PostgreSQL, RDBMS)
+- TypeScript / JavaScript (Node.js, React, Next.js)
+- Bash / Shell Scripting
+- Mongosh
+
+### Backend & Web Frameworks
+- FastAPI
+- Django / Django REST Framework
+- Flask
+- Next.js (App Router)
+- React.js
+- Node.js
+- Tailwind CSS
+
+### Data Science & Machine Learning
+- Pandas & NumPy
+- Scikit-Learn
+- Dask
+- Time Series Forecasting
+- Natural Language Processing (NLP)
+- Retrieval-Augmented Generation (RAG) & LLM Orchestration (Groq, Gemini, Open-source models)
+- Data Visualization (Matplotlib, Seaborn, Plotly, Power BI)
+
+### Databases & Infrastructure
+- MySQL & Relational DBs
+- MongoDB
+- TiDB
+- AWS (EC2, S3)
+- Git / GitHub / GitLab
+
+### Automation & Web Scraping
+- Selenium
+- Playwright
+- BeautifulSoup4
+- Scrapy
+- Appium (Mobile Automation)
+- PyAutoGUI
+
+---
+
+## Detailed Experience History
+
+### Python Developer — Logieagle Private Limited
+*Period: September 2025 - Present | Location: Gandhinagar, Gujarat*
+- Developed and maintained scalable web applications using Django and Node.js, delivering RESTful APIs and full-stack solutions.
+- Designed and implemented ETL pipelines to automate data extraction, transformation, and loading processes.
+- Customized and extended Odoo ERP modules to integrate third-party services and configure workflow automation.
+- Architected and deployed AI pipelines leveraging LLMs and automation frameworks to streamline internal workflows.
+- Collaborated with national and international clients to gather system requirements and deliver custom software.
+
+### Jr. Python Developer — autoDX Technologies Private Limited
+*Period: April 2025 - September 2025 | Location: Ahmedabad, Gujarat*
+- Developed backend services using Flask, building RESTful APIs to handle core business logic.
+- Integrated Vue.js reactivity with backend APIs to streamline client-server state synchronization.
+- Designed high-efficiency database architectures with query optimization and latency reduction.
+
+### Jr. Python Developer — RAYVAT Outsourcing
+*Period: August 2023 - March 2025 | Location: Gandhinagar, Gujarat*
+- Built ML models for predicting stock market trends using time series forecasting and NLP.
+- Developed real-time FastAPI microservices for financial analytics.
+- Built ETL pipelines to extract, transform, and load financial market data from NSE/BSE.
+- Automated web scraping pipelines for Screener, Moneycontrol, Tijori, Holidify, and Binance.
+
+---
+
+## Featured Projects
+
+### 1. VoxReach: AI-Powered Calling Agent & Hyperlocal Analytics Platform
+- **Tech Stack**: RAG+LLM, Cartesia, Sarvam, TiDB, FastAPI, AWS, Node.js, MySQL, Twilio, Next.js, Groq, Gemini
+- **Summary**: Full-stack platform for human-like AI voice agents that place cold calls and answer support queries. Features low-latency TTS/STT with Sarvam/Cartesia for Indian languages, dynamic RAG for business knowledge retrieval, multi-LLM routing, and hyperlocal call volume analytics.
+- **Impact**: Automated 85% of voice-based customer interactions.
+
+### 2. B2B Scraping & Analytics Tool
+- **Tech Stack**: Requests, Pandas, MySQL, FastAPI, Node.js, Next.js, AWS, LLMs (Groq, Gemini), Discord, Resend
+- **Summary**: Automated multi-threaded scraping engine that extracts, cleans, and enriches B2B lead datasets using LLMs for noise filtering and anomaly classification.
+- **Impact**: Reduced manual data collection time from hours to minutes.
+
+### 3. SyncHive: Automated File Backup & Synchronization
+- **Tech Stack**: Python, Watchdog, Paramiko, SSH/FTP Protocols, PyPI
+- **Summary**: Open-source Python package (version 0.2.0 on PyPI) automating incremental file backups and real-time bidirectional file sync over SSH/FTP.
+- **Impact**: Package published on PyPI (`pip install synchive`).
+
+### 4. TradeIQ: AI-Powered Paper Trading & Market Intelligence
+- **Tech Stack**: React.js, FastAPI, MySQL, MongoDB, Pandas, NumPy, Scikit-Learn, Selenium
+- **Summary**: Simulated trading platform with real-time NSE/BSE data ingestion, scikit-learn trend forecasting models, and an NLP query interface.
+
+---
+
+## Contact Information & Social Profiles
+- **Website**: https://mistry-harsh.vercel.app
+- **Email**: hmistry864@gmail.com
+- **Phone**: +91-9157641005
+- **Location**: Gandhinagar, Gujarat, India
+- **GitHub**: https://github.com/Harsh-Mistry-12
+- **LinkedIn**: https://www.linkedin.com/in/harshmistry1203
+- **GitLab**: https://gitlab.com/HarshMistry_
