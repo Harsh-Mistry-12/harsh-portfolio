@@ -4,14 +4,14 @@ import { education, achievements, funFacts } from "@/lib/data";
 
 export const Education = () => {
   return (
-    <section id="education" className="py-20">
+    <section id="education" className="py-20" aria-label="Education and Achievements">
       <div style={{ maxWidth: "1280px" }} className="mx-auto px-6">
         {/* Section divider */}
-        <div className="section-divider">
-          <span className="label">// SECTION: EDUCATION_LOG</span>
+        <header className="section-divider">
+          <h2 className="label">// SECTION: EDUCATION_LOG</h2>
           <span className="line" />
           <span className="num">005</span>
-        </div>
+        </header>
 
         <div className="grid lg:grid-cols-2 gap-6">
           {/* Education */}
@@ -29,7 +29,7 @@ export const Education = () => {
             </div>
             <div style={{ border: "1px solid #0a0a0a" }}>
               {education.map((edu, i) => (
-                <div
+                <article
                   key={i}
                   style={{
                     borderBottom:
@@ -67,6 +67,7 @@ export const Education = () => {
                           letterSpacing: "0.02em",
                           color: "#0a0a0a",
                           marginBottom: "4px",
+                          margin: "0 0 4px 0",
                         }}
                       >
                         {edu.degree}
@@ -100,12 +101,12 @@ export const Education = () => {
                         >
                           {edu.marks}
                         </span>
-                        <span
+                        <time
                           className="b-tag"
                           style={{ fontSize: "0.6rem", padding: "3px 8px" }}
                         >
                           {edu.year}
-                        </span>
+                        </time>
                       </div>
                       {edu.highlights && (
                         <p
@@ -123,7 +124,7 @@ export const Education = () => {
                       )}
                     </div>
                   </div>
-                </div>
+                </article>
               ))}
             </div>
           </div>
@@ -141,9 +142,9 @@ export const Education = () => {
             >
               ACHIEVEMENTS.LOG /
             </div>
-            <div style={{ border: "1px solid #0a0a0a", marginBottom: "1.5rem" }}>
+            <ul style={{ border: "1px solid #0a0a0a", marginBottom: "1.5rem", listStyle: "none", padding: 0, margin: 0 }}>
               {achievements.map((a, i) => (
-                <div
+                <li
                   key={i}
                   style={{
                     borderBottom:
@@ -172,13 +173,14 @@ export const Education = () => {
                       color: "#0a0a0a",
                       lineHeight: 1.7,
                       letterSpacing: "0.02em",
+                      margin: 0,
                     }}
                   >
                     {a}
                   </p>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
 
             {/* Fun facts */}
             <div
@@ -192,15 +194,18 @@ export const Education = () => {
             >
               FUN_FACTS.TXT /
             </div>
-            <div
+            <ul
               style={{
                 display: "grid",
                 gridTemplateColumns: "1fr 1fr",
                 border: "1px solid #0a0a0a",
+                listStyle: "none",
+                padding: 0,
+                margin: 0,
               }}
             >
               {funFacts.map((fact, i) => (
-                <div
+                <li
                   key={i}
                   style={{
                     padding: "1.2rem",
@@ -215,13 +220,14 @@ export const Education = () => {
                       color: "#6b6b6b",
                       lineHeight: 1.7,
                       letterSpacing: "0.02em",
+                      margin: 0,
                     }}
                   >
                     {fact}
                   </p>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </div>
       </div>

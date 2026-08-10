@@ -4,14 +4,14 @@ import { experience } from "@/lib/data";
 
 export const Experience = () => {
   return (
-    <section id="experience" className="py-20">
+    <section id="experience" className="py-20" aria-label="Work Experience">
       <div style={{ maxWidth: "1280px" }} className="mx-auto px-6">
         {/* Section divider */}
-        <div className="section-divider">
-          <span className="label">// SECTION: WORK_HISTORY</span>
+        <header className="section-divider">
+          <h2 className="label">// SECTION: WORK_HISTORY</h2>
           <span className="line" />
           <span className="num">004</span>
-        </div>
+        </header>
 
         {/* Desktop: bordered table — hidden on mobile */}
         <div className="hidden md:block" style={{ border: "1px solid #0a0a0a" }}>
@@ -41,10 +41,12 @@ export const Experience = () => {
             ))}
           </div>
 
-          {/* Rows */}
+          {/* Experience items */}
           {experience.map((exp, index) => (
-            <div
+            <article
               key={index}
+              itemScope
+              itemType="https://schema.org/WorkBreakdown"
               style={{
                 borderBottom:
                   index < experience.length - 1 ? "1px solid #0a0a0a" : "none",
@@ -58,7 +60,7 @@ export const Experience = () => {
                   borderBottom: "1px solid rgba(0,0,0,0.08)",
                 }}
               >
-                <div
+                <h3
                   style={{
                     padding: "1.2rem 1.5rem",
                     borderRight: "1px solid #0a0a0a",
@@ -67,11 +69,12 @@ export const Experience = () => {
                     fontWeight: 700,
                     letterSpacing: "0.02em",
                     color: "#0a0a0a",
+                    margin: 0,
                   }}
                 >
                   {exp.company}
-                </div>
-                <div
+                </h3>
+                <h4
                   style={{
                     padding: "1.2rem 1.5rem",
                     borderRight: "1px solid #0a0a0a",
@@ -79,10 +82,12 @@ export const Experience = () => {
                     fontSize: "0.72rem",
                     color: "#d4500a",
                     letterSpacing: "0.04em",
+                    margin: 0,
+                    fontWeight: 400,
                   }}
                 >
                   {exp.role}
-                </div>
+                </h4>
                 <div
                   style={{
                     padding: "1.2rem 1.5rem",
@@ -94,7 +99,7 @@ export const Experience = () => {
                     lineHeight: 1.5,
                   }}
                 >
-                  {exp.period}
+                  <time>{exp.period}</time>
                 </div>
                 <div
                   style={{
@@ -105,14 +110,14 @@ export const Experience = () => {
                     letterSpacing: "0.04em",
                   }}
                 >
-                  {exp.location}
+                  <address style={{ fontStyle: "normal" }}>{exp.location}</address>
                 </div>
               </div>
 
-              {/* Responsibilities */}
-              <div style={{ padding: "1rem 1.5rem", background: "#e0ddd6" }}>
+              {/* Responsibilities list */}
+              <ul style={{ padding: "1rem 1.5rem", background: "#e0ddd6", listStyle: "none", margin: 0 }}>
                 {exp.responsibilities.map((r, i) => (
-                  <div
+                  <li
                     key={i}
                     style={{
                       display: "flex",
@@ -143,17 +148,17 @@ export const Experience = () => {
                     >
                       {r}
                     </span>
-                  </div>
+                  </li>
                 ))}
-              </div>
-            </div>
+              </ul>
+            </article>
           ))}
         </div>
 
         {/* Mobile: stacked cards — visible only on small screens */}
         <div className="md:hidden flex flex-col" style={{ border: "1px solid #0a0a0a" }}>
           {experience.map((exp, index) => (
-            <div
+            <article
               key={index}
               style={{
                 borderBottom:
@@ -181,7 +186,7 @@ export const Experience = () => {
                 >
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <span
+                <time
                   style={{
                     fontFamily: "var(--font-mono)",
                     fontSize: "0.55rem",
@@ -190,12 +195,12 @@ export const Experience = () => {
                   }}
                 >
                   {exp.period}
-                </span>
+                </time>
               </div>
 
               {/* Card body */}
               <div style={{ padding: "1.2rem 1rem" }}>
-                <p
+                <h3
                   style={{
                     fontFamily: "var(--font-mono)",
                     fontSize: "0.82rem",
@@ -203,69 +208,75 @@ export const Experience = () => {
                     color: "#0a0a0a",
                     marginBottom: "4px",
                     letterSpacing: "0.02em",
+                    margin: 0,
                   }}
                 >
                   {exp.company}
-                </p>
-                <p
+                </h3>
+                <h4
                   style={{
                     fontFamily: "var(--font-mono)",
                     fontSize: "0.7rem",
                     color: "#d4500a",
                     letterSpacing: "0.04em",
                     marginBottom: "4px",
+                    margin: "4px 0",
+                    fontWeight: 400,
                   }}
                 >
                   {exp.role}
-                </p>
-                <p
+                </h4>
+                <address
                   style={{
                     fontFamily: "var(--font-mono)",
                     fontSize: "0.6rem",
                     color: "#6b6b6b",
                     letterSpacing: "0.04em",
                     marginBottom: "1rem",
+                    fontStyle: "normal",
                   }}
                 >
                   {exp.location}
-                </p>
+                </address>
 
-                {exp.responsibilities.map((r, i) => (
-                  <div
-                    key={i}
-                    style={{
-                      display: "flex",
-                      gap: "10px",
-                      alignItems: "flex-start",
-                      marginBottom: i < exp.responsibilities.length - 1 ? "6px" : 0,
-                    }}
-                  >
-                    <span
+                <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+                  {exp.responsibilities.map((r, i) => (
+                    <li
+                      key={i}
                       style={{
-                        fontFamily: "var(--font-mono)",
-                        fontSize: "0.65rem",
-                        color: "#d4500a",
-                        flexShrink: 0,
-                        marginTop: "2px",
+                        display: "flex",
+                        gap: "10px",
+                        alignItems: "flex-start",
+                        marginBottom: i < exp.responsibilities.length - 1 ? "6px" : 0,
                       }}
                     >
-                      &gt;
-                    </span>
-                    <span
-                      style={{
-                        fontFamily: "var(--font-mono)",
-                        fontSize: "0.68rem",
-                        color: "#6b6b6b",
-                        lineHeight: 1.7,
-                        letterSpacing: "0.02em",
-                      }}
-                    >
-                      {r}
-                    </span>
-                  </div>
-                ))}
+                      <span
+                        style={{
+                          fontFamily: "var(--font-mono)",
+                          fontSize: "0.65rem",
+                          color: "#d4500a",
+                          flexShrink: 0,
+                          marginTop: "2px",
+                        }}
+                      >
+                        &gt;
+                      </span>
+                      <span
+                        style={{
+                          fontFamily: "var(--font-mono)",
+                          fontSize: "0.68rem",
+                          color: "#6b6b6b",
+                          lineHeight: 1.7,
+                          letterSpacing: "0.02em",
+                        }}
+                      >
+                        {r}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

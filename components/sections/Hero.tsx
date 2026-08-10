@@ -62,17 +62,17 @@ export const Hero = () => {
               style={{ maxWidth: "520px" }}
             >
               {/* Left nodes */}
-              <div className="flex flex-col gap-2">
+              <ul className="flex flex-col gap-2 list-none p-0 m-0">
                 {leftNodes.map((n) => (
-                  <div
+                  <li
                     key={n}
                     className="b-tag"
                     style={{ fontSize: "0.55rem", padding: "4px 10px", letterSpacing: "0.1em" }}
                   >
                     {n}
-                  </div>
+                  </li>
                 ))}
-              </div>
+              </ul>
 
               {/* SVG lines */}
               <svg width="60" height="90" viewBox="0 0 60 90" style={{ flexShrink: 0 }}>
@@ -110,17 +110,17 @@ export const Hero = () => {
               </svg>
 
               {/* Right nodes */}
-              <div className="flex flex-col gap-2">
+              <ul className="flex flex-col gap-2 list-none p-0 m-0">
                 {rightNodes.map((n) => (
-                  <div
+                  <li
                     key={n}
                     className="b-tag"
                     style={{ fontSize: "0.55rem", padding: "4px 10px", letterSpacing: "0.1em" }}
                   >
                     {n}
-                  </div>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
 
             {/* Designation */}

@@ -6,14 +6,14 @@ import Link from "next/link";
 
 export const Projects = () => {
   return (
-    <section id="projects" className="py-20">
+    <section id="projects" className="py-20" aria-label="Featured Projects">
       <div style={{ maxWidth: "1280px" }} className="mx-auto px-6">
         {/* Section divider */}
-        <div className="section-divider">
-          <span className="label">// SECTION: PROJECTS_LOG</span>
+        <header className="section-divider">
+          <h2 className="label">// SECTION: PROJECTS_LOG</h2>
           <span className="line" />
           <span className="num">003</span>
-        </div>
+        </header>
 
         {/* Subtitle */}
         <div className="flex items-start justify-between mb-6 flex-wrap gap-4">
@@ -66,7 +66,7 @@ export const Projects = () => {
         {/* Projects grid */}
         <div className="grid md:grid-cols-2 gap-0" style={{ border: "1px solid #0a0a0a" }}>
           {projects.slice(0, 4).map((project, index, array) => (
-            <div
+            <article
               key={project.slug}
               style={{
                 borderRight:
@@ -146,6 +146,7 @@ export const Projects = () => {
                     lineHeight: 1.3,
                     marginBottom: "0.75rem",
                     color: "#0a0a0a",
+                    margin: "0 0 0.75rem 0",
                   }}
                 >
                   {project.title}
@@ -180,28 +181,33 @@ export const Projects = () => {
                 </p>
 
                 {/* Tech tags */}
-                <div
+                <ul
                   style={{
                     display: "flex",
                     flexWrap: "wrap",
                     gap: "6px",
                     marginBottom: "1.5rem",
+                    listStyle: "none",
+                    padding: 0,
+                    margin: "0 0 1.5rem 0",
                   }}
                 >
                   {project.technologies.slice(0, 5).map((tech) => (
-                    <span key={tech} className="b-tag">
-                      {tech}
-                    </span>
+                    <li key={tech}>
+                      <span className="b-tag">{tech}</span>
+                    </li>
                   ))}
                   {project.technologies.length > 5 && (
-                    <span
-                      className="b-tag"
-                      style={{ color: "#d4500a", borderColor: "#d4500a" }}
-                    >
-                      +{project.technologies.length - 5}
-                    </span>
+                    <li>
+                      <span
+                        className="b-tag"
+                        style={{ color: "#d4500a", borderColor: "#d4500a" }}
+                      >
+                        +{project.technologies.length - 5}
+                      </span>
+                    </li>
                   )}
-                </div>
+                </ul>
 
                 {/* Actions */}
                 <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
@@ -218,7 +224,7 @@ export const Projects = () => {
                     href={project.github}
                     target="_blank"
                     rel="noreferrer"
-                    aria-label="GitHub"
+                    aria-label="GitHub Repository"
                     style={{
                       border: "1px solid #0a0a0a",
                       padding: "12px 14px",
@@ -241,7 +247,7 @@ export const Projects = () => {
                   </a>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

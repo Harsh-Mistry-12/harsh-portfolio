@@ -115,51 +115,53 @@ export const Contact = () => {
               </p>
 
               {/* Contact details */}
-              {[
-                { k: "EMAIL", v: personalInfo.email, href: `mailto:${personalInfo.email}` },
-                { k: "PHONE", v: personalInfo.phone, href: `tel:${personalInfo.phone}` },
-                { k: "LOCATION", v: personalInfo.location, href: "#" },
-              ].map(({ k, v, href }) => (
-                <div
-                  key={k}
-                  style={{
-                    borderBottom: "1px solid rgba(0,0,0,0.1)",
-                    paddingBottom: "12px",
-                    marginBottom: "12px",
-                  }}
-                >
-                  <p
+              <address style={{ fontStyle: "normal" }}>
+                {[
+                  { k: "EMAIL", v: personalInfo.email, href: `mailto:${personalInfo.email}` },
+                  { k: "PHONE", v: personalInfo.phone, href: `tel:${personalInfo.phone}` },
+                  { k: "LOCATION", v: personalInfo.location, href: "#" },
+                ].map(({ k, v, href }) => (
+                  <div
+                    key={k}
                     style={{
-                      fontFamily: "var(--font-mono)",
-                      fontSize: "0.55rem",
-                      letterSpacing: "0.14em",
-                      color: "#6b6b6b",
-                      marginBottom: "4px",
+                      borderBottom: "1px solid rgba(0,0,0,0.1)",
+                      paddingBottom: "12px",
+                      marginBottom: "12px",
                     }}
                   >
-                    {k}
-                  </p>
-                  <a
-                    href={href}
-                    style={{
-                      fontFamily: "var(--font-mono)",
-                      fontSize: "0.72rem",
-                      color: "#0a0a0a",
-                      textDecoration: "none",
-                      letterSpacing: "0.02em",
-                      transition: "color 0.15s",
-                    }}
-                    onMouseEnter={(e) =>
-                      ((e.target as HTMLElement).style.color = "#d4500a")
-                    }
-                    onMouseLeave={(e) =>
-                      ((e.target as HTMLElement).style.color = "#0a0a0a")
-                    }
-                  >
-                    {v}
-                  </a>
-                </div>
-              ))}
+                    <p
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "0.55rem",
+                        letterSpacing: "0.14em",
+                        color: "#6b6b6b",
+                        marginBottom: "4px",
+                      }}
+                    >
+                      {k}
+                    </p>
+                    <a
+                      href={href}
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "0.72rem",
+                        color: "#0a0a0a",
+                        textDecoration: "none",
+                        letterSpacing: "0.02em",
+                        transition: "color 0.15s",
+                      }}
+                      onMouseEnter={(e) =>
+                        ((e.target as HTMLElement).style.color = "#d4500a")
+                      }
+                      onMouseLeave={(e) =>
+                        ((e.target as HTMLElement).style.color = "#0a0a0a")
+                      }
+                    >
+                      {v}
+                    </a>
+                  </div>
+                ))}
+              </address>
 
               {/* Social */}
               <div
@@ -174,41 +176,42 @@ export const Contact = () => {
               >
                 FIND_ME_ONLINE /
               </div>
-              <div style={{ display: "flex", gap: "0" }}>
+              <ul style={{ display: "flex", gap: "0", listStyle: "none", padding: 0, margin: 0 }}>
                 {[
                   { icon: FaGithub, href: personalInfo.github, label: "GitHub" },
                   { icon: FaLinkedin, href: personalInfo.linkedin, label: "LinkedIn" },
                   { icon: FaGitlab, href: personalInfo.gitlab, label: "GitLab" },
                 ].map(({ icon: Icon, href, label }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={label}
-                    style={{
-                      border: "1px solid #0a0a0a",
-                      marginRight: "-1px",
-                      padding: "12px 18px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "#0a0a0a",
-                      transition: "background 0.15s, color 0.15s",
-                    }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = "#0a0a0a";
-                      (e.currentTarget as HTMLElement).style.color = "#e8e5de";
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = "transparent";
-                      (e.currentTarget as HTMLElement).style.color = "#0a0a0a";
-                    }}
-                  >
-                    <Icon size={16} />
-                  </a>
+                  <li key={label}>
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={label}
+                      style={{
+                        border: "1px solid #0a0a0a",
+                        marginRight: "-1px",
+                        padding: "12px 18px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "#0a0a0a",
+                        transition: "background 0.15s, color 0.15s",
+                      }}
+                      onMouseEnter={(e) => {
+                        (e.currentTarget as HTMLElement).style.background = "#0a0a0a";
+                        (e.currentTarget as HTMLElement).style.color = "#e8e5de";
+                      }}
+                      onMouseLeave={(e) => {
+                        (e.currentTarget as HTMLElement).style.background = "transparent";
+                        (e.currentTarget as HTMLElement).style.color = "#0a0a0a";
+                      }}
+                    >
+                      <Icon size={16} />
+                    </a>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           </div>
 
