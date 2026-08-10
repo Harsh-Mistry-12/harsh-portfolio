@@ -86,11 +86,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${spaceMono.variable}`}>
+    <html lang="en" className={`${spaceMono.variable}`} suppressHydrationWarning>
       <head>
         <JsonLd />
       </head>
-      <body className="min-h-screen flex flex-col bg-[#e8e5de] text-[#0a0a0a]">
+      <body className="min-h-screen flex flex-col bg-[#e8e5de] text-[#0a0a0a]" suppressHydrationWarning>
         {children}
       </body>
     </html>
