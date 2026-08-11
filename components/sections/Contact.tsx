@@ -157,6 +157,41 @@ export const Contact = () => {
                 ))}
               </address>
 
+              {/* Direct conversation prompt */}
+              <div
+                style={{
+                  marginTop: "1.5rem",
+                  padding: "12px 14px",
+                  border: "1px dashed #d4500a",
+                  background: "rgba(212, 80, 10, 0.05)",
+                  fontFamily: "var(--font-mono)",
+                }}
+              >
+                <p
+                  style={{
+                    fontSize: "0.68rem",
+                    fontWeight: 700,
+                    color: "#0a0a0a",
+                    marginBottom: "4px",
+                  }}
+                >
+                  Prefer a direct conversation?
+                </p>
+                <a
+                  href={`tel:${personalInfo.phone.replace(/[^+\d]/g, "")}`}
+                  style={{
+                    fontSize: "0.75rem",
+                    fontWeight: 700,
+                    color: "#d4500a",
+                    textDecoration: "none",
+                    letterSpacing: "0.02em",
+                    display: "inline-block",
+                  }}
+                >
+                  {personalInfo.phone}
+                </a>
+              </div>
+
               {/* Social */}
               <div
                 style={{
@@ -231,6 +266,36 @@ export const Contact = () => {
             </div>
 
             <div style={{ padding: "2rem" }}>
+              <div
+                style={{
+                  marginBottom: "1.5rem",
+                  padding: "10px 14px",
+                  border: "1px solid #0a0a0a",
+                  background: "#dedad1",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.7rem",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  flexWrap: "wrap",
+                  gap: "8px",
+                }}
+              >
+                <span style={{ color: "#6b6b6b" }}>
+                  Prefer a direct conversation?
+                </span>
+                <a
+                  href={`tel:${personalInfo.phone.replace(/[^+\d]/g, "")}`}
+                  style={{
+                    color: "#d4500a",
+                    fontWeight: "bold",
+                    textDecoration: "none",
+                  }}
+                >
+                  CALL / WHATSAPP: {personalInfo.phone}
+                </a>
+              </div>
+
               <form
                 name="contact"
                 method="POST"
