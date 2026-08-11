@@ -72,7 +72,13 @@ export const projects = [
         body: "Delivered a local-first, zero-subscription financial manager offering high-precision DECIMAL(12,2) accounting, automated data backups, and seamless cross-platform accessibility across Desktop and Android devices."
       }
     ],
-    images: ["/projects/fintrack/cover.png"],
+    images: [
+      "/projects/fintrack/dashboard.png",
+      "/projects/fintrack/transactions.png",
+      "/projects/fintrack/investments.png",
+      "/projects/fintrack/reports.png",
+      "/projects/fintrack/categories.png"
+    ],
     github: "https://github.com/Harsh-Mistry-12/fintrack.git",
     demo: "https://github.com/Harsh-Mistry-12/fintrack.git",
   },
