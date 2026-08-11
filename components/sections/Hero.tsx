@@ -1,7 +1,7 @@
 "use client";
 
 import { personalInfo } from "@/lib/data";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaMapMarkerAlt } from "react-icons/fa";
 
@@ -9,8 +9,25 @@ const leftNodes = ["TRAIN", "PACKAGE", "VERSION"];
 const rightNodes = ["ROUTE", "DEPLOY", "OBSERVE"];
 
 export const Hero = () => {
+  const [uptime, setUptime] = useState("000d 00h 00m 00s");
+
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    const start = new Date("2023-08-01T00:00:00Z");
+    const tick = () => {
+      const diff = Math.floor((Date.now() - start.getTime()) / 1000);
+      const d = Math.floor(diff / 86400);
+      const h = Math.floor((diff % 86400) / 3600);
+      const m = Math.floor((diff % 3600) / 60);
+      const s = diff % 60;
+      setUptime(
+        `${String(d).padStart(3, "0")}d ${String(h).padStart(2, "0")}h ${String(m).padStart(2, "0")}m ${String(s).padStart(2, "0")}s`
+      );
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
   }, []);
 
   return (
@@ -23,7 +40,7 @@ export const Hero = () => {
         className="mx-auto px-6 w-full py-8"
       >
         {/* ── Two-column layout ── */}
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16">
+        <div className="flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-16">
 
           {/* ══ LEFT COLUMN ══ */}
           <div className="flex-1 min-w-0">
@@ -273,18 +290,19 @@ export const Hero = () => {
             </div>
           </div>
 
-          {/* ══ RIGHT COLUMN — Photo ══ */}
+          {/* ══ RIGHT COLUMN — Photo & Career Uptime ══ */}
           <div
-            className="relative flex-shrink-0 mx-auto lg:mx-0"
+            className="relative flex-shrink-0 mx-auto lg:mx-0 order-first lg:order-last mb-6 lg:mb-0"
             style={{
-              width: "clamp(160px, 50vw, 300px)",
+              width: "clamp(220px, 60vw, 320px)",
+              marginTop: "10px",
             }}
           >
             {/* "Open to Opportunities" badge — top */}
             <div
               style={{
                 position: "absolute",
-                top: "-18px",
+                top: "-10px",
                 left: "50%",
                 transform: "translateX(-50%)",
                 background: "#0a0a0a",
@@ -292,7 +310,7 @@ export const Hero = () => {
                 fontFamily: "var(--font-mono)",
                 fontSize: "0.55rem",
                 letterSpacing: "0.12em",
-                padding: "6px 14px",
+                padding: "5px 12px",
                 whiteSpace: "nowrap",
                 zIndex: 10,
                 display: "flex",
@@ -321,13 +339,15 @@ export const Hero = () => {
                 aspectRatio: "3 / 4",
                 overflow: "hidden",
                 position: "relative",
+                background: "#dedad1",
+                boxShadow: "6px 6px 0px #0a0a0a",
               }}
             >
               <Image
                 src="/photo.jpg"
                 alt="Harsh Mistry"
                 fill
-                sizes="(max-width: 1024px) 200px, 300px"
+                sizes="(max-width: 1024px) 280px, 320px"
                 className="object-cover object-top"
                 priority
               />
@@ -337,7 +357,7 @@ export const Hero = () => {
                 style={{
                   position: "absolute",
                   bottom: 0, left: 0, right: 0,
-                  background: "rgba(10,10,10,0.90)",
+                  background: "rgba(10,10,10,0.92)",
                   padding: "10px 14px",
                   fontFamily: "var(--font-mono)",
                   fontSize: "0.58rem",
@@ -356,27 +376,78 @@ export const Hero = () => {
               </div>
             </div>
 
-            {/* Corner decoration — bottom right */}
-            <div
-              style={{
-                position: "absolute",
-                bottom: "-10px", right: "-10px",
-                width: "40px", height: "40px",
-                border: "2px solid #d4500a",
-                pointerEvents: "none",
-              }}
-            />
             {/* Corner decoration — top left */}
             <div
               style={{
                 position: "absolute",
-                top: "-10px", left: "-10px",
-                width: "40px", height: "40px",
-                border: "2px solid #0a0a0a",
+                top: "-2px", left: "-10px",
+                width: "36px", height: "36px",
+                borderTop: "2px solid #d4500a",
+                borderLeft: "2px solid #d4500a",
                 pointerEvents: "none",
                 zIndex: 5,
               }}
             />
+
+            {/* ══ CREATIVE CAREER UPTIME COUNTER ══ */}
+            <div
+              style={{
+                marginTop: "16px",
+                border: "2px solid #0a0a0a",
+                background: "#0a0a0a",
+                color: "#e8e5de",
+                padding: "8px 10px",
+                fontFamily: "var(--font-mono)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: "6px",
+                boxShadow: "4px 4px 0px #d4500a",
+                whiteSpace: "nowrap",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: "6px", flexShrink: 0 }}>
+                <span
+                  style={{
+                    display: "inline-block",
+                    width: "7px",
+                    height: "7px",
+                    borderRadius: "50%",
+                    background: "#22c55e",
+                    boxShadow: "0 0 6px #22c55e",
+                    animation: "blink 1.6s ease-in-out infinite",
+                    flexShrink: 0,
+                  }}
+                />
+                <span
+                  style={{
+                    fontSize: "clamp(0.5rem, 2.5vw, 0.58rem)",
+                    letterSpacing: "0.1em",
+                    color: "#a3a3a3",
+                    fontWeight: 600,
+                  }}
+                >
+                  UPTIME
+                </span>
+              </div>
+
+              <div
+                style={{
+                  fontSize: "clamp(0.62rem, 2.8vw, 0.75rem)",
+                  fontWeight: 700,
+                  letterSpacing: "0.04em",
+                  color: "#e8e5de",
+                  fontVariantNumeric: "tabular-nums",
+                  background: "#171717",
+                  padding: "4px 6px",
+                  border: "1px solid #262626",
+                  whiteSpace: "nowrap",
+                  flexShrink: 0,
+                }}
+              >
+                <span style={{ color: "#d4500a" }}>▶</span> {uptime}
+              </div>
+            </div>
           </div>
 
         </div>

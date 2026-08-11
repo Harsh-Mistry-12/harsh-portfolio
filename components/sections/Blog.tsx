@@ -213,8 +213,7 @@ export const Blog = () => {
         }
         setLoading(false);
       })
-      .catch((err) => {
-        console.error("Error fetching dev.to blogs:", err);
+      .catch(() => {
         setLoading(false);
       });
   }, []);

@@ -197,8 +197,7 @@ export default function BlogDetailPage({
         }
         setLoading(false);
       })
-      .catch((err) => {
-        console.error("Error loading blog detail:", err);
+      .catch(() => {
         setLoading(false);
       });
   }, [slug]);
