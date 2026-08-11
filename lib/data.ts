@@ -77,7 +77,9 @@ export const projects = [
       "/projects/fintrack/transactions.png",
       "/projects/fintrack/investments.png",
       "/projects/fintrack/reports.png",
-      "/projects/fintrack/categories.png"
+      "/projects/fintrack/categories.png",
+      "/projects/fintrack/history.png",
+      "/projects/fintrack/settings.png"
     ],
     github: "https://github.com/Harsh-Mistry-12/fintrack.git",
     demo: "https://github.com/Harsh-Mistry-12/fintrack.git",
