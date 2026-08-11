@@ -31,6 +31,31 @@ export const skills = {
 
 export const projects = [
   {
+    slug: "fintrack",
+    title: "FinTrack: AI-Assisted Personal Finance & Expense Tracker",
+    technologies: ["Python", "FastAPI", "React", "TypeScript", "Tailwind CSS", "Claude AI", "Gemini AI", "Chart.js", "SQLite/MySQL"],
+    description: "Personal finance and budget analytics system built from scratch, utilizing Claude & Gemini AI models for intelligent expense categorization, budget insights, and pair-programmed codebase generation.",
+    impact: "Built from scratch with AI pair-programming assistance (Claude & Gemini), streamlining personal budget tracking and financial analytics.",
+    longDescription: "FinTrack is an end-to-end personal finance management platform built from scratch. Developed with AI pair-programming collaboration (Claude & Gemini), FinTrack automates expense tracking, income categorization, and budget forecasting with dynamic visual dashboards.",
+    details: [
+      {
+        heading: "Built From Scratch with AI Collaboration",
+        body: "Architected and built the entire application ground-up using Claude and Gemini as AI pair programmers for code generation, API design, type safety, and component structuring."
+      },
+      {
+        heading: "Smart Expense & Income Tracking",
+        body: "Engineered automated classification algorithms and AI-assisted prompts to parse transaction logs, categorize expenditures, and highlight budget anomalies in real time."
+      },
+      {
+        heading: "Analytics & Financial Forecasting",
+        body: "Integrated interactive visual data charts for monthly spending patterns, net-worth tracking, and customizable saving goals to empower data-driven financial management."
+      }
+    ],
+    images: ["/projects/fintrack/cover.png"],
+    github: "https://github.com/Harsh-Mistry-12/fintrack.git",
+    demo: "https://github.com/Harsh-Mistry-12/fintrack.git",
+  },
+  {
     slug: "voxreach",
     title: "AI-Powered Calling Agent & Hyperlocal Analytics Platform",
     technologies: ["RAG+LLM", "Cartesia", "TiDB", "FastAPI", "AWS", "Node.js", "MySQL", "Twilio", "Next.js", "Groq", "Gemini", "Telephony", "Sarvam", "Open Source Models", "Next.js"],
