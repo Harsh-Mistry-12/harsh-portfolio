@@ -210,8 +210,7 @@ export default function BlogListingPage() {
         }
         setLoading(false);
       })
-      .catch((err) => {
-        console.error("Error fetching dev.to blogs:", err);
+      .catch(() => {
         setLoading(false);
       });
   }, []);

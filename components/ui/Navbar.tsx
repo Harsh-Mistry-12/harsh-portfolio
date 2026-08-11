@@ -78,7 +78,7 @@ export const Navbar = () => {
           {/* Logo */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="font-bold text-sm tracking-widest uppercase flex items-center gap-2"
+            className="font-bold text-sm tracking-widest uppercase flex items-center gap-2 flex-shrink-0"
             style={{ fontFamily: "var(--font-mono)" }}
           >
             <span
@@ -95,21 +95,22 @@ export const Navbar = () => {
           </button>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden xl:flex items-center gap-3 xl:gap-5 flex-nowrap">
             {navLinks.map((link) => (
               <button
                 key={link.id}
                 onClick={() => scrollTo(link.id)}
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "0.65rem",
-                  letterSpacing: "0.1em",
+                  fontSize: "0.62rem",
+                  letterSpacing: "0.08em",
                   color: active === link.id ? "#d4500a" : "#6b6b6b",
                   textTransform: "uppercase",
                   background: "none",
                   border: "none",
                   cursor: "pointer",
                   transition: "color 0.15s",
+                  whiteSpace: "nowrap",
                 }}
                 onMouseEnter={(e) => {
                   if (active !== link.id)
@@ -126,7 +127,7 @@ export const Navbar = () => {
           </div>
 
           {/* CTA */}
-          <div className="hidden md:flex">
+          <div className="hidden xl:flex flex-shrink-0">
             <button
               onClick={() => scrollTo("contact")}
               className="btn-brutalist"
@@ -137,9 +138,9 @@ export const Navbar = () => {
             </button>
           </div>
 
-          {/* Mobile toggle */}
+          {/* Mobile/Tablet toggle */}
           <button
-            className="md:hidden"
+            className="xl:hidden"
             onClick={() => setMenuOpen((v) => !v)}
             aria-label="Toggle menu"
             style={{
@@ -158,10 +159,10 @@ export const Navbar = () => {
         </nav>
       </header>
 
-      {/* Mobile menu */}
+      {/* Mobile/Tablet menu */}
       {menuOpen && (
         <div
-          className="fixed top-14 inset-x-0 z-40 md:hidden"
+          className="fixed top-14 inset-x-0 z-40 xl:hidden"
           style={{
             background: "#e8e5de",
             borderBottom: "1px solid #0a0a0a",
