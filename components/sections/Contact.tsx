@@ -21,18 +21,12 @@ export const Contact = () => {
     e.preventDefault();
     setStatus("sending");
 
-    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "your-web3forms-key-here";
-
-    fetch("https://api.web3forms.com/submit", {
+    fetch("/api/contact", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
       },
-      body: JSON.stringify({
-        access_key: accessKey,
-        ...formData,
-      }),
+      body: JSON.stringify(formData),
     })
       .then(async (res) => {
         const data = await res.json();
