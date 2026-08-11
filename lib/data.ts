@@ -32,23 +32,40 @@ export const skills = {
 export const projects = [
   {
     slug: "fintrack",
-    title: "FinTrack: AI-Assisted Personal Finance & Expense Tracker",
-    technologies: ["Python", "FastAPI", "React", "TypeScript", "Tailwind CSS", "Claude AI", "Gemini AI", "Chart.js", "SQLite/MySQL"],
-    description: "Personal finance and budget analytics system built from scratch, utilizing Claude & Gemini AI models for intelligent expense categorization, budget insights, and pair-programmed codebase generation.",
-    impact: "Built from scratch with AI pair-programming assistance (Claude & Gemini), streamlining personal budget tracking and financial analytics.",
-    longDescription: "FinTrack is an end-to-end personal finance management platform built from scratch. Developed with AI pair-programming collaboration (Claude & Gemini), FinTrack automates expense tracking, income categorization, and budget forecasting with dynamic visual dashboards.",
+    title: "FinTrack: Monthly Budget Tracker & Financial Analytics",
+    technologies: [
+      "Python 3.11",
+      "PySide6 (Qt)",
+      "Fluent-Widgets",
+      "MySQL",
+      "SQLAlchemy 2.0",
+      "Matplotlib",
+      "Capacitor 8",
+      "Android Studio",
+      "PyInstaller",
+      "Inno Setup",
+      "Claude AI",
+      "Gemini AI"
+    ],
+    description: "Cross-platform personal finance & budget tracking ecosystem featuring a PySide6 Fluent GUI desktop app, MySQL database layer, and a Capacitor 8 hybrid mobile app — built from scratch with Claude & Gemini AI pair-programming.",
+    impact: "Built from scratch with AI pair-programming assistance (Claude & Gemini), combining a native Fluent Design desktop GUI, MySQL ORM layer, and Capacitor 8 mobile app.",
+    longDescription: "FinTrack (Monthly Budget Tracker) is a cross-platform financial analytics ecosystem built from scratch. It features a native desktop GUI built with PySide6 & Fluent-Widgets, a robust MySQL data architecture with SQLAlchemy ORM, and a hybrid mobile app powered by Capacitor 8. Designed and developed with Claude & Gemini AI models for architectural design, code generation, and visualization.",
     details: [
       {
-        heading: "Built From Scratch with AI Collaboration",
-        body: "Architected and built the entire application ground-up using Claude and Gemini as AI pair programmers for code generation, API design, type safety, and component structuring."
+        heading: "1. Desktop Application (Core GUI)",
+        body: "Built using Python 3.11 and PySide6 (Qt for Python) with PySide6-Fluent-Widgets for a modern Windows Fluent Design interface. Embedded Matplotlib and NumPy to render interactive financial charts and spending analytics directly inside Qt widgets."
       },
       {
-        heading: "Smart Expense & Income Tracking",
-        body: "Engineered automated classification algorithms and AI-assisted prompts to parse transaction logs, categorize expenditures, and highlight budget anomalies in real time."
+        heading: "2. Database & Data Layer",
+        body: "Powered by MySQL (127.0.0.1:3306) with SQLAlchemy 2.0+ ORM and PyMySQL for high-performance relational persistence and optional remote cloud database synchronization (TiDB Cloud). Features automated CSV export/import and automated .zip data archiving."
       },
       {
-        heading: "Analytics & Financial Forecasting",
-        body: "Integrated interactive visual data charts for monthly spending patterns, net-worth tracking, and customizable saving goals to empower data-driven financial management."
+        heading: "3. Hybrid Mobile Application (/mobile)",
+        body: "Developed responsive HTML5/CSS3/JS mobile views wrapped natively with Capacitor 8 (@capacitor/core, @capacitor/android) to target Android devices seamlessly via Android Studio."
+      },
+      {
+        heading: "4. Build & Distribution & AI Pair Programming",
+        body: "Packaged into standalone Windows executables using PyInstaller (MonthlyBudgetTracker.spec) and distributed via Inno Setup installers (HarshMistrySetup.iss). Architected from scratch with Claude AI & Gemini AI for rapid pair programming, component design, and code optimization."
       }
     ],
     images: ["/projects/fintrack/cover.png"],
