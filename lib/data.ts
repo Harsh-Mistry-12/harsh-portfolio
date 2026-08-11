@@ -47,25 +47,29 @@ export const projects = [
       "Claude AI",
       "Gemini AI"
     ],
-    description: "Cross-platform personal finance & budget tracking ecosystem featuring a PySide6 Fluent GUI desktop app, MySQL database layer, and a Capacitor 8 hybrid mobile app — built from scratch with Claude & Gemini AI pair-programming.",
-    impact: "Built from scratch with AI pair-programming assistance (Claude & Gemini), combining a native Fluent Design desktop GUI, MySQL ORM layer, and Capacitor 8 mobile app.",
-    longDescription: "FinTrack (Monthly Budget Tracker) is a cross-platform financial analytics ecosystem built from scratch. It features a native desktop GUI built with PySide6 & Fluent-Widgets, a robust MySQL data architecture with SQLAlchemy ORM, and a hybrid mobile app powered by Capacitor 8. Designed and developed with Claude & Gemini AI models for architectural design, code generation, and visualization.",
+    description: "A cross-platform personal finance and budget tracking ecosystem featuring a native Fluent Design desktop GUI, a robust MySQL data layer, and a hybrid mobile app built with Capacitor 8.",
+    impact: "Delivered a local-first, zero-subscription financial manager offering high-precision DECIMAL(12,2) accounting, automated data backups, and seamless cross-platform accessibility across Desktop and Android devices.",
+    longDescription: "A cross-platform personal finance and budget tracking ecosystem featuring a native Fluent Design desktop GUI, a robust MySQL data layer, and a hybrid mobile app built with Capacitor 8.",
     details: [
       {
-        heading: "1. Desktop Application (Core GUI)",
-        body: "Built using Python 3.11 and PySide6 (Qt for Python) with PySide6-Fluent-Widgets for a modern Windows Fluent Design interface. Embedded Matplotlib and NumPy to render interactive financial charts and spending analytics directly inside Qt widgets."
+        heading: "DESKTOP APPLICATION",
+        body: "Built using Python 3.11 and PySide6 with PySide6-Fluent-Widgets for a modern Windows Fluent UI interface. Integrates Matplotlib and NumPy to render real-time financial charts, spending analytics, and historical insights directly within Qt views."
       },
       {
-        heading: "2. Database & Data Layer",
-        body: "Powered by MySQL (127.0.0.1:3306) with SQLAlchemy 2.0+ ORM and PyMySQL for high-performance relational persistence and optional remote cloud database synchronization (TiDB Cloud). Features automated CSV export/import and automated .zip data archiving."
+        heading: "DATABASE & DATA LAYER",
+        body: "Powered by MySQL (127.0.0.1:3306) with SQLAlchemy 2.0+ ORM and PyMySQL for high-performance relational storage, with optional TiDB Cloud sync. Features automated .zip data archiving, full CSV export/import, and automated monthly roll-forwards."
       },
       {
-        heading: "3. Hybrid Mobile Application (/mobile)",
-        body: "Developed responsive HTML5/CSS3/JS mobile views wrapped natively with Capacitor 8 (@capacitor/core, @capacitor/android) to target Android devices seamlessly via Android Studio."
+        heading: "HYBRID MOBILE APPLICATION (/MOBILE)",
+        body: "Responsive HTML5/CSS3/JavaScript web interface wrapped natively with Capacitor 8 (@capacitor/core, @capacitor/android), pre-configured to sync and build as a native Android .apk via Android Studio."
       },
       {
-        heading: "4. Build & Distribution & AI Pair Programming",
-        body: "Packaged into standalone Windows executables using PyInstaller (MonthlyBudgetTracker.spec) and distributed via Inno Setup installers (HarshMistrySetup.iss). Architected from scratch with Claude AI & Gemini AI for rapid pair programming, component design, and code optimization."
+        heading: "BUILD & DISTRIBUTION & AI PAIR PROGRAMMING",
+        body: "Packaged into standalone Windows executables using PyInstaller (MonthlyBudgetTracker.spec) and distributed via Inno Setup (HarshMistrySetup.iss). Co-engineered with Claude AI & Gemini AI for system architecture, rapid pair-programming, and performance optimization."
+      },
+      {
+        heading: "KEY IMPACT",
+        body: "Delivered a local-first, zero-subscription financial manager offering high-precision DECIMAL(12,2) accounting, automated data backups, and seamless cross-platform accessibility across Desktop and Android devices."
       }
     ],
     images: ["/projects/fintrack/cover.png"],
