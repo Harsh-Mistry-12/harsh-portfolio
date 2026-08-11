@@ -209,7 +209,7 @@ body {
 /* ── Brutalist Button ───────────────────────────────────────────────────────── */
 .btn-brutalist {
   display: inline-flex;
-  align-items: center;
+  align-items: stretch;
   gap: 0;
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -232,15 +232,23 @@ body {
   padding: 12px 14px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  align-self: stretch;
   flex-shrink: 0;
+  box-sizing: border-box;
 }
 
 .btn-brutalist .btn-body {
   background: var(--foreground);
   color: #fff;
   padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
   flex: 1;
   text-align: center;
+  box-sizing: border-box;
 }
 
 .btn-brutalist.btn-outline .btn-body {

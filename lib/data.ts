@@ -31,6 +31,60 @@ export const skills = {
 
 export const projects = [
   {
+    slug: "fintrack",
+    title: "FinTrack: Monthly Budget Tracker & Financial Analytics",
+    technologies: [
+      "Python 3.11",
+      "PySide6 (Qt)",
+      "Fluent-Widgets",
+      "MySQL",
+      "SQLAlchemy 2.0",
+      "Matplotlib",
+      "Capacitor 8",
+      "Android Studio",
+      "PyInstaller",
+      "Inno Setup",
+      "Claude AI",
+      "Gemini AI"
+    ],
+    description: "A cross-platform personal finance and budget tracking ecosystem featuring a native Fluent Design desktop GUI, a robust MySQL data layer, and a hybrid mobile app built with Capacitor 8.",
+    impact: "Delivered a local-first, zero-subscription financial manager offering high-precision DECIMAL(12,2) accounting, automated data backups, and seamless cross-platform accessibility across Desktop and Android devices.",
+    longDescription: "A cross-platform personal finance and budget tracking ecosystem featuring a native Fluent Design desktop GUI, a robust MySQL data layer, and a hybrid mobile app built with Capacitor 8.",
+    details: [
+      {
+        heading: "DESKTOP APPLICATION",
+        body: "Built using Python 3.11 and PySide6 with PySide6-Fluent-Widgets for a modern Windows Fluent UI interface. Integrates Matplotlib and NumPy to render real-time financial charts, spending analytics, and historical insights directly within Qt views."
+      },
+      {
+        heading: "DATABASE & DATA LAYER",
+        body: "Powered by MySQL (127.0.0.1:3306) with SQLAlchemy 2.0+ ORM and PyMySQL for high-performance relational storage, with optional TiDB Cloud sync. Features automated .zip data archiving, full CSV export/import, and automated monthly roll-forwards."
+      },
+      {
+        heading: "HYBRID MOBILE APPLICATION (/MOBILE)",
+        body: "Responsive HTML5/CSS3/JavaScript web interface wrapped natively with Capacitor 8 (@capacitor/core, @capacitor/android), pre-configured to sync and build as a native Android .apk via Android Studio."
+      },
+      {
+        heading: "BUILD & DISTRIBUTION & AI PAIR PROGRAMMING",
+        body: "Packaged into standalone Windows executables using PyInstaller (MonthlyBudgetTracker.spec) and distributed via Inno Setup (HarshMistrySetup.iss). Co-engineered with Claude AI & Gemini AI for system architecture, rapid pair-programming, and performance optimization."
+      },
+      {
+        heading: "KEY IMPACT",
+        body: "Delivered a local-first, zero-subscription financial manager offering high-precision DECIMAL(12,2) accounting, automated data backups, and seamless cross-platform accessibility across Desktop and Android devices."
+      }
+    ],
+    images: [
+      "/projects/fintrack/dashboard.png",
+      "/projects/fintrack/transactions.png",
+      "/projects/fintrack/investments.png",
+      "/projects/fintrack/reports.png",
+      "/projects/fintrack/categories.png",
+      "/projects/fintrack/history.png",
+      "/projects/fintrack/settings.png"
+    ],
+    github: "https://github.com/Harsh-Mistry-12/fintrack.git",
+    demo: "https://github.com/Harsh-Mistry-12/fintrack.git",
+  },
+  {
     slug: "voxreach",
     title: "AI-Powered Calling Agent & Hyperlocal Analytics Platform",
     technologies: ["RAG+LLM", "Cartesia", "TiDB", "FastAPI", "AWS", "Node.js", "MySQL", "Twilio", "Next.js", "Groq", "Gemini", "Telephony", "Sarvam", "Open Source Models", "Next.js"],
